@@ -1,6 +1,6 @@
 export async function up(knex) {
   await knex.schema.createTable('baskets', (table) => {
-    table.increment('id').primary()
+    table.increments('id').primary()
     table.integer('user_id')
     table.string('description')
     table.string('categories')

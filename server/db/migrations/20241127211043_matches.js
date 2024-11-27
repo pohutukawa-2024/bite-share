@@ -1,10 +1,11 @@
 export async function up(knex) {
   await knex.schema.createTable('matches', (table) => {
-    table.increment('id').primary()
+    table.increments('id').primary()
     table.integer('giver_id')
     table.integer('receiver_id')
     table.string('status')
-    table.timestamp('sent_at')
+    table.timestamp('created_at')
+    table.timestamp('updated_at')
   })
 }
 
