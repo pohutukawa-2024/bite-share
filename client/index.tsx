@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
      * TODO: replace domain, clientId, and audience
      */
     <Auth0Provider
-      domain=""
-      clientId=""
+      domain="pohutukawa-bite-share.au.auth0.com"
+      clientId="z1tapSJtCk3kgFdgfyurwVqA6yI1QhrZ"
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: '',
+        audience: 'https://bite-share/api',
       }}
     >
       <QueryClientProvider client={queryClient}>
