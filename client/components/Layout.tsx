@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom'
+import Header from './Pages/Header/Header'
 
 export default function Layout() {
   return (
     <>
-      <header>
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
+      <header className="yellow text-3xl font-bold ">
+        <Header />
       </header>
       <main>
         <Outlet />
