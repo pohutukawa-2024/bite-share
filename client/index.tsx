@@ -10,7 +10,7 @@ const router = createBrowserRouter(routes)
 const queryClient = new QueryClient()
 
 document.addEventListener('DOMContentLoaded', () => {
-  createRoot(document.getElementById('app') as HTMLElement).render(
+  createRoot(document.getElementById('root') as HTMLElement).render(
     /**
      * TODO: replace domain, clientId, and audience
      */
