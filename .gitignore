@@ -15,3 +15,9 @@
 
 # Dotenv env settings
 .env
+
+# auth0 information
+auth0.md
+
+# getting tokens
+app.http
