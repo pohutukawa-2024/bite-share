@@ -1,14 +1,14 @@
 import { createRoutesFromElements, Route } from 'react-router-dom'
 
 import Layout from './components/Layout.tsx'
-import HomePage from './components/Pages/MainPage/HomePage.tsx'
-import AboutUs from './components/Pages/MainPage/AboutUs.tsx'
-import ContactUs from './components/Pages/MainPage/ContactUs.tsx'
-import GiverPage from './components/Pages/MainPage/GiverPage.tsx'
-import RequestPage from './components/Pages/MainPage/RequestPage.tsx'
-import MatchesPage from './components/Pages/MainPage/MatchesPage.tsx'
-import ProfilePage from './components/Pages/User/ProfilePage.tsx'
-import OwnBasket from './components/Pages/User/OwnBasket.tsx'
+import HomePage from './Pages/MainPage/HomePage.tsx'
+import AboutUs from './Pages/MainPage/AboutUs.tsx'
+import ContactUs from './Pages/MainPage/ContactUs.tsx'
+import GiverPage from './Pages/MainPage/GiverPage.tsx'
+import RequestPage from './Pages/MainPage/RequestPage.tsx'
+import MatchesPage from './Pages/MainPage/MatchesPage.tsx'
+import ProfilePage from './Pages/User/ProfilePage.tsx'
+import OwnBasket from './Pages/User/OwnBasket.tsx'
 
 export default createRoutesFromElements(
   <Route>
