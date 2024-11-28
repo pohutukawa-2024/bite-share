@@ -35,21 +35,45 @@ function ProfilePage() {
   return (
     data && (
       <div className="flex justify-center">
-        <div className="m-20 w-1/3 flex-row justify-center rounded-md bg-gray-200">
-          <h1>Edit Profile</h1>
+        <div className="m-20 flex w-1/3 flex-col items-center justify-center rounded-md bg-gray-100 p-3">
+          <h1 className="mb-8 mt-3">Edit Profile</h1>
           <p>{data.fullName}</p>
           <p>{data.location}</p>
-          <form onSubmit={handleSubmit}>
-            <div className="flex gap-2">
+
+          <form onSubmit={handleSubmit} className="flex flex-col">
+            <section className="flex items-center gap-2 p-0.5">
               <label htmlFor="username">Username: </label>
               <input
+                className="ml-5 rounded-md border-2 border-gray-600 bg-gray-300 p-0.5"
                 onChange={handleChange}
                 name="username"
                 id="username"
                 type="text"
                 value={formState.username}
               />
-            </div>
+            </section>
+            <section className="flex items-center gap-2 p-0.5">
+              <label htmlFor="fullName">Full Name: </label>
+              <input
+                className="ml-6 rounded-md border-2 border-gray-600 bg-gray-300 p-0.5"
+                onChange={handleChange}
+                name="fullName"
+                id="fullName"
+                type="text"
+                value={formState.fullName}
+              />
+            </section>
+            <section className="flex items-center gap-2 p-0.5">
+              <label htmlFor="email">Email: </label>
+              <input
+                className="ml-14 rounded-md border-2 border-gray-600 bg-gray-300 p-0.5"
+                onChange={handleChange}
+                name="email"
+                id="email"
+                type="text"
+                value={formState.email}
+              />
+            </section>
           </form>
         </div>
       </div>

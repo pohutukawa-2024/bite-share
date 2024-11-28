@@ -44,16 +44,16 @@ function AddProfileForm(props: Props) {
           placeholder="Enter a username"
           value={formState.username}
         />
-        <label htmlFor="full_name">Full Name</label>
+        <label htmlFor="fullName">Full Name</label>
         <input
           onChange={handleChange}
-          name="full_name"
-          id="full_name"
+          name="fullName"
+          id="fullName"
           type="text"
           placeholder="Enter your full name"
-          value={formState.full_name}
+          value={formState.fullName}
         />
-        <label htmlFor="full_name">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           onChange={handleChange}
           name="email"

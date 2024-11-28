@@ -24,7 +24,7 @@ export async function upsertProfile(profile: Profile) {
       full_name: profile.fullName,
       email: profile.email,
       points: profile.points,
-      locaiton: profile.location,
+      location: profile.location,
     })
     .onConflict('id')
     .merge()
