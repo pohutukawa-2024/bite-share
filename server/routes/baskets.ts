@@ -3,6 +3,7 @@ import { JwtRequest } from '../auth0'
 import validateAccessToken from '../auth0'
 import * as db from '../db/baskets'
 import { Basket } from '../../models/baskets'
+import { updateBasketById } from '../db/baskets'
 
 const router = express.Router()
 
@@ -15,29 +16,10 @@ router.get('/', validateAccessToken, async (req, res) => {
   }
 })
 
-// router.post('/', validateAccessToken, async (req:JwtRequest, res) => {
-//   const newBasket=req.body
-//   const userId = req.auth?.sub
-  
-//   if (!userId) {
-//     res.status(403).json({ message: 'You need to login for adding the basket' })
-//     return
-//   }
-
-//   try {
-//     const basket = await db.addNewBasket(newBasket, userId)
-//     res.status(200).json(basket)
-//   } catch (e) {
-//     console.error(e)
-//   }
-// })
-
-
-
 
 router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   const newBasket: Partial<Basket> = req.body;
-  const userId = 'auth|101'//req.auth?.sub;
+  const userId = req.auth?.sub; //'auth|101'
   
 
   if (!userId) {
@@ -46,9 +28,9 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
 
   const basketToInsert: Basket = {
     ...newBasket,
-    user_id: userId,
-    created_at: Date.now(),
-    updated_at: Date.now(),
+    userId:userId,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
     status: newBasket.status || 'active',
   };
 
@@ -61,4 +43,17 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 });
 
+router.patch('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;  
+    const updatedBasketData: Partial<Basket> = req.body; 
+
+    const updatedBasket = await updateBasketById(Number(id), updatedBasketData);
+
+    res.status(200).json(updatedBasket);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Something went wrong while updating the basket' });
+  }
+});
  export default  router
