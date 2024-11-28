@@ -1,8 +1,8 @@
 export interface Message {
-  matches_id: number
-  sender_id: string
+  matchesId: number
+  senderId: string
   message: string
-  sent_at: number
+  sentAt: number
 }
 
 export interface MessageWithId {
