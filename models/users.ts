@@ -22,3 +22,10 @@ export interface User {
 export interface UserWithId extends User {
   id: string
 }
+
+export interface EditUser {
+  username?: string
+  full_name?: string
+  email?: string
+  location?: string
+}
