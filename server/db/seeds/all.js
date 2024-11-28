@@ -45,6 +45,14 @@ export async function seed(knex) {
       points: 0,
       location: 'SouthAuckland',
     },
+    {
+      id: 'auth0|67476f8defa904b4cd515493',
+      username: 'superhenry',
+      full_name: 'Henry Tran',
+      email: 'henry@example.com',
+      points: 0,
+      location: 'EastAuckland',
+    },
   ])
 
   await knex('baskets').insert([

@@ -1,7 +1,7 @@
-export interface match {
+export interface Match {
   giverId: string
   receiverId: string
   status: string
-  created_at: number
-  updated_at: number
+  createdAt: number
+  updatedAt: number
 }
