@@ -48,33 +48,38 @@ interface RequestPageProps {
 // RequestPage Component
 function RequestPage({ givers }: RequestPageProps) {
   return (
-    <div>
-      <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Loaction" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            {/* <SelectLabel>Area</SelectLabel> */}
-            <SelectItem value="apple">North Shore</SelectItem>
-            <SelectItem value="banana">West Auckland</SelectItem>
-            <SelectItem value="blueberry">East Auckland</SelectItem>
-            <SelectItem value="grapes">South Auckland</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      <div className="flex flex-row  justify-center  gap-10 bg-gray-100 p-6">
+    <div className="flex flex-col items-center p-6">
+      {/* Header Section */}
+      <div className="mb-6 flex w-full max-w-4xl items-center justify-between">
+        <h1 className="flex-1 text-center text-2xl font-semibold">
+          Request a Basket
+        </h1>
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Location" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="north-shore">North Shore</SelectItem>
+              <SelectItem value="west-auckland">West Auckland</SelectItem>
+              <SelectItem value="east-auckland">East Auckland</SelectItem>
+              <SelectItem value="south-auckland">South Auckland</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="flex flex-row  justify-center  gap-10  p-6">
         <br />
         <div className="flex flex-col gap-6">
           {givers.map((giver, index) => (
             <div
               key={index}
-              className="flex items-start rounded-md bg-white p-6 shadow-md"
+              className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
             >
               <img
                 src={giver.imageUrl}
                 alt="Basket"
-                className="mr-4 h-24 w-24 rounded-full object-cover"
+                className="mr-4 h-28 w-28 rounded-full object-cover"
               />
 
               <div className="flex-1">
@@ -96,8 +101,13 @@ function RequestPage({ givers }: RequestPageProps) {
             </div>
           ))}
         </div>
-        <div className="flex w-48 rounded-md bg-white p-4 shadow-md">
-          dddddssssssssssssss
+        <div className="h-56 rounded-3xl bg-zinc-100 p-2 shadow-md">
+          <img
+            src="public/images/dietary.png"
+            alt="dietary"
+            height="100px"
+            width="200px"
+          />
         </div>
       </div>
     </div>
