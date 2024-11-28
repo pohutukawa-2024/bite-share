@@ -22,8 +22,9 @@ export default createRoutesFromElements(
       <Route path="give" element={<GiverPage />} />
       <Route path="request" element={<RequestPage />} />
       <Route path="matches" element={<MatchesPage />} />
-      <Route path="kohaPage" element={<KohaPage />} />\
+      <Route path="kohaPage" element={<KohaPage />} />
       <Route path="profile/:userid" element={<ProfilePage />} />
+      <Route path="profile" element={<ProfilePage />} />
       <Route path="ownbasket/:userid" element={<OwnBasket />} />
     </Route>
   </Route>,

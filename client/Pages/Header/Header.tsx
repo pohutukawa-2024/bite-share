@@ -46,6 +46,7 @@ function Header() {
           <section>
             {isAuthenticated && <button onClick={handleLogout}>Log out</button>}
           </section>
+          <Link to="/profile">Edit profile</Link>
         </div>
       </div>
     </nav>
