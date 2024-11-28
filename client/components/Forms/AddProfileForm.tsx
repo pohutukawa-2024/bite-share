@@ -69,6 +69,7 @@ function AddProfileForm(props: Props) {
           <option value="WestAuckland">West Auckland</option>
           <option value="SouthAuckland">South Auckland</option>
         </select>
+        <button type="submit">Submit</button>
       </form>
     </>
   )
