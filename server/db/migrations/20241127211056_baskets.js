@@ -1,7 +1,7 @@
 export async function up(knex) {
   await knex.schema.createTable('baskets', (table) => {
     table.increments('id').primary()
-    table.integer('user_id')
+    table.integer('user_id').references('users.id')
     table.string('description')
     table.string('categories')
     table.string('dietary_content')
