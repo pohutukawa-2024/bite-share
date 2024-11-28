@@ -38,7 +38,7 @@ function Header() {
             to="/kohaPage"
             className="rounded bg-green-500 px-3 py-1 font-bold text-white hover:bg-green-600"
           >
-            Suport us/ Koha
+            Support us/ Koha
           </Link>
           <section>
             {!isAuthenticated && <button onClick={handleLogin}>Login</button>}
