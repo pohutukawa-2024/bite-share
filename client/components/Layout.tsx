@@ -4,7 +4,7 @@ import Header from '../Pages/Header/Header'
 export default function Layout() {
   return (
     <>
-      <header className="yellow text-3xl font-bold ">
+      <header>
         <Header />
       </header>
       <main>

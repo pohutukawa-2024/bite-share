@@ -9,7 +9,7 @@ import RequestPage from './Pages/MainPage/RequestPage.tsx'
 import MatchesPage from './Pages/MainPage/MatchesPage.tsx'
 import ProfilePage from './Pages/User/ProfilePage.tsx'
 import OwnBasket from './Pages/User/OwnBasket.tsx'
-import AddProfile from './Pages/Account/AddProfile.tsx'
+import KohaPage from './Pages/MainPage/KohaPage.tsx'
 
 export default createRoutesFromElements(
   <Route>
@@ -21,6 +21,7 @@ export default createRoutesFromElements(
       <Route path="give" element={<GiverPage />} />
       <Route path="request" element={<RequestPage />} />
       <Route path="matches" element={<MatchesPage />} />
+      <Route path="kohaPage" element={<KohaPage />} />\
       <Route path="profile/:userid" element={<ProfilePage />} />
       <Route path="ownbasket/:userid" element={<OwnBasket />} />
     </Route>
