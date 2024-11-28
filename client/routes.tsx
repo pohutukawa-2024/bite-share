@@ -10,6 +10,7 @@ import MatchesPage from './Pages/MainPage/MatchesPage.tsx'
 import ProfilePage from './Pages/User/ProfilePage.tsx'
 import OwnBasket from './Pages/User/OwnBasket.tsx'
 import KohaPage from './Pages/MainPage/KohaPage.tsx'
+import AddProfile from './Pages/Account/AddProfile.tsx'
 
 export default createRoutesFromElements(
   <Route>
