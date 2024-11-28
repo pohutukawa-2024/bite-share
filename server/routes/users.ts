@@ -47,4 +47,33 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 })
 
+
+router.get('/:username', validateAccessToken, async (req: JwtRequest, res) => {
+  try {
+    const username = req.params.username
+    const user = await db.getUserByUsername(username)
+    res.status(200).json(user)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+router.patch('/:username', validateAccessToken, async (req, res) => {
+  try {
+    const { full_name,
+      email,
+      location } = req.body
+    const username = req.params.username
+
+    await db.updateUserByUsername({username,
+      full_name,
+      email,
+      location})
+
+    res.sendStatus(204)
+  } catch (error) {
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
 export default router
