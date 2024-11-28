@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const headerIterms = [
   { id: 1, name: 'Home', navigateTo: '/' },
@@ -8,6 +9,20 @@ const headerIterms = [
 ]
 
 function Header() {
+  const { isAuthenticated, logout, loginWithRedirect } = useAuth0()
+
+  function handleLogin() {
+    loginWithRedirect({
+      authorizationParams: {
+        redirect_uri: `${window.location.origin}/`,
+      },
+    })
+  }
+
+  function handleLogout() {
+    logout({ logoutParams: { returnTo: window.location.origin } })
+  }
+
   return (
     <nav>
       <div>
@@ -23,8 +38,14 @@ function Header() {
             to="/kohaPage"
             className="rounded bg-green-500 px-3 py-1 font-bold text-white hover:bg-green-600"
           >
-            Suport us/ Koha
+            Support us/ Koha
           </Link>
+          <section>
+            {!isAuthenticated && <button onClick={handleLogin}>Login</button>}
+          </section>
+          <section>
+            {isAuthenticated && <button onClick={handleLogout}>Log out</button>}
+          </section>
         </div>
       </div>
     </nav>
