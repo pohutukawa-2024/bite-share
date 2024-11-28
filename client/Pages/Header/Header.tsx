@@ -26,14 +26,6 @@ function Header() {
   return (
     <nav>
       <div>
-        <div>
-          <section>
-            {!isAuthenticated && <button onClick={handleLogin}>Login</button>}
-          </section>
-          <section>
-            {isAuthenticated && <button onClick={handleLogout}>Log out</button>}
-          </section>
-        </div>
         <div className="mr-5 mt-2 flex flex-row justify-end gap-7 sm:mt-4 lg:mt-6">
           {headerIterms.map((item) => {
             return (
@@ -48,6 +40,12 @@ function Header() {
           >
             Suport us/ Koha
           </Link>
+          <section>
+            {!isAuthenticated && <button onClick={handleLogin}>Login</button>}
+          </section>
+          <section>
+            {isAuthenticated && <button onClick={handleLogout}>Log out</button>}
+          </section>
         </div>
       </div>
     </nav>
