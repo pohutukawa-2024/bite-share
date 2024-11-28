@@ -7,7 +7,7 @@ import * as db from '../db/users'
 const router = express.Router()
 
 router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
-  const id = req.auth?.payload.sub
+  const id = req.auth?.sub
 
   if (!id) {
     res.status(400).json({ message: 'Please provide an id' })
@@ -24,7 +24,7 @@ router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
 })
 
 router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
-  const id = req.auth?.payload.sub
+  const id = req.auth?.sub
   const form = req.body
 
   if (!id) {
