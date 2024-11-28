@@ -1,4 +1,4 @@
-// interface for one basket, use Basket[] when you are expecting an array of baskets
+// The interface for POSTing a basket probably
 export interface Basket {
   user_id: string
   description: string
@@ -10,6 +10,7 @@ export interface Basket {
   updated_at: number
 }
 
+// interface for one basket, use Basket[] when you are expecting an array of baskets
 export interface BasketWithId extends Basket {
   id: number
 }
