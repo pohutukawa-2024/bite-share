@@ -40,11 +40,8 @@
     "jsonwebtoken": "^9.0.2",
     "jwks-rsa": "^2.1.5",
     "knex": "^2.5.1",
-<<<<<<< HEAD
     "lucide-react": "^0.462.0",
-=======
     "react-confetti": "^6.1.0",
->>>>>>> fc39756a5162e15564c758d83c5177187eac624c
     "sqlite3": "^5.1.6",
     "superagent": "^8.1.2",
     "tailwind-merge": "^2.5.5",
