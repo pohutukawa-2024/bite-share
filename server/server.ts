@@ -15,6 +15,8 @@ if (process.env.NODE_ENV === 'production') {
   server.get('*', (req, res) => {
     res.sendFile(Path.resolve('./dist/index.html'))
   })
+} else {
+  server.use(express.static(Path.resolve('public')))
 }
 
 export default server
