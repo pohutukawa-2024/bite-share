@@ -15,17 +15,27 @@ export async function getUserByUsername(username: string) {
   return user
 }
 
-export async function updateUserByUsername(
-  {
+export async function updateUserByUsername({
   username,
   full_name,
   email,
-  location}: EditUser
-) {
-  const user = await db('users').where({ username }).update( {
+  location,
+}: EditUser) {
+  const user = await db('users').where({ username }).update({
     username,
     full_name,
     email,
-    location})
+    location,
+  })
   return user
+}
+
+export async function updatePointsByUsername({
+  username,
+  points = 10,
+}: {
+  username: string
+  points?: number
+}) {
+  await db('users').where({ username }).increment('points', points)
 }
