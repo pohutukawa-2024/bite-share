@@ -10,7 +10,7 @@ function AddProfileForm(props: Props) {
   const { handleSubmit, profile } = props
   const [formState, setFormState] = useState({
     username: profile?.username,
-    full_name: profile?.full_name,
+    fullName: profile?.fullName,
     email: profile?.email,
     points: 0,
     location: profile?.location,

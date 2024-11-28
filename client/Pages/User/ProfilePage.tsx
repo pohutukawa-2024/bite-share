@@ -1,15 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import useAddProfile from '../../hooks/useAddProfile'
 
 function ProfilePage() {
   const { data, isLoading } = useAddProfile()
 
   const [formState, setFormState] = useState({
-    username: data?.username,
-    fullName: data?.fullName,
-    email: data?.email,
-    location: data?.location,
+    username: '',
+    fullName: '',
+    email: '',
+    location: '',
   })
+  useEffect(() => {
+    if (data) {
+      setFormState({
+        username: data.username || '',
+        fullName: data.fullName || '',
+        email: data.email || '',
+        location: data.location || '',
+      })
+    }
+  }, [data])
 
   if (isLoading) return <div>Loading....</div>
 
@@ -17,9 +27,10 @@ function ProfilePage() {
     event.preventDefault()
   }
 
-  // const handleChange = () => {
-  //   const { name, value }
-  // }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setFormState((prev) => ({ ...prev, [name]: value }))
+  }
 
   return (
     data && (
@@ -29,7 +40,16 @@ function ProfilePage() {
           <p>{data.fullName}</p>
           <p>{data.location}</p>
           <form onSubmit={handleSubmit}>
-            <label></label>
+            <div className="flex gap-2">
+              <label htmlFor="username">Username: </label>
+              <input
+                onChange={handleChange}
+                name="username"
+                id="username"
+                type="text"
+                value={formState.username}
+              />
+            </div>
           </form>
         </div>
       </div>
