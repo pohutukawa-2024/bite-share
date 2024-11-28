@@ -10,11 +10,13 @@ import MatchesPage from './Pages/MainPage/MatchesPage.tsx'
 import ProfilePage from './Pages/User/ProfilePage.tsx'
 import OwnBasket from './Pages/User/OwnBasket.tsx'
 import KohaPage from './Pages/MainPage/KohaPage.tsx'
+import AddProfile from './Pages/Account/AddProfile.tsx'
 
 export default createRoutesFromElements(
   <Route>
     <Route path="/" element={<Layout />}>
       <Route index element={<HomePage />} />
+      <Route path="addProfile" element={<AddProfile />} />
       <Route path="about" element={<AboutUs />} />
       <Route path="contact" element={<ContactUs />} />
       <Route path="give" element={<GiverPage />} />
