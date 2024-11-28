@@ -1,6 +1,5 @@
 // interface for one basket, use Basket[] when you are expecting an array of baskets
 export interface Basket {
-  id: number
   user_id: string
   description: string
   categories: string
@@ -9,4 +8,8 @@ export interface Basket {
   status: string
   created_at: number
   updated_at: number
+}
+
+export interface BasketWithId extends Basket {
+  id: number
 }
