@@ -11,6 +11,7 @@ import ProfilePage from './Pages/User/ProfilePage.tsx'
 import OwnBasket from './Pages/User/OwnBasket.tsx'
 import KohaPage from './Pages/MainPage/KohaPage.tsx'
 import AddProfile from './Pages/Account/AddProfile.tsx'
+import AnotherProfile from './Pages/User/AnotherProfile.tsx'
 
 export default createRoutesFromElements(
   <Route>
@@ -23,7 +24,7 @@ export default createRoutesFromElements(
       <Route path="request" element={<RequestPage />} />
       <Route path="matches" element={<MatchesPage />} />
       <Route path="kohaPage" element={<KohaPage />} />
-      <Route path="profile/:userid" element={<ProfilePage />} />
+      <Route path="profile/:username" element={<AnotherProfile />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="ownbasket/:userid" element={<OwnBasket />} />
     </Route>

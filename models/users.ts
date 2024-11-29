@@ -29,3 +29,7 @@ export interface EditUser {
   email?: string
   location?: string
 }
+
+export interface EditUserWithId extends EditUser {
+  id: string
+}
