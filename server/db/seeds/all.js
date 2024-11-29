@@ -1,8 +1,8 @@
 export async function seed(knex) {
-  await knex('users').del()
+  await knex('messages').del()
   await knex('baskets').del()
   await knex('matches').del()
-  await knex('messages').del()
+  await knex('users').del()
 
   await knex('users').insert([
     {

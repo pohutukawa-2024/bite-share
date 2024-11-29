@@ -1,9 +1,9 @@
 // The interface for POSTing a basket probably
 export interface PostBasket {
-  description: string
-  categories: string
-  dietaryContent: string
-  location: string
+  description: string|undefined
+  categories: string|undefined
+  dietaryContent: string|undefined
+  location: string|undefined
   status: string
   createdAt: number
   updatedAt: number
