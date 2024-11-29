@@ -7,6 +7,7 @@ export async function up(knex) {
     table.string('dietary_content')
     table.string('location')
     table.string('status')
+    table.string('image')
     table.timestamp('created_at')
     table.timestamp('updated_at')
   })
