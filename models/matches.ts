@@ -8,5 +8,7 @@ export interface Match {
 
 export interface MatchJoin extends Match {
   giverUsername: string
+  giverFullName: string
   receiverUsername: string
+  receiverFullName: string
 }

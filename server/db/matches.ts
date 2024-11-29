@@ -8,8 +8,10 @@ export async function getMatches(id: string) {
     .select(
       'matches.giver_id as giverId',
       'users_giver.username as giverUsername',
+      'users_giver.full_name as giverFullName',
       'matches.receiver_id as receiverId',
       'users_receiver.username as receiverUsername',
+      'users_receiver.full_name as receiverFullName',
       'matches.status as status',
       'matches.created_at as createdAt',
       'matches.updated_at as updatedAt',
