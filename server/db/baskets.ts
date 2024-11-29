@@ -14,6 +14,7 @@ export async function addNewBasket(basket: Basket) {
     dietary_content: basket.dietaryContent,
     location: basket.location,
     status: basket.status,
+    image: basket.image,
     created_at: basket.createdAt,
     updated_at: basket.updatedAt,
   })

@@ -6,6 +6,7 @@ export async function up(knex) {
     table.string('email')
     table.integer('points')
     table.string('location')
+    table.string('icon')
   })
 }
 
