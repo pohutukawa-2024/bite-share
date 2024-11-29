@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import useAddProfile from '../../hooks/useAddProfile'
+import useUpdateUser from '../../hooks/useUpdateUser'
 
 function ProfilePage() {
   const { data, isLoading } = useAddProfile()
+  const editProfile = useUpdateUser()
 
   const [formState, setFormState] = useState({
     username: '',
@@ -25,6 +27,8 @@ function ProfilePage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    console.log(formState)
+    editProfile.mutate(formState)
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +78,55 @@ function ProfilePage() {
                 value={formState.email}
               />
             </section>
+            <section className="flex flex-wrap">
+              <label htmlFor="location" className="w-1/6">
+                Location
+              </label>
+              <div className="w-5/6">
+                <input
+                  onChange={handleChange}
+                  type="radio"
+                  name="location"
+                  id="location"
+                  value="North Shore"
+                  className="m-2"
+                />
+                North Shore
+                <input
+                  onChange={handleChange}
+                  type="radio"
+                  name="location"
+                  id="location"
+                  value="West Auckland"
+                  className="m-2"
+                />
+                West Auckland
+                <input
+                  onChange={handleChange}
+                  type="radio"
+                  name="location"
+                  id="location"
+                  value="East Auckland"
+                  className="m-2"
+                />
+                East Auckland
+                <input
+                  onChange={handleChange}
+                  type="radio"
+                  name="location"
+                  id="location"
+                  value="South Auckland"
+                  className="m-2"
+                />
+                South Auckland
+              </div>
+            </section>
+            <button
+              type="submit"
+              className="w-24 rounded-md bg-green-600 text-white"
+            >
+              Update
+            </button>
           </form>
         </div>
       </div>

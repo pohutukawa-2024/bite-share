@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Profile, ProfileDraft } from '../../models/users'
+import { EditUser, Profile, ProfileDraft } from '../../models/users'
 
 export async function upsertProfile(
   form: Profile | ProfileDraft,
@@ -18,4 +18,12 @@ export async function getUser(token: string) {
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
   return res.body as Profile
+}
+
+export async function updateUser(form: EditUser, token: string) {
+  await request
+    .patch('/api/v1/users')
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+    .send(form)
 }
