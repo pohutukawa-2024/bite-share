@@ -51,16 +51,18 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 })
 
+// Returns another user's details with their user name, returns as {user: Profile}
 router.get('/:username', validateAccessToken, async (req: JwtRequest, res) => {
   try {
     const username = req.params.username
     const user = await db.getUserByUsername(username)
-    res.status(200).json(user)
+    res.status(200).json({ user })
   } catch (error) {
     console.error(error)
   }
 })
 
+// Updates a user's profile
 router.patch('/', validateAccessToken, async (req: JwtRequest, res) => {
   const id = req.auth?.sub
   const form = req.body

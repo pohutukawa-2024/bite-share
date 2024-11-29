@@ -31,7 +31,17 @@ export async function upsertProfile(profile: Profile) {
 }
 
 export async function getUserByUsername(username: string) {
-  const user = await db('users').select().where({ username })
+  const user = await db('users')
+    .select(
+      'id as id',
+      'username as username',
+      'full_name as fullName',
+      'email as email',
+      'points as points',
+      'location as location',
+    )
+    .where({ username })
+    .first()
   return user
 }
 

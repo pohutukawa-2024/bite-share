@@ -7,7 +7,7 @@ import AddProfileForm from '../../components/Forms/AddProfileForm'
 function AddProfile() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
-  const { data, isLoading, mutation } = useAddProfile()
+  const { data, isLoading, postMutation } = useAddProfile()
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -19,14 +19,14 @@ function AddProfile() {
 
   async function handleSubmit(form: ProfileDraft | Profile) {
     const token = await getAccessTokenSilently()
-    mutation.mutate({ form, token })
+    postMutation.mutate({ form, token })
   }
 
   return (
     <div>
       This will be where users will be redirected after creating an account on
       auth0
-      <AddProfileForm handleSubmit={handleSubmit} profile={data} />
+      <AddProfileForm handleSubmit={handleSubmit} profile={data?.user} />
     </div>
   )
 }
