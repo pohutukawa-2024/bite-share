@@ -215,7 +215,7 @@ export async function seed(knex) {
     {
       id: 2,
       giver_id: 'auth0|67476f8defa904b4cd515493',
-      receiver_id: 'auth0|6747d7830ba06e401cd48bdb',
+      receiver_id: 'auth0|6747d2aed8d9b71e8babb226',
       status: 'active',
       created_at: 1698559500000,
       updated_at: 1698559800000,
