@@ -4,6 +4,7 @@ export interface PostBasket {
   categories: string|undefined
   dietaryContent: string|undefined
   location: string|undefined
+  image: string|undefined
   status: string
   createdAt: number
   updatedAt: number
