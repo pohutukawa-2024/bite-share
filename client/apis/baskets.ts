@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { BasketWithId } from '../../models/baskets'
+import { BasketJoinedUser } from '../../models/baskets'
 
 //Get data
 export async function getBaskets(token: string) {
@@ -26,8 +26,8 @@ export async function patchBaskets(token: string, giverId: number) {
 // Retrieve only the user's baskets
 export async function getUserBaskets(token: string) {
   const res = await request
-    .get('/api/v1/baskets')
+    .get('/api/v1/baskets/ownbasket')
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-  return res.body as BasketWithId[]
+  return res.body as BasketJoinedUser[]
 }

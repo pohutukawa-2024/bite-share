@@ -61,6 +61,7 @@ router.patch('/:id', async (req, res) => {
   }
 })
 
+// Retrieve only the user's baskets
 router.get('/ownbasket', validateAccessToken, async (req: JwtRequest, res) => {
   const id = req.auth?.sub
 
