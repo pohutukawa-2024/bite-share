@@ -95,7 +95,7 @@ function RequestPage({ givers }: RequestPageProps) {
                   {giver.dietaryPreferences.join(', ')}
                 </p>
               </div>
-              <button className="bg-primary ml-4 rounded-md px-4 py-2 text-black hover:bg-[#f08c00]">
+              <button className="bg-primary ml-4 rounded-md px-4 py-2 text-black hover:bg-[#e0b143]">
                 Request
               </button>
             </div>
