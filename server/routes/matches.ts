@@ -23,7 +23,7 @@ router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 })
 
-//
+// Adds new match between two users to the DB
 router.post('/', validateAccessToken, async (req, res) => {
   try {
     const match = req.body

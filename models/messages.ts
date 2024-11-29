@@ -1,3 +1,8 @@
+export interface PostMessage {
+  matchesId: number
+  message: string
+}
+
 export interface Message {
   matchesId: number
   senderId: string
