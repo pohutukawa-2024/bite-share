@@ -4,7 +4,16 @@ import db from './connection'
 
 // Retrieves all messages based on a matchId
 export async function getMessages(matches_Id: number) {
-  const results = await db('messages').where({ matches_Id }).select()
+  const results = await db('messages')
+    .where({ matches_Id })
+    .select(
+      'id as id',
+      'matches_id as matchesId',
+      'sender_id as senderId',
+      'message as message',
+      'sent_at as sentAt',
+    )
+    .orderBy('sent_at', 'desc')
   return results as MessageWithId[]
 }
 
