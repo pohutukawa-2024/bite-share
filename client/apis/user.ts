@@ -17,7 +17,7 @@ export async function getUser(token: string) {
     .get('/api/v1/users')
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-  return res.body as Profile
+  return res.body as { user: Profile }
 }
 
 export async function updateUser(form: EditUser, token: string) {

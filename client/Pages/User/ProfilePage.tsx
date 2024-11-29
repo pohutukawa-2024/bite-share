@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import useAddProfile from '../../hooks/useAddProfile'
 import useUpdateUser from '../../hooks/useUpdateUser'
+import { useNavigate } from 'react-router-dom'
 
 function ProfilePage() {
-  const { data, isLoading } = useAddProfile()
+  const { data, isLoading, isError } = useAddProfile()
   const editProfile = useUpdateUser()
+  const navigate = useNavigate()
 
   const [formState, setFormState] = useState({
     username: '',
@@ -15,20 +17,22 @@ function ProfilePage() {
   useEffect(() => {
     if (data) {
       setFormState({
-        username: data.username || '',
-        fullName: data.fullName || '',
-        email: data.email || '',
-        location: data.location || '',
+        username: data.user.username || '',
+        fullName: data.user.fullName || '',
+        email: data.user.email || '',
+        location: data.user.location || '',
       })
     }
   }, [data])
 
   if (isLoading) return <div>Loading....</div>
+  if (isError) return <div>Sorry, an error has occurred</div>
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     console.log(formState)
     editProfile.mutate(formState)
+    navigate('/')
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,8 +45,6 @@ function ProfilePage() {
       <div className="flex justify-center">
         <div className="m-20 flex w-1/3 flex-col items-center justify-center rounded-md bg-gray-100 p-3">
           <h1 className="mb-8 mt-3">Edit Profile</h1>
-          <p>{data.fullName}</p>
-          <p>{data.location}</p>
 
           <form onSubmit={handleSubmit} className="flex flex-col">
             <section className="flex items-center gap-2 p-0.5">
@@ -90,6 +92,7 @@ function ProfilePage() {
                   id="location"
                   value="North Shore"
                   className="m-2"
+                  checked={formState.location === 'North Shore'}
                 />
                 North Shore
                 <input
@@ -99,6 +102,7 @@ function ProfilePage() {
                   id="location"
                   value="West Auckland"
                   className="m-2"
+                  checked={formState.location === 'West Auckland'}
                 />
                 West Auckland
                 <input
@@ -108,6 +112,7 @@ function ProfilePage() {
                   id="location"
                   value="East Auckland"
                   className="m-2"
+                  checked={formState.location === 'East Auckland'}
                 />
                 East Auckland
                 <input
@@ -117,6 +122,7 @@ function ProfilePage() {
                   id="location"
                   value="South Auckland"
                   className="m-2"
+                  checked={formState.location === 'South Auckland'}
                 />
                 South Auckland
               </div>

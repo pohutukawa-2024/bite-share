@@ -35,7 +35,7 @@ function useAddProfile() {
     },
   })
 
-  return { data, isLoading, isError, mutation }
+  return { data, isLoading, isError, postMutation: mutation }
 }
 
 export default useAddProfile
