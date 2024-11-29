@@ -3,50 +3,25 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '../../ui/Select'
 
-// GiverData Example Array
-export const GiverData = [
-  {
-    name: 'John Doe',
-    description: 'Fresh organic vegetables and fruits.',
-    basketItems: ['Vegetables', 'Fruits'],
-    dietaryPreferences: ['Vegan', 'Gluten Free'],
-    imageUrl: 'Public/images/vegan.png',
-  },
-  {
-    name: 'John Doe',
-    description: 'Fresh organic vegetables and fruits.',
-    basketItems: ['Vegetables', 'Fruits'],
-    dietaryPreferences: ['Vegan', 'Gluten Free'],
-    imageUrl: 'Public/images/vegan.png',
-  },
-  {
-    name: 'John Doe',
-    description: 'Fresh organic vegetables and fruits.',
-    basketItems: ['Vegetables', 'Fruits'],
-    dietaryPreferences: ['Vegan', 'Gluten Free'],
-    imageUrl: 'Public/images/vegan.png',
-  },
-]
+import useBaskets from '../../hooks/useBaskets'
+import usePatchBaskets from '../../hooks/usePatchBaskets'
 
-interface Giver {
-  name: string
-  description: string
-  basketItems: string[]
-  dietaryPreferences: string[]
-  imageUrl: string
-}
+function RequestPage() {
+  const { data: givers, isLoading, isError } = useBaskets()
+  const updateBasket = usePatchBaskets()
 
-interface RequestPageProps {
-  givers: Giver[]
-}
+  function handleRequest(giverId: number) {
+    console.log(`Request sent for ${giverId}`)
+    updateBasket.mutate(giverId)
+  }
 
-// RequestPage Component
-function RequestPage({ givers }: RequestPageProps) {
+  if (isLoading) return <p>Loading baskets...</p>
+  if (isError) return <p>Error loading baskets.</p>
+
   return (
     <div className="flex flex-col items-center p-6">
       {/* Header Section */}
@@ -68,47 +43,45 @@ function RequestPage({ givers }: RequestPageProps) {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex flex-row  justify-center  gap-10  p-6">
-        <br />
-        <div className="flex flex-col gap-6">
-          {givers.map((giver, index) => (
-            <div
-              key={index}
-              className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
-            >
-              <img
-                src={giver.imageUrl}
-                alt="Basket"
-                className="mr-4 h-28 w-28 rounded-full object-cover"
-              />
-
-              <div className="flex-1">
-                <h2 className="text-lg font-semibold">{giver.name}</h2>
-                <p className="mt-1 text-sm text-gray-600">
-                  <strong>Description:</strong> {giver.description}
-                </p>
-                <p className="mt-1 text-sm text-gray-600">
-                  <strong>Basket:</strong> {giver.basketItems.join(', ')}
-                </p>
-                <p className="mt-1 text-sm text-gray-600">
-                  <strong>Dietary Preferences:</strong>{' '}
-                  {giver.dietaryPreferences.join(', ')}
-                </p>
-              </div>
-              <button className="bg-primary ml-4 rounded-md px-4 py-2 text-black hover:bg-[#e0b143]">
-                Request
-              </button>
+      <div className="flex flex-wrap justify-center gap-10 p-6">
+        {givers?.map((giver, index) => (
+          <div
+            key={index}
+            className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
+          >
+            {/* <img
+              src={giver.imageUrl}
+              alt="Basket"
+              className="mr-4 h-28 w-28 rounded-full object-cover"
+            /> */}
+            <div className="flex-1">
+              <h2 className="text-lg font-semibold">{giver.userId}</h2>
+              <p className="mt-1 text-sm text-gray-600">
+                <strong>Description:</strong> {giver.description}
+              </p>
+              <p className="mt-1 text-sm text-gray-600">
+                <strong>Basket:</strong> {giver.categories}
+              </p>
+              <p className="mt-1 text-sm text-gray-600">
+                <strong>Dietary Preferences:</strong> {giver.dietary_content}
+              </p>
             </div>
-          ))}
-        </div>
-        <div className="h-56 rounded-3xl bg-zinc-100 p-2 shadow-md">
-          <img
-            src="public/images/dietary.png"
-            alt="dietary"
-            height="100px"
-            width="200px"
-          />
-        </div>
+            <button
+              onClick={() => handleRequest(giver.id)}
+              className="bg-primary ml-4 rounded-md px-4 py-2 text-black hover:bg-[#e0b143]"
+            >
+              Request
+            </button>
+          </div>
+        ))}
+      </div>
+      <div className="h-56 rounded-3xl bg-zinc-100 p-2 shadow-md">
+        <img
+          src="/images/dietary.png"
+          alt="Dietary Information"
+          height="100px"
+          width="200px"
+        />
       </div>
     </div>
   )
