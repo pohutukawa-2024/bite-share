@@ -19,7 +19,7 @@ router.get('/', validateAccessToken, async (req, res) => {
 
 router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   const newBasket: Partial<Basket> = req.body;
-  const userId = req.auth?.sub; //'auth|101'
+  const userId = req.auth?.sub; 
   
 
   if (!userId) {

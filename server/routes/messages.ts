@@ -2,7 +2,7 @@ import express from 'express'
 // import { JwtRequest } from '../auth0'
 import validateAccessToken from '../auth0'
 import * as db from '../db/messages'
-import { Message, Message } from '../../models/messages'
+import { Message } from '../../models/messages'
 
 const router = express.Router()
 

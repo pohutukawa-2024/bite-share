@@ -5,6 +5,7 @@ export interface ProfileDraft {
   email: string | undefined
   points: number | undefined
   location: string | undefined
+  icon: string | undefined
 }
 export interface Profile extends ProfileDraft {
   id: string
@@ -28,6 +29,7 @@ export interface EditUser {
   fullName?: string
   email?: string
   location?: string
+  icon?: string
 }
 
 export interface EditUserWithId extends EditUser {

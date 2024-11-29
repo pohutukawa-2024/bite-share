@@ -10,6 +10,7 @@ export async function getUser(id: string) {
       'email as email',
       'points as points',
       'location as location',
+      'icon as icon',
     )
     .where('id', id)
     .first()
@@ -25,6 +26,7 @@ export async function upsertProfile(profile: Profile) {
       email: profile.email,
       points: profile.points,
       location: profile.location,
+      icon: profile.icon,
     })
     .onConflict('id')
     .merge()
@@ -39,6 +41,7 @@ export async function getUserByUsername(username: string) {
       'email as email',
       'points as points',
       'location as location',
+      'icon as icon',
     )
     .where({ username })
     .first()
@@ -52,6 +55,7 @@ export async function updateUserByUsername(profile: EditUserWithId) {
     full_name: profile.fullName,
     email: profile.email,
     location: profile.location,
+    icon: profile.icon,
   })
   return user
 }

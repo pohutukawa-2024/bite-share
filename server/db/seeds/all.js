@@ -12,6 +12,7 @@ export async function seed(knex) {
       email: 'user1@example.com',
       points: 0,
       location: 'NorthShore',
+      icon: '',
     },
     {
       id: 'auth|456',
@@ -20,6 +21,7 @@ export async function seed(knex) {
       email: 'user2@example.com',
       points: 0,
       location: 'SouthAuckland',
+      icon: '',
     },
     {
       id: 'auth|789',
@@ -28,6 +30,7 @@ export async function seed(knex) {
       email: 'user3@example.com',
       points: 0,
       location: 'EastAuckland',
+      icon: '',
     },
     {
       id: 'auth|101',
@@ -36,6 +39,7 @@ export async function seed(knex) {
       email: 'user4@example.com',
       points: 0,
       location: 'WestAuckland',
+      icon: '',
     },
     {
       id: 'auth|202',
@@ -44,6 +48,7 @@ export async function seed(knex) {
       email: 'user5@example.com',
       points: 0,
       location: 'SouthAuckland',
+      icon: '',
     },
     {
       id: 'auth0|67476f8defa904b4cd515493',
@@ -52,7 +57,9 @@ export async function seed(knex) {
       email: 'henry@example.com',
       points: 0,
       location: 'EastAuckland',
+      icon: '',
     },
+    
   ])
 
   await knex('baskets').insert([
@@ -64,6 +71,7 @@ export async function seed(knex) {
       dietary_content: 'Vegan,GlutenFree',
       location: 'NorthShore',
       status: 'active',
+      image: '',
       created_at: 1698557400000,
       updated_at: 1698557700000,
     },
@@ -75,6 +83,7 @@ export async function seed(knex) {
       dietary_content: 'Vegetarian,GlutenFree',
       location: 'SouthAuckland',
       status: 'active',
+      image: '',
       created_at: 1698559200000,
       updated_at: 1698559500000,
     },
@@ -86,6 +95,7 @@ export async function seed(knex) {
       dietary_content: 'Halal',
       location: 'EastAuckland',
       status: 'active',
+      image: '',
       created_at: 1698561600000,
       updated_at: 1698561900000,
     },
@@ -97,6 +107,7 @@ export async function seed(knex) {
       dietary_content: 'GlutenFree,Halal',
       location: 'WestAuckland',
       status: 'active',
+      image: '',
       created_at: 1698564000000,
       updated_at: 1698564300000,
     },
@@ -108,6 +119,7 @@ export async function seed(knex) {
       dietary_content: 'Vegetarian,GlutenFree',
       location: 'NorthShore',
       status: 'inactive',
+      image: '',
       created_at: 1698566400000,
       updated_at: 1698566700000,
     },
@@ -119,6 +131,7 @@ export async function seed(knex) {
       dietary_content: 'Vegetarian',
       location: 'SouthAuckland',
       status: 'inactive',
+      image: '',
       created_at: 1698568800000,
       updated_at: 1698569100000,
     },
@@ -130,6 +143,7 @@ export async function seed(knex) {
       dietary_content: 'GlutenFree,Halal',
       location: 'EastAuckland',
       status: 'active',
+      image: '',
       created_at: 1698571200000,
       updated_at: 1698571500000,
     },
@@ -141,6 +155,7 @@ export async function seed(knex) {
       dietary_content: 'Vegetarian',
       location: 'WestAuckland',
       status: 'active',
+      image: '',
       created_at: 1698573600000,
       updated_at: 1698573900000,
     },
@@ -152,6 +167,7 @@ export async function seed(knex) {
       dietary_content: 'Vegan,GlutenFree',
       location: 'NorthShore',
       status: 'active',
+      image: '',
       created_at: 1698576000000,
       updated_at: 1698576300000,
     },
@@ -163,9 +179,11 @@ export async function seed(knex) {
       dietary_content: 'GlutenFree,Halal',
       location: 'SouthAuckland',
       status: 'active',
+      image: '',
       created_at: 1698578400000,
       updated_at: 1698578700000,
-    },
+    }
+    ,
   ])
 
   await knex('matches').insert([
