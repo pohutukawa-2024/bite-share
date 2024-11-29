@@ -20,4 +20,4 @@
 auth0.md
 
 # getting tokens
-app.http
+*.http
