@@ -5,7 +5,6 @@ export default function Layout() {
   return (
     <>
       <header>
-        sdfdsß
         <Header />
       </header>
       <main>
