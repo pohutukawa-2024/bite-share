@@ -9,11 +9,11 @@ interface Props {
 function AddProfileForm(props: Props) {
   const { handleSubmit, profile } = props
   const [formState, setFormState] = useState({
-    username: profile?.username,
-    fullName: profile?.fullName,
-    email: profile?.email,
+    username: profile?.username || '',
+    fullName: profile?.fullName || '',
+    email: profile?.email || '',
     points: 0,
-    location: profile?.location,
+    location: profile?.location || '',
   })
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -63,7 +63,12 @@ function AddProfileForm(props: Props) {
           value={formState.email}
         />
         <label htmlFor="location">Location</label>
-        <select onChange={handleChange} name="location" id="location">
+        <select
+          onChange={handleChange}
+          name="location"
+          id="location"
+          value={formState.location}
+        >
           <option value="NorthShore">North Shore</option>
           <option value="EastAuckland">East Auckland</option>
           <option value="WestAuckland">West Auckland</option>
