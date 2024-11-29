@@ -26,7 +26,7 @@ export default createRoutesFromElements(
       <Route path="kohaPage" element={<KohaPage />} />
       <Route path="profile/:username" element={<AnotherProfile />} />
       <Route path="profile" element={<ProfilePage />} />
-      <Route path="ownbasket/:userid" element={<OwnBasket />} />
+      <Route path="ownbasket" element={<OwnBasket />} />
     </Route>
   </Route>,
 )
