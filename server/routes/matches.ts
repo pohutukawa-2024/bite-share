@@ -5,9 +5,9 @@ import * as db from '../db/matches'
 
 const router = express.Router()
 
+// Returns all of a user's active matches as Match
 router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
   const id = req.auth?.sub
-  console.log(id)
 
   if (!id) {
     res.status(400).json({ message: 'Please provide an id' })
@@ -23,6 +23,7 @@ router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 })
 
+//
 router.post('/', validateAccessToken, async (req, res) => {
   try {
     const match = req.body

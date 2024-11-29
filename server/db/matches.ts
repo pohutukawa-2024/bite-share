@@ -1,4 +1,4 @@
-import { Match } from '../../models/matches'
+import { Match, MatchJoin } from '../../models/matches'
 import db from './connection'
 
 export async function getMatches(id: string) {
@@ -18,7 +18,7 @@ export async function getMatches(id: string) {
     .andWhere((builder) =>
       builder.where('giver_id', id).orWhere('receiver_id', id),
     )
-  return results as Match[]
+  return results as MatchJoin[]
 }
 
 export async function addMatch(match: Match) {
