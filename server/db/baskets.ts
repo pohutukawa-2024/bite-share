@@ -35,7 +35,21 @@ export async function updateBasketById(
 export async function getBasketsByUserId(userId: string) {
   const results = await db('baskets')
     .join('users', 'baskets.user_id', 'users.id')
-    .select()
+    .select(
+      'baskets.id as id',
+      'baskets.user_id as userId',
+      'description as description',
+      'categories as categories',
+      'dietary_content as dietaryContent',
+      'baskets.location as location',
+      'status as status',
+      'created_at as createdAt',
+      'updated_at as updatedAt',
+      'username as username',
+      'full_name as fullName',
+      'email as email',
+      'points as points',
+    )
     .where('baskets.user_id', userId)
 
   return results
