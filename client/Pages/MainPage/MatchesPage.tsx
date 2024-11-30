@@ -29,8 +29,6 @@ function MatchesPage() {
   if (isLoading) return <div>loading...</div>
   if (isError) return <div>Sorry! An error has occurred.</div>
 
-  console.log(selectMatch.matchesId)
-
   // Creates an array of conversations with the other user, no matter if they were the giver or receiver
   const transformedData: MatchBubble[] = data
     ? data?.map((match) => {

@@ -15,13 +15,13 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
 
   if (matchId === 0) {
     return (
-      <section className="h-full w-4/5 rounded-lg bg-gray-100">
+      <section className="w-4/5 h-full bg-gray-100 rounded-lg">
         <h1 className="text-center">Click on a Conversation</h1>
       </section>
     )
   } else {
     return (
-      <section className="h-full w-4/5 rounded-lg bg-gray-100">
+      <section className="w-4/5 h-full bg-gray-100 rounded-lg">
         <h1 className="m-2 text-center">{otherUsername}</h1>
         <div>
           <ul>
