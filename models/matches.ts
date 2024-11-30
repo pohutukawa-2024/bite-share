@@ -7,8 +7,16 @@ export interface Match {
 }
 
 export interface MatchJoin extends Match {
+  id: number
   giverUsername: string
   giverFullName: string
   receiverUsername: string
   receiverFullName: string
+}
+
+export interface MatchBubble {
+  matchId: number
+  otherFullName: string
+  otherId: string
+  otherUsername: string
 }

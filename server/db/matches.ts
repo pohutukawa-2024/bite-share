@@ -6,6 +6,7 @@ export async function getMatches(id: string) {
     .join('users as users_giver', 'matches.giver_id', 'users_giver.id')
     .join('users as users_receiver', 'matches.receiver_id', 'users_receiver.id')
     .select(
+      'matches.id as id',
       'matches.giver_id as giverId',
       'users_giver.username as giverUsername',
       'users_giver.full_name as giverFullName',
