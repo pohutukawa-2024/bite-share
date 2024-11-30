@@ -15,8 +15,10 @@ function usePostMessage() {
         await postMessage(token, messageObj)
       } else throw new Error('User is not authenticated')
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['message'] })
+    onSuccess: (_, messageObj) => {
+      queryClient.invalidateQueries({
+        queryKey: ['messages', messageObj.matchesId],
+      })
     },
   })
   return mutation

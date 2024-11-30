@@ -2,6 +2,7 @@ import useGetMessages from '../../hooks/useGetMessages'
 import { useAuth0 } from '@auth0/auth0-react'
 import SendBox from './SendBox'
 import usePostMessage from '../../hooks/usePostMessage'
+import { useRef, useEffect } from 'react'
 
 interface Props {
   matchId: number
@@ -12,12 +13,22 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
   const { data, isLoading, isError } = useGetMessages(matchId)
   const { user } = useAuth0()
   const addMessage = usePostMessage()
+  const chatBottom = useRef<HTMLDivElement>(null)
+
+  // Scrolls chatbox to the bottom
+  const scrollToBottom = () => {
+    chatBottom.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+  useEffect(() => {
+    if (data) {
+      scrollToBottom()
+    }
+  }, [data])
 
   // Inserts new message into DB
   const handleSubmit = async (message: string) => {
     const messageObj = { matchesId: matchId, message }
     addMessage.mutate(messageObj)
-    console.log('message', messageObj)
   }
 
   if (isLoading) return <div>Loading...</div>
@@ -33,7 +44,7 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
   } else {
     return (
       <div className="w-4/5">
-        <section className="h-full rounded-tl-lg rounded-tr-lg bg-gray-100">
+        <section className="h-[500px] overflow-y-auto rounded-tl-lg rounded-tr-lg bg-gray-100">
           <h1 className="m-2 text-center">{otherUsername}</h1>
           <div>
             <ul>
@@ -49,6 +60,7 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
                 </li>
               ))}
             </ul>
+            <div ref={chatBottom} />
           </div>
         </section>
 
