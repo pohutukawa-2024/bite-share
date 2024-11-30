@@ -11,6 +11,7 @@ export interface PostBasket {
 }
 
 export interface Basket extends PostBasket {
+  dietary_content: ReactNode
   userId: string
 }
 
