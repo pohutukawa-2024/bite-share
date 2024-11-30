@@ -9,14 +9,24 @@ import {
 
 import useBaskets from '../../hooks/useBaskets'
 import usePatchBaskets from '../../hooks/usePatchBaskets'
+import { useQueryClient } from '@tanstack/react-query'
 
 function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
+  const queryClient = useQueryClient()
   const updateBasket = usePatchBaskets()
 
   function handleRequest(giverId: number) {
     console.log(`Request sent for ${giverId}`)
-    updateBasket.mutate(giverId)
+    updateBasket.mutate(giverId, {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['baskets']) // Refetch baskets
+      },
+      onError: (err) => {
+        console.error('Error updating basket:', err)
+        alert('Failed to update basket. Please try again.')
+      },
+    })
   }
 
   if (isLoading) return <p>Loading baskets...</p>
@@ -44,36 +54,38 @@ function RequestPage() {
         </Select>
       </div>
       <div className="flex flex-wrap justify-center gap-10 p-6">
-        {givers?.map((giver, index) => (
-          <div
-            key={index}
-            className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
-          >
-            {/* <img
+        {givers
+          ?.filter((basket) => basket.status === 'active')
+          .map((giver, index) => (
+            <div
+              key={index}
+              className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
+            >
+              {/* <img
               src={giver.imageUrl}
               alt="Basket"
               className="mr-4 h-28 w-28 rounded-full object-cover"
             /> */}
-            <div className="flex-1">
-              <h2 className="text-lg font-semibold">{giver.userId}</h2>
-              <p className="mt-1 text-sm text-gray-600">
-                <strong>Description:</strong> {giver.description}
-              </p>
-              <p className="mt-1 text-sm text-gray-600">
-                <strong>Basket:</strong> {giver.categories}
-              </p>
-              <p className="mt-1 text-sm text-gray-600">
-                <strong>Dietary Preferences:</strong> {giver.dietary_content}
-              </p>
+              <div className="flex-1">
+                <h2 className="text-lg font-semibold">{giver.userId}</h2>
+                <p className="mt-1 text-sm text-gray-600">
+                  <strong>Description:</strong> {giver.description}
+                </p>
+                <p className="mt-1 text-sm text-gray-600">
+                  <strong>Basket:</strong> {giver.categories}
+                </p>
+                <p className="mt-1 text-sm text-gray-600">
+                  <strong>Dietary Preferences:</strong> {giver.dietary_content}
+                </p>
+              </div>
+              <button
+                onClick={() => handleRequest(giver.id)}
+                className="bg-primary ml-4 rounded-md px-4 py-2 text-black hover:bg-[#e0b143]"
+              >
+                Request
+              </button>
             </div>
-            <button
-              onClick={() => handleRequest(giver.id)}
-              className="bg-primary ml-4 rounded-md px-4 py-2 text-black hover:bg-[#e0b143]"
-            >
-              Request
-            </button>
-          </div>
-        ))}
+          ))}
       </div>
       <div className="h-56 rounded-3xl bg-zinc-100 p-2 shadow-md">
         <img
