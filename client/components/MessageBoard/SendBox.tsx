@@ -9,6 +9,7 @@ export default function SendBox({ onSubmit }: Prop) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setFormState(() => '')
     onSubmit(formState)
   }
 

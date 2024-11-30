@@ -1,6 +1,7 @@
 import useGetMessages from '../../hooks/useGetMessages'
 import { useAuth0 } from '@auth0/auth0-react'
 import SendBox from './SendBox'
+import usePostMessage from '../../hooks/usePostMessage'
 
 interface Props {
   matchId: number
@@ -10,14 +11,19 @@ interface Props {
 export default function ChatBox({ matchId, otherUsername }: Props) {
   const { data, isLoading, isError } = useGetMessages(matchId)
   const { user } = useAuth0()
+  const addMessage = usePostMessage()
 
+  // Inserts new message into DB
   const handleSubmit = async (message: string) => {
-    console.log('message', message)
+    const messageObj = { matchesId: matchId, message }
+    addMessage.mutate(messageObj)
+    console.log('message', messageObj)
   }
 
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Sorry! An error has occurred.</div>
 
+  // Shows empty conversation when first loads (matchId = 0)
   if (matchId === 0) {
     return (
       <section className="h-full w-4/5 rounded-lg bg-gray-100">
