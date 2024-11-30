@@ -35,4 +35,20 @@ router.post('/', validateAccessToken, async (req, res) => {
   }
 })
 
+// Changes a match status to inactive
+router.patch('/:matchId', validateAccessToken, async (req, res) => {
+  const { matchId } = req.params
+  const updatedAt = Date.now()
+  const status = req.body.status
+  try {
+    const newMatch = { id: Number(matchId), updatedAt, status }
+    console.log(newMatch)
+    await db.editMatch(newMatch)
+    res.sendStatus(204)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to update match' })
+  }
+})
+
 export default router

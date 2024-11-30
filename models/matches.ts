@@ -20,3 +20,9 @@ export interface MatchBubble {
   otherId: string
   otherUsername: string
 }
+
+export interface MatchStatus {
+  id: number
+  status: string
+  updatedAt: number
+}
