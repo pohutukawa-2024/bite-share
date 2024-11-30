@@ -49,7 +49,7 @@ function MatchesPage() {
     : []
 
   return (
-    <div className="m-16 flex justify-center">
+    <div className="m-16 flex h-[50%] justify-center">
       <div className="flex w-3/5 ">
         <ChatBubble data={transformedData} onClick={handleClick} />
         <ChatBox
