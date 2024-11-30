@@ -3,12 +3,16 @@ import db from './connection'
 
 export async function getMatches(id: string) {
   const results = await db('matches')
+    .join('users as users_giver', 'matches.giver_id', 'users_giver.id')
+    .join('users as users_receiver', 'matches.receiver_id', 'users_receiver.id')
     .select(
-      'giver_id as giverId',
-      'receiver_id as receiverId',
-      'status as status',
-      'created_at as createdAt',
-      'updated_at as updatedAt',
+      'matches.giver_id as giverId',
+      'users_giver.username as giverUsername',
+      'matches.receiver_id as receiverId',
+      'users_receiver.username as receiverUsername',
+      'matches.status as status',
+      'matches.created_at as createdAt',
+      'matches.updated_at as updatedAt',
     )
     .where('status', 'active')
     .andWhere((builder) =>

@@ -10,14 +10,14 @@ function useAddProfile() {
   const { user, getAccessTokenSilently } = useAuth0()
 
   const queryClient = useQueryClient()
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
       if (user && user.sub) {
         const response = await getUser(accessToken)
         return response
-      }
+      } else throw new Error('User is not authenticated')
     },
   })
 
@@ -35,7 +35,7 @@ function useAddProfile() {
     },
   })
 
-  return { data, isLoading, mutation }
+  return { data, isLoading, isError, postMutation: mutation }
 }
 
 export default useAddProfile

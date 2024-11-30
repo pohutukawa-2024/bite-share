@@ -3,9 +3,11 @@ import express from 'express'
 import { JwtRequest } from '../auth0'
 import validateAccessToken from '../auth0'
 import * as db from '../db/users'
+import { EditUserWithId } from '../../models/users'
 
 const router = express.Router()
 
+// This retrieve's a user's own details, returns {user: Profile}
 router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
   const id = req.auth?.sub
 
@@ -23,6 +25,7 @@ router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 })
 
+// Adds a user to the DB, after they create auth0 account
 router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   const id = req.auth?.sub
   const form = req.body
@@ -40,6 +43,7 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   try {
     const profile = { ...form, id }
     await db.upsertProfile(profile)
+    console.log(profile)
     res.sendStatus(201)
   } catch (error) {
     console.error(error)
@@ -47,22 +51,35 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 })
 
+// Returns another user's details with their user name, returns as {user: Profile}
 router.get('/:username', validateAccessToken, async (req: JwtRequest, res) => {
   try {
     const username = req.params.username
     const user = await db.getUserByUsername(username)
-    res.status(200).json(user)
+    res.status(200).json({ user })
   } catch (error) {
     console.error(error)
   }
 })
 
-router.patch('/:username', validateAccessToken, async (req, res) => {
-  try {
-    const { full_name, email, location } = req.body
-    const username = req.params.username
+// Updates a user's profile
+router.patch('/', validateAccessToken, async (req: JwtRequest, res) => {
+  const id = req.auth?.sub
+  const form = req.body
 
-    await db.updateUserByUsername({ username, full_name, email, location })
+  if (!id) {
+    res.status(400).json({ message: 'Missing auth0 id' })
+    return
+  }
+  if (!form) {
+    res.status(400).json({ message: 'Missing form' })
+    return
+  }
+
+  try {
+    const profile: EditUserWithId = { ...form, id }
+
+    await db.updateUserByUsername(profile)
 
     res.sendStatus(204)
   } catch (error) {
@@ -82,6 +99,5 @@ router.patch('/:username', validateAccessToken, async (req, res) => {
 //     res.status(500).json({ message: 'Something went wrong' })
 //   }
 // })
-
 
 export default router

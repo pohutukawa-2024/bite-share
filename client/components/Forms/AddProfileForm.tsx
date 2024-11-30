@@ -9,11 +9,11 @@ interface Props {
 function AddProfileForm(props: Props) {
   const { handleSubmit, profile } = props
   const [formState, setFormState] = useState({
-    username: profile?.username,
-    full_name: profile?.full_name,
-    email: profile?.email,
+    username: profile?.username || '',
+    fullName: profile?.fullName || '',
+    email: profile?.email || '',
     points: 0,
-    location: profile?.location,
+    location: profile?.location || '',
   })
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -44,16 +44,16 @@ function AddProfileForm(props: Props) {
           placeholder="Enter a username"
           value={formState.username}
         />
-        <label htmlFor="full_name">Full Name</label>
+        <label htmlFor="fullName">Full Name</label>
         <input
           onChange={handleChange}
-          name="full_name"
-          id="full_name"
+          name="fullName"
+          id="fullName"
           type="text"
           placeholder="Enter your full name"
-          value={formState.full_name}
+          value={formState.fullName}
         />
-        <label htmlFor="full_name">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           onChange={handleChange}
           name="email"
@@ -63,7 +63,12 @@ function AddProfileForm(props: Props) {
           value={formState.email}
         />
         <label htmlFor="location">Location</label>
-        <select onChange={handleChange} name="location" id="location">
+        <select
+          onChange={handleChange}
+          name="location"
+          id="location"
+          value={formState.location}
+        >
           <option value="NorthShore">North Shore</option>
           <option value="EastAuckland">East Auckland</option>
           <option value="WestAuckland">West Auckland</option>
