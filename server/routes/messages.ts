@@ -1,5 +1,5 @@
 import express from 'express'
-// import { JwtRequest } from '../auth0'
+import { JwtRequest } from '../auth0'
 import validateAccessToken from '../auth0'
 import * as db from '../db/messages'
 import { Message } from '../../models/messages'
@@ -28,11 +28,11 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 
   const messageToInsert: Message = {
-    ...newMessage
+    ...newMessage,
   }
 
   try {
-     db.addNewMessage(messageToInsert)
+    db.addNewMessage(messageToInsert)
     return res.status(201).json({ message: 'Message added successfully' })
   } catch (error) {
     console.error('Error adding basket:', error)

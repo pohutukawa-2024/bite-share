@@ -1,5 +1,5 @@
 // import { MessageWithId } from '../../models/messages'
-import { Message } from '../../models/messages'
+// import { Message } from '../../models/messages'
 import db from './connection'
 
 export async function getMessages(matches_Id: number) {

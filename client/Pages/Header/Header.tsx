@@ -25,8 +25,9 @@ function Header() {
 
   return (
     <nav>
-      <div>
-        <div className="mr-5 mt-2 flex flex-row justify-end gap-7 sm:mt-4 lg:mt-6">
+      <div className="flex items-center justify-between py-6">
+        <h1>Bite-Share</h1>
+        <div className="flex flex-row justify-end gap-6 text-center">
           {headerIterms.map((item) => {
             return (
               <Link key={item.id} to={item.navigateTo!}>
