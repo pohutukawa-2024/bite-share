@@ -1,5 +1,5 @@
 import express from 'express'
-// import { JwtRequest } from '../auth0'
+import { JwtRequest } from '../auth0'
 import validateAccessToken from '../auth0'
 import * as db from '../db/messages'
 import { Message } from '../../models/messages'
