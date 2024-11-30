@@ -284,6 +284,22 @@ export async function seed(knex) {
       created_at: 1698578400000,
       updated_at: 1698578700000,
     },
+    {
+      id: 11,
+      giver_id: 'auth0|67476f8defa904b4cd515493',
+      receiver_id: 'auth|202',
+      status: 'active',
+      created_at: 1698578400000,
+      updated_at: 1698578700000,
+    },
+    {
+      id: 12,
+      giver_id: 'auth|456',
+      receiver_id: 'auth0|67476f8defa904b4cd515493',
+      status: 'active',
+      created_at: 1698578400000,
+      updated_at: 1698578700000,
+    },
   ])
 
   await knex('messages').insert([
@@ -394,6 +410,41 @@ export async function seed(knex) {
       sender_id: 'auth|202',
       message: 'Yes, I have some chips left. When would you like to come by?',
       sent_at: 1698579900000,
+    },
+    {
+      id: 21,
+      matches_id: 1,
+      sender_id: 'auth0|6747d7830ba06e401cd48bdb',
+      message: 'Yo, is the basket ready or what?',
+      sent_at: 1698579900000,
+    },
+    {
+      id: 22,
+      matches_id: 1,
+      sender_id: 'auth0|67476f8defa904b4cd515493',
+      message: 'Yep, meet you behind the GI PaknSave tonight at 10pm.',
+      sent_at: 1698580500000,
+    },
+    {
+      id: 23,
+      matches_id: 2,
+      sender_id: 'auth0|6747d2aed8d9b71e8babb226',
+      message: 'Are these carrots gluten-free?',
+      sent_at: 1698579900000,
+    },
+    {
+      id: 24,
+      matches_id: 2,
+      sender_id: 'auth0|67476f8defa904b4cd515493',
+      message: 'What?',
+      sent_at: 1698580500000,
+    },
+    {
+      id: 25,
+      matches_id: 2,
+      sender_id: 'auth0|6747d2aed8d9b71e8babb226',
+      message: 'Can you bring it to my house? Okay thanks',
+      sent_at: 1698581100000,
     },
   ])
 }

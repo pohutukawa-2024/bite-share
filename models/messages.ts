@@ -10,6 +10,6 @@ export interface Message {
   sentAt: number
 }
 
-export interface MessageWithId {
+export interface MessageWithId extends Message {
   id: number
 }

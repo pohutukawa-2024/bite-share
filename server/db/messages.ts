@@ -13,7 +13,7 @@ export async function getMessages(matches_Id: number) {
       'message as message',
       'sent_at as sentAt',
     )
-    .orderBy('sent_at', 'desc')
+    .orderBy('sent_at')
   return results as MessageWithId[]
 }
 
