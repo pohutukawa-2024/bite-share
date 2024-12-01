@@ -43,7 +43,7 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
     )
   } else {
     return (
-      <div className="w-4/5">
+      <div className="w-4/6">
         <section className="h-[500px] overflow-y-auto rounded-tl-lg rounded-tr-lg bg-gray-100">
           <h1 className="m-2 text-center">{otherUsername}</h1>
           <div>

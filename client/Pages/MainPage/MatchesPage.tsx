@@ -50,12 +50,21 @@ function MatchesPage() {
 
   return (
     <div className="m-16 flex h-[50%] justify-center">
-      <div className="flex w-3/5 ">
+      <div className="flex w-4/5 ">
         <ChatBubble data={transformedData} onClick={handleClick} />
         <ChatBox
           matchId={selectMatch.matchesId}
           otherUsername={selectMatch.otherUsername}
         />
+        <div className="w-1/6">
+          <h2>When done with conversation:</h2>
+          <button className="m-2 h-20 w-36  rounded-full bg-red-200 pb-0.5 pl-2 pr-2 pt-0.5">
+            Relist Basket
+          </button>
+          <button className="m-2 h-20 w-36 rounded-full bg-green-200 pb-0.5 pl-2 pr-2 pt-0.5">
+            Complete Match
+          </button>
+        </div>
       </div>
     </div>
   )

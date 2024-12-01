@@ -18,15 +18,18 @@ function RequestPage() {
 
   function handleRequest(giverId: number) {
     console.log(`Request sent for ${giverId}`)
-    updateBasket.mutate(giverId, {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['baskets']) // Refetch baskets
+    updateBasket.mutate(
+      { giverId, status: 'pending' },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(['baskets']) // Refetch baskets
+        },
+        onError: (err) => {
+          console.error('Error updating basket:', err)
+          alert('Failed to update basket. Please try again.')
+        },
       },
-      onError: (err) => {
-        console.error('Error updating basket:', err)
-        alert('Failed to update basket. Please try again.')
-      },
-    })
+    )
   }
 
   if (isLoading) return <p>Loading baskets...</p>
@@ -64,7 +67,7 @@ function RequestPage() {
               {/* <img
               src={giver.imageUrl}
               alt="Basket"
-              className="mr-4 h-28 w-28 rounded-full object-cover"
+              className="object-cover mr-4 rounded-full h-28 w-28"
             /> */}
               <div className="flex-1">
                 <h2 className="text-lg font-semibold">{giver.userId}</h2>
@@ -80,7 +83,7 @@ function RequestPage() {
               </div>
               <button
                 onClick={() => handleRequest(giver.id)}
-                className="bg-primary ml-4 rounded-md px-4 py-2 text-black hover:bg-[#e0b143]"
+                className="ml-4 rounded-md bg-primary px-4 py-2 text-black hover:bg-[#e0b143]"
               >
                 Request
               </button>

@@ -1,4 +1,4 @@
-import { Basket } from '../../models/baskets'
+import { Basket, PatchBasketWithDate } from '../../models/baskets'
 import db from './connection'
 
 export async function getBaskets() {
@@ -22,9 +22,14 @@ export async function addNewBasket(basket: Basket) {
 
 export async function updateBasketById(
   id: number,
-  updatedBasket: Partial<Basket>,
+  updatedBasket: PatchBasketWithDate,
 ) {
-  const updatedRows = await db('baskets').where({ id }).update(updatedBasket)
+  const updatedRows = await db('baskets')
+    .where({ id })
+    .update({
+      status: updatedBasket.status,
+      updated_at: updatedBasket.updatedAt,
+    })
 
   if (updatedRows === 0) {
     throw new Error('Basket not found')

@@ -26,3 +26,13 @@ export interface BasketJoinedUser extends BasketWithId {
   email: string
   points: number
 }
+
+export interface PatchBasket {
+  status: string
+  giverId: number
+}
+
+export interface PatchBasketWithDate {
+  status: string
+  updatedAt: number
+}
