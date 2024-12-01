@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Select,
   SelectContent,
@@ -15,6 +16,9 @@ function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
   const queryClient = useQueryClient()
   const updateBasket = usePatchBaskets()
+
+  const [selectedLocation, setSelectedLocation] = useState('all')
+  const [selectedDietary, setSelectedDietary] = useState('all')
 
   function handleRequest(giverId: number) {
     console.log(`Request sent for ${giverId}`)
@@ -35,6 +39,18 @@ function RequestPage() {
   if (isLoading) return <p>Loading baskets...</p>
   if (isError) return <p>Error loading baskets.</p>
 
+  // Filtering logic
+  const filteredGivers = givers?.filter((giver) => {
+    const matchesLocation =
+      selectedLocation === 'all' || giver.location === selectedLocation
+
+    const matchesDietary =
+      selectedDietary === 'all' ||
+      giver.dietary_content.split(',').includes(selectedDietary)
+
+    return giver.status === 'active' && matchesLocation && matchesDietary
+  })
+
   return (
     <div className="flex flex-col items-center p-6">
       {/* Header Section */}
@@ -42,55 +58,66 @@ function RequestPage() {
         <h1 className="flex-1 text-center text-2xl font-semibold">
           Request a Basket
         </h1>
-        <Select>
+        <Select onValueChange={(value) => setSelectedLocation(value)}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Location" />
+            <SelectValue placeholder="Location Preferences" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="north-shore">North Shore</SelectItem>
-              <SelectItem value="west-auckland">West Auckland</SelectItem>
-              <SelectItem value="east-auckland">East Auckland</SelectItem>
-              <SelectItem value="south-auckland">South Auckland</SelectItem>
+              <SelectItem value="all">All Locations</SelectItem>
+              <SelectItem value="North Shore">North Shore</SelectItem>
+              <SelectItem value="West Auckland">West Auckland</SelectItem>
+              <SelectItem value="East Auckland">East Auckland</SelectItem>
+              <SelectItem value="South Auckland">South Auckland</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        {/* Dietary Dropdown */}
+        <Select onValueChange={(value) => setSelectedDietary(value)}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Dietary Preferences" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="all">All Preferences</SelectItem>
+              <SelectItem value="Vegan">Vegan</SelectItem>
+              <SelectItem value="Vegetarian">Vegetarian</SelectItem>
+              <SelectItem value="GlutenFree">Gluten-Free</SelectItem>
+              <SelectItem value="DiaryFree">Diary-Free</SelectItem>
+              <SelectItem value="Halal">Halal</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
       </div>
+      {/* Givers List */}
       <div className="flex gap-10">
         <div className="mr-auto flex w-full flex-col justify-center gap-10">
-          {givers
-            ?.filter((basket) => basket.status === 'active')
-            .map((giver, index) => (
-              <div
-                key={index}
-                className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
-              >
-                {/* <img
-              src={giver.imageUrl}
-              alt="Basket"
-              className="object-cover mr-4 rounded-full h-28 w-28"
-            /> */}
-                <div className="flex-1">
-                  <h2 className="text-lg font-semibold">{giver.userId}</h2>
-                  <p className="mt-1 text-sm text-gray-600">
-                    <strong>Description:</strong> {giver.description}
-                  </p>
-                  <p className="mt-1 text-sm text-gray-600">
-                    <strong>Basket:</strong> {giver.categories}
-                  </p>
-                  <p className="mt-1 text-sm text-gray-600">
-                    <strong>Dietary Preferences:</strong>{' '}
-                    {giver.dietary_content}
-                  </p>
-                </div>
-                <button
-                  onClick={() => handleRequest(giver.id)}
-                  className="ml-4 rounded-md bg-primary px-4 py-2 text-black hover:bg-[#e0b143]"
-                >
-                  Request
-                </button>
+          {filteredGivers?.map((giver, index) => (
+            <div
+              key={index}
+              className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
+            >
+              <div className="flex-1">
+                <h2 className="text-lg font-semibold">{giver.userId}</h2>
+                <p className="mt-1 text-sm text-gray-600">
+                  <strong>Description:</strong> {giver.description}
+                </p>
+                <p className="mt-1 text-sm text-gray-600">
+                  <strong>Basket:</strong> {giver.categories}
+                </p>
+                <p className="mt-1 text-sm text-gray-600">
+                  <strong>Dietary Preferences:</strong>{' '}
+                  {giver.dietary_content.replace(',', ', ')}
+                </p>
               </div>
-            ))}
+              <button
+                onClick={() => handleRequest(giver.id)}
+                className="ml-4 rounded-md bg-primary px-4 py-2 text-black hover:bg-[#e0b143]"
+              >
+                Request
+              </button>
+            </div>
+          ))}
         </div>
         <div className="h-56 rounded-3xl bg-zinc-100 p-2 shadow-md">
           <img
