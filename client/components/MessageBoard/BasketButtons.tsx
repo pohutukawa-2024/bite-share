@@ -3,15 +3,22 @@ import useUpdateMatch from '../../hooks/useUpdateMatch'
 
 interface Props {
   matchId: number
+  basketId: number
 }
 
-export default function BasketButtons({ matchId }: Props) {
+export default function BasketButtons({ matchId, basketId }: Props) {
   const updateMatch = useUpdateMatch()
   const updateBasket = usePatchBaskets()
 
-  const handleRelistClick = () => {}
+  const handleRelistClick = () => {
+    updateBasket.mutate({ giverId: basketId, status: 'active' })
+    updateMatch.mutate({ matchId, status: 'inactive' })
+  }
 
-  const handleCompleteClick = () => {}
+  const handleCompleteClick = () => {
+    updateBasket.mutate({ giverId: basketId, status: 'inactive' })
+    updateMatch.mutate({ matchId, status: 'inactive' })
+  }
 
   return (
     <div className="flex flex-row">

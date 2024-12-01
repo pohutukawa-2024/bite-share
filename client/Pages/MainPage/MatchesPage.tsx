@@ -10,22 +10,27 @@ function MatchesPage() {
   const { data, isLoading, isError } = useGetMatches()
   const { user } = useAuth0()
 
-  console.log(data)
-
   // selectMatch, which will change when a button in ChatBubble is clicked
   const [selectMatch, setSelectMatch] = useState({
     matchesId: 0,
     otherUsername: '',
+    basketId: 0,
   })
   const handleClick = async ({
     matchId,
     otherUsername,
+    basketId,
   }: {
     matchId: number
     otherUsername: string
+    basketId: number
   }) => {
     setSelectMatch(() => {
-      return { matchesId: matchId, otherUsername: otherUsername }
+      return {
+        matchesId: matchId,
+        otherUsername: otherUsername,
+        basketId: basketId,
+      }
     })
   }
 
@@ -47,7 +52,13 @@ function MatchesPage() {
           otherUsername = match.giverUsername
           otherFullName = match.giverFullName
         }
-        return { matchId: match.id, otherId, otherUsername, otherFullName }
+        return {
+          matchId: match.id,
+          basketId: match.basketId,
+          otherId,
+          otherUsername,
+          otherFullName,
+        }
       })
     : []
 
@@ -60,7 +71,10 @@ function MatchesPage() {
             matchId={selectMatch.matchesId}
             otherUsername={selectMatch.otherUsername}
           />
-          <BasketButtons matchId={selectMatch.matchesId} />
+          <BasketButtons
+            basketId={selectMatch.basketId}
+            matchId={selectMatch.matchesId}
+          />
         </section>
       </div>
     </div>

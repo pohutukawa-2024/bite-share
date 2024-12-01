@@ -20,6 +20,7 @@ export interface MatchBubble {
   otherFullName: string
   otherId: string
   otherUsername: string
+  basketId: number
 }
 
 export interface EditStatus {
