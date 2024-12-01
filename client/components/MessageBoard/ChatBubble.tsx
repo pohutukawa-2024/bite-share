@@ -19,7 +19,7 @@ export default function ChatBubble({ data, onClick }: Props) {
                   otherUsername: match.otherUsername,
                 })
               }
-              className="m-3 h-24 w-24 rounded-full bg-gray-50"
+              className="m-3 h-16 w-16 rounded-full bg-gray-50"
             >
               {match.otherUsername}
             </button>

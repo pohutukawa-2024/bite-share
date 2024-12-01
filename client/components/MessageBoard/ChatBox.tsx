@@ -37,13 +37,13 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
   // Shows empty conversation when first loads (matchId = 0)
   if (matchId === 0) {
     return (
-      <section className="h-full w-4/5 rounded-lg bg-gray-100">
+      <section className="h-[500px] w-full rounded-lg bg-gray-100">
         <h1 className="text-center">Click on a Conversation</h1>
       </section>
     )
   } else {
     return (
-      <div className="w-4/6">
+      <div className="w-full">
         <section className="h-[500px] overflow-y-auto rounded-tl-lg rounded-tr-lg bg-gray-100">
           <h1 className="m-2 text-center">{otherUsername}</h1>
           <div>

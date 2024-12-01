@@ -51,13 +51,15 @@ function MatchesPage() {
 
   return (
     <div className="m-16 flex h-[50%] justify-center">
-      <div className="flex w-4/5 ">
+      <div className="flex w-full ">
         <ChatBubble data={transformedData} onClick={handleClick} />
-        <ChatBox
-          matchId={selectMatch.matchesId}
-          otherUsername={selectMatch.otherUsername}
-        />
-        <BasketButtons matchId={selectMatch.matchesId} />
+        <section className="w-5/6">
+          <ChatBox
+            matchId={selectMatch.matchesId}
+            otherUsername={selectMatch.otherUsername}
+          />
+          <BasketButtons matchId={selectMatch.matchesId} />
+        </section>
       </div>
     </div>
   )
