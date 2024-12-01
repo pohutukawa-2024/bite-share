@@ -37,7 +37,9 @@ function RequestPage() {
       { basketId, status: 'pending' },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries(['baskets']) // Refetch baskets
+          queryClient.invalidateQueries({
+            queryKey: ['baskets'],
+          }) // Refetch baskets
         },
         onError: (err) => {
           console.error('Error updating basket:', err)
