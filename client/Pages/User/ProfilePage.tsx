@@ -43,14 +43,21 @@ function ProfilePage() {
   return (
     data && (
       <div className="flex justify-center">
-        <div className="m-20 flex w-1/3 flex-col items-center justify-center rounded-md bg-gray-100 p-3">
-          <h1 className="mb-8 mt-3">Edit Profile</h1>
+        <div className="mt-16 w-full max-w-xl rounded-lg bg-gray-50 p-8  shadow-md">
+          <h1 className="mb-8 text-center text-xl font-bold text-gray-700">
+            Edit Profile
+          </h1>
 
-          <form onSubmit={handleSubmit} className="flex flex-col">
-            <section className="flex items-center gap-2 p-0.5">
-              <label htmlFor="username">Username: </label>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <section className="flex flex-col space-y-2">
+              <label
+                htmlFor="username"
+                className="text-sm font-medium text-gray-600"
+              >
+                Username
+              </label>
               <input
-                className="ml-5 rounded-md border-2 border-gray-600 bg-gray-300 p-0.5"
+                className="rounded-md border border-gray-300 p-2 focus:border-yellow-500 focus:outline-none"
                 onChange={handleChange}
                 name="username"
                 id="username"
@@ -58,10 +65,15 @@ function ProfilePage() {
                 value={formState.username}
               />
             </section>
-            <section className="flex items-center gap-2 p-0.5">
-              <label htmlFor="fullName">Full Name: </label>
+            <section className="flex flex-col space-y-2">
+              <label
+                htmlFor="fullName"
+                className="text-sm font-medium text-gray-600"
+              >
+                Full Name
+              </label>
               <input
-                className="ml-6 rounded-md border-2 border-gray-600 bg-gray-300 p-0.5"
+                className="rounded-md border border-gray-300 p-2 focus:border-yellow-500 focus:outline-none"
                 onChange={handleChange}
                 name="fullName"
                 id="fullName"
@@ -69,10 +81,15 @@ function ProfilePage() {
                 value={formState.fullName}
               />
             </section>
-            <section className="flex items-center gap-2 p-0.5">
-              <label htmlFor="email">Email: </label>
+            <section className="flex flex-col space-y-2">
+              <label
+                htmlFor="email"
+                className="text-sm font-medium text-gray-600"
+              >
+                Email
+              </label>
               <input
-                className="ml-14 rounded-md border-2 border-gray-600 bg-gray-300 p-0.5"
+                className="rounded-md border border-gray-300 p-2 focus:border-yellow-500 focus:outline-none"
                 onChange={handleChange}
                 name="email"
                 id="email"
@@ -80,56 +97,37 @@ function ProfilePage() {
                 value={formState.email}
               />
             </section>
-            <section className="flex flex-wrap">
-              <label htmlFor="location" className="w-1/6">
+            <section>
+              <label
+                htmlFor="location"
+                className="mb-2 block text-sm font-medium text-gray-600"
+              >
                 Location
               </label>
-              <div className="w-5/6">
-                <input
-                  onChange={handleChange}
-                  type="radio"
-                  name="location"
-                  id="location"
-                  value="North Shore"
-                  className="m-2"
-                  checked={formState.location === 'North Shore'}
-                />
-                North Shore
-                <input
-                  onChange={handleChange}
-                  type="radio"
-                  name="location"
-                  id="location"
-                  value="West Auckland"
-                  className="m-2"
-                  checked={formState.location === 'West Auckland'}
-                />
-                West Auckland
-                <input
-                  onChange={handleChange}
-                  type="radio"
-                  name="location"
-                  id="location"
-                  value="East Auckland"
-                  className="m-2"
-                  checked={formState.location === 'East Auckland'}
-                />
-                East Auckland
-                <input
-                  onChange={handleChange}
-                  type="radio"
-                  name="location"
-                  id="location"
-                  value="South Auckland"
-                  className="m-2"
-                  checked={formState.location === 'South Auckland'}
-                />
-                South Auckland
+              <div className="flex flex-wrap gap-4">
+                {[
+                  'North Shore',
+                  'West Auckland',
+                  'East Auckland',
+                  'South Auckland',
+                ].map((location) => (
+                  <label key={location} className="flex items-center gap-2">
+                    <input
+                      onChange={handleChange}
+                      type="radio"
+                      name="location"
+                      value={location}
+                      className="h-4 w-4 accent-yellow-700"
+                      checked={formState.location === location}
+                    />
+                    {location}
+                  </label>
+                ))}
               </div>
             </section>
             <button
               type="submit"
-              className="w-24 rounded-md bg-green-600 text-white"
+              className="mt-4 w-full rounded-md bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600 active:bg-yellow-700"
             >
               Update
             </button>

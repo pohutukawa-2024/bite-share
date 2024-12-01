@@ -28,7 +28,7 @@ function ContactUs() {
               type="text"
               id="name"
               name="name"
-              className="mt-1 w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="mt-1 w-full rounded border border-gray-300 p-2 focus:border-yellow-500 focus:outline-none"
               placeholder="Your full name"
               required
             />
@@ -46,7 +46,7 @@ function ContactUs() {
               type="email"
               id="email"
               name="email"
-              className="mt-1 w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="mt-1 w-full rounded border border-gray-300 p-2 focus:border-yellow-500 focus:outline-none"
               placeholder="Your email address"
               required
             />
@@ -64,7 +64,7 @@ function ContactUs() {
               id="message"
               name="message"
               rows={4}
-              className="mt-1 w-full rounded border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="mt-1 w-full rounded border border-gray-300 p-2 focus:border-yellow-500 focus:outline-none"
               placeholder="Your message"
               required
             ></textarea>
@@ -74,7 +74,7 @@ function ContactUs() {
           <div className="text-center">
             <button
               type="submit"
-              className="w-full rounded bg-green-500 py-2 font-semibold text-white transition hover:bg-green-600"
+              className="w-full rounded bg-yellow-500 py-2 font-semibold text-white transition hover:bg-yellow-600"
             >
               Send Message
             </button>
@@ -85,7 +85,7 @@ function ContactUs() {
       {/* Contact Details Section */}
       <div className="mx-auto mt-8 max-w-lg text-center text-sm text-gray-600">
         <p>You can also reach us at:</p>
-        <p className="font-medium text-blue-600">contact@bite-share.com</p>
+        <p className="font-medium text-gray-800">contact@bite-share.com</p>
         <p>
           or call us at: <span className="font-medium">+64 (333) 123-4567</span>
         </p>

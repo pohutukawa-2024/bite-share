@@ -13,8 +13,8 @@ function KohaPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center  p-4">
-      <div className="w-full max-w-md rounded-lg bg-white p-8 text-center shadow-lg">
+    <div className="min-h-screen p-6 pt-36">
+      <div className="mx-auto max-w-lg rounded-lg bg-white p-6 text-center shadow-md">
         <h1 className="mb-4 text-2xl font-bold text-gray-800">
           Support Our Cause
         </h1>
@@ -41,13 +41,13 @@ function KohaPage() {
           placeholder="Enter Custom Amount"
           value={customAmount}
           onChange={(e) => setCustomAmount(e.target.value)}
-          className="mb-6 w-full rounded border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mb-6 w-full rounded border border-gray-300 p-2 focus:border-yellow-500 focus:outline-none"
         />
 
         {/* Fake PayPal Button */}
         <button
           onClick={handleDonateClick}
-          className="rounded bg-blue-600 px-6 py-3 font-bold text-white transition hover:bg-blue-700"
+          className="rounded bg-yellow-500 px-6 py-3 font-bold text-white transition hover:bg-yellow-600"
         >
           Donate via PayPal
         </button>

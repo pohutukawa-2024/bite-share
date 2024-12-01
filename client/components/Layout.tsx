@@ -7,7 +7,7 @@ export default function Layout() {
       <header className="mx-auto max-w-7xl">
         <Header />
       </header>
-      <main className="mx-auto max-w-3xl">
+      <main className="mx-auto max-w-7xl">
         <Outlet />
       </main>
       <footer></footer>
