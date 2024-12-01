@@ -11,7 +11,7 @@ interface Props {
 
 export default function ChatBubble({ data, onClick }: Props) {
   return (
-    <section className="w-1/6">
+    <section className="h-[500px] w-1/6">
       <p>Your matches</p>
       <ul>
         {data.map((match) => (
