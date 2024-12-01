@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { BasketJoinedUser } from '../../models/baskets'
+import { BasketJoinedUser, PatchBasket } from '../../models/baskets'
 
 //Get data
 export async function getBaskets(token: string) {
@@ -11,14 +11,14 @@ export async function getBaskets(token: string) {
 }
 
 //Patch data
-export async function patchBaskets(token: string, giverId: number) {
+export async function patchBaskets(token: string, updateBasket: PatchBasket) {
   const res = await request
-    .patch(`/api/v1/baskets/${giverId}`)
+    .patch(`/api/v1/baskets/${updateBasket.basketId}`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
     .send({
-      status: 'inactive',
-      updated_at: Date.now(),
+      status: updateBasket.status,
+      updatedAt: Date.now(),
     })
   return res.body
 }
