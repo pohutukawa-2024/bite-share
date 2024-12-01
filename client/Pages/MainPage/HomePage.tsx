@@ -1,15 +1,15 @@
-import LoginButton from '../../components/AuthButtons/LoginButton'
-import RegisterButton from '../../components/AuthButtons/RegisterButton'
+// import LoginButton from '../../components/AuthButtons/LoginButton'
+// import RegisterButton from '../../components/AuthButtons/RegisterButton'
 import { Link } from 'react-router-dom'
 
 function HomePage() {
   return (
     <div>
       <div className="flex gap-2">
-        <LoginButton />
-        <RegisterButton />
+        {/* <LoginButton />
+        <RegisterButton /> */}
       </div>
-      <div className="flex h-screen items-center justify-between p-4">
+      <div className="flex min-h-[70vh] items-center justify-between p-4">
         {/* Left Content */}
         <div className="w-1/2 rounded bg-green-500 p-4 text-white">
           <div>
@@ -33,7 +33,7 @@ function HomePage() {
             <Link
               key="give-id"
               to="/give"
-              className="rounded-2xl bg-[#fab005] px-6 py-3 text-2xl font-bold text-black hover:bg-[#f08c00]"
+              className="rounded-2xl bg-primary px-6 py-3 text-2xl font-bold text-black hover:bg-[#f08c00]"
             >
               Give
             </Link>
