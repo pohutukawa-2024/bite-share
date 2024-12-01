@@ -14,7 +14,7 @@ function ContactUs() {
       </p>
 
       {/* Form Section */}
-      <div className="mx-auto max-w-lg rounded-lg bg-white p-6 shadow-md">
+      <div className="mx-auto max-w-lg rounded-lg bg-gray-50 p-6 shadow-md">
         <form className="space-y-4">
           {/* Name Input */}
           <div>

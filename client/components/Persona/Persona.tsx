@@ -1,13 +1,14 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { LogOut, UserRoundPen, ShoppingBasket } from 'lucide-react'
 import { ReactNode, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const getAvatar = (fullName: string) => fullName?.charAt(0).toUpperCase() || '?'
 
 interface NavigationItem {
   name: string
   icon: ReactNode
+  path: string
   action: () => void
 }
 
@@ -24,25 +25,32 @@ function Persona() {
     {
       name: 'Logout',
       icon: <LogOut size={20} />,
+      path: '/',
       action: () => {
-        closeDropdown()
+        console.log('/')
+        // closeDropdown()
+
         logout({ logoutParams: { returnTo: window.location.origin } })
       },
     },
     {
       name: 'Profile',
       icon: <UserRoundPen size={20} />,
+      path: '/profile',
       action: () => {
+        console.log('/profile')
+        // navigate('/profile')
         closeDropdown()
-        navigate('/profile')
       },
     },
     {
       name: 'Own Basket',
       icon: <ShoppingBasket size={20} />,
+      path: '/ownbasket',
       action: () => {
+        console.log('/ownbasket')
+        // navigate('/ownbasket')
         closeDropdown()
-        navigate('/ownbasket')
       },
     },
   ]
@@ -61,14 +69,15 @@ function Persona() {
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 rounded-lg border border-gray-200 bg-white shadow-lg">
           {navigationItems.map((item, index) => (
-            <button
+            <Link
               key={index}
-              onClick={item.action}
+              to={item.path}
+              // onClick={item.action}
               className="flex w-full items-center gap-3 px-4 py-2 text-left text-gray-700 transition hover:bg-gray-100 hover:text-gray-900"
             >
               {item.icon}
               <span>{item.name}</span>
-            </button>
+            </Link>
           ))}
         </div>
       )}

@@ -43,18 +43,24 @@ function Header() {
               {item.name}
             </Link>
           ))}
-          <Link
+          {/* <Link
             to="/kohaPage"
-            className="rounded-lg bg-yellow-500 px-4 py-2 text-white transition-colors hover:bg-yellow-500 hover:text-black"
+            className="rounded-2xl bg-yellow-500 px-3 py-2 text-white transition-colors hover:bg-yellow-500 hover:text-black"
           >
             Support us/ Koha
+          </Link> */}
+
+          <Link to="/kohaPage" className="koha-link">
+            <span className="koha-text">Koha</span>
+            <span className="support-us-text">Support us</span>
           </Link>
+
           {/* Authentication */}
           <section>
             {!isAuthenticated ? (
               <button
                 onClick={handleLogin}
-                className="flex items-center gap-1 rounded-lg bg-slate-600 px-4 py-2 text-white transition-colors hover:bg-slate-700"
+                className="flex items-center gap-1 rounded-lg bg-slate-600 px-4 py-2 text-white transition-colors hover:bg-[#1f2937]"
               >
                 <LogIn size={20} />
                 Login

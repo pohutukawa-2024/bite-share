@@ -14,7 +14,7 @@ function KohaPage() {
 
   return (
     <div className="min-h-screen p-6 pt-36">
-      <div className="mx-auto max-w-lg rounded-lg bg-white p-6 text-center shadow-md">
+      <div className="mx-auto max-w-lg rounded-lg bg-gray-50 p-6 text-center shadow-md">
         <h1 className="mb-4 text-2xl font-bold text-gray-800">
           Support Our Cause
         </h1>
