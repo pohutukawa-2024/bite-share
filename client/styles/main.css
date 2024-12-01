@@ -58,3 +58,78 @@
     --chart-5: 340 75% 55%;
   }
 }
+
+.quote-box {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #fbbf24;
+  background: #1f2937;
+  border-radius: 20px;
+}
+
+.quote-box::before,
+.quote-box::after {
+  content: '“';
+  position: absolute;
+  font-size: 4rem;
+  color: #fbbf24;
+}
+
+.quote-box::before {
+  top: -1.5rem;
+  left: -1rem;
+}
+
+.quote-box::after {
+  content: '”';
+  bottom: -1.5rem;
+  right: -1rem;
+}
+
+/* SUPPORT US BUTTON */
+
+/* Link container */
+.koha-link {
+  position: relative;
+  display: inline-block;
+  padding: 17px 52px;
+  background-color: rgb(234 179 8);
+  border-radius: 14px;
+  text-decoration: none;
+}
+
+/* Koha text (initially visible) */
+.koha-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+/* Support us text (initially hidden) */
+.support-us-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+/* On hover, Koha changes color and Support us fades in */
+.koha-link:hover .koha-text {
+  opacity: 0;
+}
+
+.koha-link:hover .support-us-text {
+  opacity: 1;
+}

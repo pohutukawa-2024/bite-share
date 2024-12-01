@@ -92,7 +92,7 @@ function AboutUs() {
           </h2>
           <Link to="/give" key="aboutUs">
             {' '}
-            <button className="rounded bg-green-500 px-4 py-1 font-semibold text-white transition hover:bg-green-600">
+            <button className="rounded bg-yellow-500 px-4 py-2 font-semibold text-white transition hover:bg-yellow-600">
               Get Started
             </button>
           </Link>
