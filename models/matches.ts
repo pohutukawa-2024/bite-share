@@ -21,6 +21,10 @@ export interface MatchBubble {
   otherUsername: string
 }
 
+export interface EditStatus {
+  status: string
+  matchId: number
+}
 export interface MatchStatus {
   id: number
   status: string

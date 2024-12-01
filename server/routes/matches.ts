@@ -35,7 +35,8 @@ router.post('/', validateAccessToken, async (req, res) => {
   }
 })
 
-// Changes a match status to inactive
+// Changes a match status
+// param has the matchId, and the body has the status {status: ""}
 router.patch('/:matchId', validateAccessToken, async (req, res) => {
   const { matchId } = req.params
   const updatedAt = Date.now()
