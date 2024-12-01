@@ -7,6 +7,11 @@ export interface Match {
   basketId: number
 }
 
+export interface PostMatch {
+  giverId: string
+  basketId: number
+}
+
 export interface MatchJoin extends Match {
   id: number
   giverUsername: string

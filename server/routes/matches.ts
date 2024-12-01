@@ -24,9 +24,14 @@ router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
 })
 
 // Adds new match between two users to the DB
-router.post('/', validateAccessToken, async (req, res) => {
+router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
+  const postMatch = req.body
+  const receiverId = req.auth?.sub
+  const status = 'active'
+  const createdAt = Date.now()
+  const updatedAt = Date.now()
   try {
-    const match = req.body
+    const match = { ...postMatch, receiverId, status, createdAt, updatedAt }
     await db.addMatch(match)
     res.sendStatus(201)
   } catch (error) {

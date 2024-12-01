@@ -11,13 +11,13 @@ export interface PostBasket {
 }
 
 export interface Basket extends PostBasket {
-  dietary_content: ReactNode
   userId: string
 }
 
 // interface for one basket, use Basket[] when you are expecting an array of baskets
 export interface BasketWithId extends Basket {
   id: number
+  username: string
 }
 
 export interface BasketJoinedUser extends BasketWithId {
@@ -29,7 +29,7 @@ export interface BasketJoinedUser extends BasketWithId {
 
 export interface PatchBasket {
   status: string
-  giverId: number
+  basketId: number
 }
 
 export interface PatchBasketWithDate {
