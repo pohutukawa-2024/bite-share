@@ -1,4 +1,13 @@
 // The interface for POSTing a basket probably
+
+export interface PostBasketNoDate {
+  description: string | undefined
+  categories: string | undefined
+  dietaryContent: string | undefined
+  location: string | undefined
+  image: string | undefined
+  status: string
+}
 export interface PostBasket {
   description: string | undefined
   categories: string | undefined

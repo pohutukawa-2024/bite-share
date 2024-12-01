@@ -1,5 +1,5 @@
 import { patchBaskets } from '../apis/baskets'
-import { QueryClient, useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import { PatchBasket } from '../../models/baskets'
 import { useQueryClient } from '@tanstack/react-query'

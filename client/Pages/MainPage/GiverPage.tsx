@@ -3,16 +3,26 @@ import { Link } from 'react-router-dom'
 import Confetti from 'react-confetti'
 
 interface FormData {
-  products: string[]
-  dietaryPreferences: string[]
   description: string
+  categories: string[]
+  dietaryContent: string[]
+  location: string
+  image: string
+  status: string
+  createdAt: number
+  updatedAt: number
 }
 
 function GiverPage() {
   const [formData, setFormData] = useState<FormData>({
-    products: [],
-    dietaryPreferences: [],
     description: '',
+    categories: [],
+    dietaryContent: [],
+    location: '',
+    image: '',
+    status: '',
+    createdAt: 0,
+    updatedAt: 0,
   })
 
   const [currentStep, setCurrentStep] = useState<number>(1)
@@ -43,7 +53,7 @@ function GiverPage() {
   ]
 
   const handleCheckboxChange = (
-    category: 'products' | 'dietaryPreferences',
+    category: 'categories' | 'dietaryContent',
     value: string,
   ) => {
     setFormData((prevData) => ({
@@ -148,7 +158,7 @@ function GiverPage() {
                         onChange={() =>
                           handleCheckboxChange('products', product)
                         }
-                        checked={formData.products.includes(product)}
+                        checked={formData.categories.includes(product)}
                         className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
                       />
                       <label className="ml-2 text-gray-700">{product}</label>
@@ -172,9 +182,7 @@ function GiverPage() {
                         onChange={() =>
                           handleCheckboxChange('dietaryPreferences', preference)
                         }
-                        checked={formData.dietaryPreferences.includes(
-                          preference,
-                        )}
+                        checked={formData.dietaryContent.includes(preference)}
                         className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
                       />
                       <label className="ml-2 text-gray-700">{preference}</label>
