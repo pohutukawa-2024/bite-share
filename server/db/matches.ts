@@ -8,6 +8,7 @@ export async function getMatches(id: string) {
     .join('users as users_receiver', 'matches.receiver_id', 'users_receiver.id')
     .select(
       'matches.id as id',
+      'matches.basket_id as basketId',
       'matches.giver_id as giverId',
       'users_giver.username as giverUsername',
       'users_giver.full_name as giverFullName',
@@ -28,6 +29,7 @@ export async function getMatches(id: string) {
 // Adds new match between two users to the DB
 export async function addMatch(match: Match) {
   await db('matches').insert({
+    basket_id: match.basketId,
     giver_id: match.giverId,
     receiver_id: match.receiverId,
     status: match.status,

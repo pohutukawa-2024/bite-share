@@ -4,6 +4,7 @@ export interface Match {
   status: string
   createdAt: number
   updatedAt: number
+  basketId: number
 }
 
 export interface MatchJoin extends Match {

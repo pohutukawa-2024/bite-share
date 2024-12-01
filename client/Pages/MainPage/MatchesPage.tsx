@@ -10,6 +10,8 @@ function MatchesPage() {
   const { data, isLoading, isError } = useGetMatches()
   const { user } = useAuth0()
 
+  console.log(data)
+
   // selectMatch, which will change when a button in ChatBubble is clicked
   const [selectMatch, setSelectMatch] = useState({
     matchesId: 0,
