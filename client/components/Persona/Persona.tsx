@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { LogOut, UserRoundPen, ShoppingBasket } from 'lucide-react'
+import { LogOut, UserRoundPen, ShoppingBasket } from 'lucide-react'
 import { ReactNode, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -15,8 +16,15 @@ interface NavigationItem {
 function Persona() {
   const [isOpen, setIsOpen] = useState(false)
   const { logout } = useAuth0()
+  const [isOpen, setIsOpen] = useState(false)
+  const { logout } = useAuth0()
   const navigate = useNavigate()
 
+  const toggleDropdown = () => setIsOpen((prev) => !prev)
+
+  const closeDropdown = () => setIsOpen(false)
+
+  const navigationItems: NavigationItem[] = [
   const toggleDropdown = () => setIsOpen((prev) => !prev)
 
   const closeDropdown = () => setIsOpen(false)
@@ -55,11 +63,15 @@ function Persona() {
     },
   ]
 
+
   return (
     <div className="relative z-50">
       <button
         onClick={toggleDropdown}
+        onClick={toggleDropdown}
         type="button"
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-500 font-semibold text-white transition hover:bg-slate-600"
+        title="Open Menu"
         className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-500 font-semibold text-white transition hover:bg-slate-600"
         title="Open Menu"
       >
@@ -80,6 +92,7 @@ function Persona() {
             </Link>
           ))}
         </div>
+      )}
       )}
     </div>
   )

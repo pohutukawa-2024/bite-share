@@ -1,7 +1,14 @@
 import useGetUserBaskets from '../../hooks/useGetUserBaskets'
+import usePatchBaskets from '../../hooks/usePatchBaskets'
 
 function OwnBasket() {
   const { data, isLoading, isError } = useGetUserBaskets()
+  const updateBasket = usePatchBaskets()
+
+  // Remove basket from request page
+  const handleRemoveBasket = (basketId: number) => {
+    updateBasket.mutate({ basketId, status: 'inactive' })
+  }
 
   if (isLoading)
     return <div className="mt-8 text-center text-gray-600">Loading...</div>
@@ -33,6 +40,12 @@ function OwnBasket() {
               <p className="mt-1 text-sm font-semibold text-green-600">
                 Status: {basket.status}
               </p>
+              <button
+                className="m-2 h-16 w-16 rounded-full bg-cyan-200"
+                onClick={() => handleRemoveBasket(basket.id)}
+              >
+                Remove Basket
+              </button>
             </li>
           ))}
       </ul>

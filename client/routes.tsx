@@ -12,6 +12,7 @@ import OwnBasket from './Pages/User/OwnBasket.tsx'
 import KohaPage from './Pages/MainPage/KohaPage.tsx'
 import AddProfile from './Pages/Account/AddProfile.tsx'
 import AnotherProfile from './Pages/User/AnotherProfile.tsx'
+import Leaderboard from './components/Leaderboard.tsx'
 
 export default createRoutesFromElements(
   <Route>
@@ -27,6 +28,7 @@ export default createRoutesFromElements(
       <Route path="profile/:username" element={<AnotherProfile />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="ownbasket" element={<OwnBasket />} />
+      <Route path="leaderboard" element={<Leaderboard />} />
     </Route>
   </Route>,
 )

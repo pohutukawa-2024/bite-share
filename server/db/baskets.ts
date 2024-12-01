@@ -1,8 +1,22 @@
-import { Basket } from '../../models/baskets'
+import { Basket, PatchBasketWithDate } from '../../models/baskets'
 import db from './connection'
 
 export async function getBaskets() {
-  const results = await db('baskets').select()
+  const results = await db('baskets')
+    .join('users', 'baskets.user_id', 'users.id')
+    .select(
+      'baskets.id as id',
+      'baskets.user_id as userId',
+      'users.username as username',
+      'baskets.description as description',
+      'baskets.categories as categories',
+      'baskets.dietary_content as dietaryContent',
+      'baskets.location as location',
+      'baskets.status as status',
+      'baskets.image as image',
+      'baskets.created_at as createdAt',
+      'baskets.updated_at as updatedAt',
+    )
   return results
 }
 
@@ -22,9 +36,12 @@ export async function addNewBasket(basket: Basket) {
 
 export async function updateBasketById(
   id: number,
-  updatedBasket: Partial<Basket>,
+  updatedBasket: PatchBasketWithDate,
 ) {
-  const updatedRows = await db('baskets').where({ id }).update(updatedBasket)
+  const updatedRows = await db('baskets').where({ id }).update({
+    status: updatedBasket.status,
+    updated_at: updatedBasket.updatedAt,
+  })
 
   if (updatedRows === 0) {
     throw new Error('Basket not found')

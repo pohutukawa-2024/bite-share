@@ -1,5 +1,9 @@
 import request from 'superagent'
-import { BasketJoinedUser } from '../../models/baskets'
+import {
+  BasketJoinedUser,
+  PatchBasket,
+  PostBasketNoDate,
+} from '../../models/baskets'
 
 //Get data
 export async function getBaskets(token: string) {
@@ -11,14 +15,14 @@ export async function getBaskets(token: string) {
 }
 
 //Patch data
-export async function patchBaskets(token: string, giverId: number) {
+export async function patchBaskets(token: string, updateBasket: PatchBasket) {
   const res = await request
-    .patch(`/api/v1/baskets/${giverId}`)
+    .patch(`/api/v1/baskets/${updateBasket.basketId}`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
     .send({
-      status: 'inactive',
-      updated_at: Date.now(),
+      status: updateBasket.status,
+      updatedAt: Date.now(),
     })
   return res.body
 }
@@ -30,4 +34,17 @@ export async function getUserBaskets(token: string) {
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
   return res.body as BasketJoinedUser[]
+}
+
+// Adds new basket to DB
+export async function addBasket(token: string, basketNoDate: PostBasketNoDate) {
+  const createdAt = Date.now()
+  const updatedAt = Date.now()
+  const basket = { ...basketNoDate, createdAt, updatedAt }
+  console.log('api', basket)
+  await request
+    .post('/api/v1/baskets')
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+    .send(basket)
 }
