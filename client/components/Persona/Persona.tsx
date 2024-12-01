@@ -1,6 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { LogOut, UserRoundPen, ShoppingBasket } from 'lucide-react'
-import { LogOut, UserRoundPen, ShoppingBasket } from 'lucide-react'
 import { ReactNode, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -16,15 +15,8 @@ interface NavigationItem {
 function Persona() {
   const [isOpen, setIsOpen] = useState(false)
   const { logout } = useAuth0()
-  const [isOpen, setIsOpen] = useState(false)
-  const { logout } = useAuth0()
   const navigate = useNavigate()
 
-  const toggleDropdown = () => setIsOpen((prev) => !prev)
-
-  const closeDropdown = () => setIsOpen(false)
-
-  const navigationItems: NavigationItem[] = [
   const toggleDropdown = () => setIsOpen((prev) => !prev)
 
   const closeDropdown = () => setIsOpen(false)
@@ -35,9 +27,7 @@ function Persona() {
       icon: <LogOut size={20} />,
       path: '/',
       action: () => {
-        console.log('/')
-        // closeDropdown()
-
+        closeDropdown()
         logout({ logoutParams: { returnTo: window.location.origin } })
       },
     },
@@ -46,8 +36,7 @@ function Persona() {
       icon: <UserRoundPen size={20} />,
       path: '/profile',
       action: () => {
-        console.log('/profile')
-        // navigate('/profile')
+        navigate('/profile')
         closeDropdown()
       },
     },
@@ -56,22 +45,17 @@ function Persona() {
       icon: <ShoppingBasket size={20} />,
       path: '/ownbasket',
       action: () => {
-        console.log('/ownbasket')
-        // navigate('/ownbasket')
+        navigate('/ownbasket')
         closeDropdown()
       },
     },
   ]
 
-
   return (
     <div className="relative z-50">
       <button
         onClick={toggleDropdown}
-        onClick={toggleDropdown}
         type="button"
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-500 font-semibold text-white transition hover:bg-slate-600"
-        title="Open Menu"
         className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-500 font-semibold text-white transition hover:bg-slate-600"
         title="Open Menu"
       >
@@ -84,7 +68,7 @@ function Persona() {
             <Link
               key={index}
               to={item.path}
-              // onClick={item.action}
+              onClick={item.action}
               className="flex w-full items-center gap-3 px-4 py-2 text-left text-gray-700 transition hover:bg-gray-100 hover:text-gray-900"
             >
               {item.icon}
@@ -92,7 +76,6 @@ function Persona() {
             </Link>
           ))}
         </div>
-      )}
       )}
     </div>
   )

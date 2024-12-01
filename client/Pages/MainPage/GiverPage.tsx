@@ -1,29 +1,18 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import Confetti from 'react-confetti'
-import useGetUser from '../../hooks/useGetUser'
-import useAddBasket from '../../hooks/useAddBasket'
 
 interface FormData {
+  products: string[]
+  dietaryPreferences: string[]
   description: string
-  categories: string[]
-  dietaryContent: string[]
-  location: string
-  image: string
-  status: string
 }
 
 function GiverPage() {
-  const { data } = useGetUser()
-  const addBasket = useAddBasket()
-
   const [formData, setFormData] = useState<FormData>({
+    products: [],
+    dietaryPreferences: [],
     description: '',
-    categories: [],
-    dietaryContent: [],
-    location: '',
-    image: '',
-    status: 'active',
   })
 
   const [currentStep, setCurrentStep] = useState<number>(1)
@@ -39,7 +28,7 @@ function GiverPage() {
     'Eggs',
     'Dairy',
     'Beverages',
-    'Snacks (chips, confectionary, crackers etc)',
+    'Snacks',
     'Canned',
     'Baking',
     'Miscellaneous',
@@ -54,25 +43,21 @@ function GiverPage() {
   ]
 
   const handleCheckboxChange = (
-    categories: 'categories' | 'dietaryContent',
+    category: 'products' | 'dietaryPreferences',
     value: string,
   ) => {
     setFormData((prevData) => ({
       ...prevData,
-      [categories]: prevData[categories].includes(value)
-        ? prevData[categories].filter((item) => item !== value)
-        : [...prevData[categories], value],
+      [category]: prevData[category].includes(value)
+        ? prevData[category].filter((item) => item !== value)
+        : [...prevData[category], value],
     }))
   }
 
   const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const words = e.target.value.split(' ')
     if (words.length <= 50) {
-      setFormData({
-        ...formData,
-        description: e.target.value,
-        location: data?.user.location,
-      })
+      setFormData({ ...formData, description: e.target.value })
       setError('')
     } else {
       setError('Description cannot exceed 50 words.')
@@ -85,21 +70,8 @@ function GiverPage() {
       setError('Description exceeds 50 words. Please shorten it.')
       return
     }
-
+    console.log('Form Data Submitted:', formData)
     setIsSubmitted(true) // Mark form as submitted
-    const categoriesStr = formData.categories.join(',')
-    const dietaryContentStr = formData.dietaryContent.join(',')
-
-    const formToSubmit = {
-      categories: categoriesStr,
-      dietaryContent: dietaryContentStr,
-      description: formData.description,
-      image: formData.image,
-      location: formData.location,
-      status: formData.status,
-    }
-    console.log('front', formToSubmit)
-    addBasket.mutate(formToSubmit)
   }
 
   const handleNext = () => {
@@ -135,8 +107,8 @@ function GiverPage() {
               Your form has been submitted successfully.
             </p>
             <Link
-              to="/" // Adjust this path to your home page route
-              className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+              to="/"
+              className="rounded-md bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
             >
               Home
             </Link>
@@ -152,7 +124,7 @@ function GiverPage() {
                   <div
                     key={step}
                     className={`h-2 w-12 rounded-full ${
-                      currentStep >= step ? 'bg-blue-500' : 'bg-gray-300'
+                      currentStep >= step ? 'bg-[#1f2937]' : 'bg-gray-300'
                     }`}
                   />
                 ))}
@@ -173,11 +145,11 @@ function GiverPage() {
                       <input
                         type="checkbox"
                         value={product}
+                        className="h-4 w-4 accent-slate-700"
                         onChange={() =>
-                          handleCheckboxChange('categories', product)
+                          handleCheckboxChange('products', product)
                         }
-                        checked={formData.categories.includes(product)}
-                        className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        checked={formData.products.includes(product)}
                       />
                       <label className="ml-2 text-gray-700">{product}</label>
                     </div>
@@ -197,11 +169,13 @@ function GiverPage() {
                       <input
                         type="checkbox"
                         value={preference}
+                        className="h-4 w-4 accent-slate-700"
                         onChange={() =>
-                          handleCheckboxChange('dietaryContent', preference)
+                          handleCheckboxChange('dietaryPreferences', preference)
                         }
-                        checked={formData.dietaryContent.includes(preference)}
-                        className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        checked={formData.dietaryPreferences.includes(
+                          preference,
+                        )}
                       />
                       <label className="ml-2 text-gray-700">{preference}</label>
                     </div>
@@ -218,7 +192,7 @@ function GiverPage() {
                   <textarea
                     value={formData.description}
                     onChange={handleDescriptionChange}
-                    className="mt-1 w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-green-500 focus:ring-green-500"
+                    className="mt-1 w-full rounded-md border border-gray-300 p-2 shadow-sm "
                     rows={4}
                     placeholder="Add a description..."
                   />
@@ -242,7 +216,7 @@ function GiverPage() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                  className="rounded-md bg-[#3e4247] px-4 py-2 text-white hover:bg-[#1f2937]"
                 >
                   Continue
                 </button>
@@ -250,7 +224,7 @@ function GiverPage() {
               {currentStep === 3 && (
                 <button
                   type="submit"
-                  className="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+                  className="rounded-md bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
                 >
                   Submit
                 </button>
