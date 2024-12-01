@@ -8,7 +8,7 @@ interface FormData {
   description: string
   categories: string[]
   dietaryContent: string[]
-  location: string
+  location?: string
   image: string
   status: string
 }
@@ -98,7 +98,6 @@ function GiverPage() {
       location: formData.location,
       status: formData.status,
     }
-    console.log('front', formToSubmit)
     addBasket.mutate(formToSubmit)
   }
 
