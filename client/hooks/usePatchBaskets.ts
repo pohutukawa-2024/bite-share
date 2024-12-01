@@ -1,8 +1,9 @@
 import { patchBaskets } from '../apis/baskets'
 import { useMutation } from '@tanstack/react-query'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Basket, PatchBasket } from '../../models/baskets'
+import { PatchBasket } from '../../models/baskets'
 
+// The mutation function receives an object of the basket id, and status to change
 function usePatchBaskets() {
   const { user, getAccessTokenSilently } = useAuth0()
 
