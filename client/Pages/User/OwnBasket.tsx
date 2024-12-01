@@ -1,13 +1,9 @@
 import useGetUserBaskets from '../../hooks/useGetUserBaskets'
 import usePatchBaskets from '../../hooks/usePatchBaskets'
-import { useAuth0 } from '@auth0/auth0-react'
-import { useQueryClient } from '@tanstack/react-query'
 
 function OwnBasket() {
   const { data, isLoading, isError } = useGetUserBaskets()
-  const { user } = useAuth0()
   const updateBasket = usePatchBaskets()
-  const queryClient = useQueryClient()
 
   // Remove basket from request page
   const handleRemoveBasket = (basketId: number) => {
@@ -29,7 +25,10 @@ function OwnBasket() {
               <p>{basket.description}</p>
               <p>{basket.dietaryContent}</p>
               <p>{basket.status}</p>
-              <button onClick={() => handleRemoveBasket(basket.id)}>
+              <button
+                className="m-2 h-16 w-16 rounded-full bg-cyan-200"
+                onClick={() => handleRemoveBasket(basket.id)}
+              >
                 Remove Basket
               </button>
             </li>
