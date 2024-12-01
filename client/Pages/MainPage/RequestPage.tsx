@@ -12,7 +12,7 @@ import useBaskets from '../../hooks/useBaskets'
 import usePatchBaskets from '../../hooks/usePatchBaskets'
 import { useQueryClient } from '@tanstack/react-query'
 import useAddMatch from '../../hooks/useAddMatch'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
@@ -112,7 +112,11 @@ function RequestPage() {
               className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
             >
               <div className="flex-1">
-                <h2 className="text-lg font-semibold">{giver.username}</h2>
+                <h2 className="text-lg font-semibold">
+                  <Link to={`/profile/${giver.username}`}>
+                    {giver.username}
+                  </Link>
+                </h2>
                 <p className="mt-1 text-sm text-gray-600">
                   <strong>Description:</strong> {giver.description}
                 </p>

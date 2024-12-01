@@ -41,7 +41,6 @@ export async function addBasket(token: string, basketNoDate: PostBasketNoDate) {
   const createdAt = Date.now()
   const updatedAt = Date.now()
   const basket = { ...basketNoDate, createdAt, updatedAt }
-  console.log('api', basket)
   await request
     .post('/api/v1/baskets')
     .set('Authorization', `Bearer ${token}`)

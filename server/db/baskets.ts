@@ -17,6 +17,7 @@ export async function getBaskets() {
       'baskets.created_at as createdAt',
       'baskets.updated_at as updatedAt',
     )
+    .orderBy('updated_at', 'desc')
   return results
 }
 

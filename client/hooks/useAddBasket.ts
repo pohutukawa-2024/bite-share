@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { PostBasket } from '../../models/baskets'
+import { PostBasketNoDate } from '../../models/baskets'
 import { addBasket } from '../apis/baskets'
 
 // Adds new basket to DB
@@ -9,7 +9,7 @@ export default function useAddBasket() {
   const queryClient = useQueryClient()
 
   const mutation = useMutation({
-    mutationFn: async (basket: PostBasket) => {
+    mutationFn: async (basket: PostBasketNoDate) => {
       const token = await getAccessTokenSilently()
       if (user && user.sub) {
         await addBasket(token, basket)
