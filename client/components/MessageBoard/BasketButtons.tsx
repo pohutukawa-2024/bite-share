@@ -11,12 +11,12 @@ export default function BasketButtons({ matchId, basketId }: Props) {
   const updateBasket = usePatchBaskets()
 
   const handleRelistClick = () => {
-    updateBasket.mutate({ giverId: basketId, status: 'active' })
+    updateBasket.mutate({ basketId: basketId, status: 'active' })
     updateMatch.mutate({ matchId, status: 'inactive' })
   }
 
   const handleCompleteClick = () => {
-    updateBasket.mutate({ giverId: basketId, status: 'inactive' })
+    updateBasket.mutate({ basketId: basketId, status: 'inactive' })
     updateMatch.mutate({ matchId, status: 'inactive' })
   }
 
