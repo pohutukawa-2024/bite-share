@@ -1,16 +1,28 @@
 // import { MessageWithId } from '../../models/messages'
-// import { Message } from '../../models/messages'
+import { Message, MessageWithId } from '../../models/messages'
 import db from './connection'
 
+// Retrieves all messages based on a matchId
 export async function getMessages(matches_Id: number) {
-  const results = await db('messages').where({ matches_Id }).select()
-  return results
+  const results = await db('messages')
+    .where({ matches_Id })
+    .select(
+      'id as id',
+      'matches_id as matchesId',
+      'sender_id as senderId',
+      'message as message',
+      'sent_at as sentAt',
+    )
+    .orderBy('sent_at')
+  return results as MessageWithId[]
 }
-export async function addNewMessage(messageToInsert) {
+
+// Inserts new message record into DB
+export async function addNewMessage(message: Message) {
   await db('messages').insert({
-    matches_id: messageToInsert.matches_id,
-    sender_id: messageToInsert.sender_id,
-    message: messageToInsert.message,
-    sent_at: messageToInsert.sent_at,
+    matches_id: message.matchesId,
+    sender_id: message.senderId,
+    message: message.message,
+    sent_at: message.sentAt,
   })
 }

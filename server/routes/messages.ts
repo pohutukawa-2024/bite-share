@@ -1,11 +1,12 @@
 import express from 'express'
-import { JwtRequest } from '../auth0'
-import validateAccessToken from '../auth0'
+// import { JwtRequest } from '../auth0'
+import validateAccessToken, { JwtRequest } from '../auth0'
 import * as db from '../db/messages'
-import { Message } from '../../models/messages'
+import { Message, PostMessage } from '../../models/messages'
 
 const router = express.Router()
 
+// Retrieves all messages based on a matchId
 router.get('/:id', validateAccessToken, async (req, res) => {
   try {
     const { id } = req.params
@@ -17,8 +18,9 @@ router.get('/:id', validateAccessToken, async (req, res) => {
   }
 })
 
+// Inserts new message record into DB
 router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
-  const newMessage: Partial<Message> = req.body
+  const postMessage: PostMessage = req.body
   const userId = req.auth?.sub
 
   if (!userId) {
@@ -27,12 +29,14 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
       .json({ message: 'You need to log in to see the messages' })
   }
 
-  const messageToInsert: Message = {
-    ...newMessage,
-  }
-
   try {
-    db.addNewMessage(messageToInsert)
+    const message: Message = {
+      ...postMessage,
+      senderId: userId,
+      sentAt: Date.now(),
+    }
+
+    db.addNewMessage(message)
     return res.status(201).json({ message: 'Message added successfully' })
   } catch (error) {
     console.error('Error adding basket:', error)

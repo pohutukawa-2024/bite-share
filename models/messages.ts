@@ -1,3 +1,8 @@
+export interface PostMessage {
+  matchesId: number
+  message: string
+}
+
 export interface Message {
   matchesId: number
   senderId: string
@@ -5,6 +10,6 @@ export interface Message {
   sentAt: number
 }
 
-export interface MessageWithId {
+export interface MessageWithId extends Message {
   id: number
 }
