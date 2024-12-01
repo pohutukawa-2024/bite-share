@@ -1,18 +1,29 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import Confetti from 'react-confetti'
+import useGetUser from '../../hooks/useGetUser'
+import useAddBasket from '../../hooks/useAddBasket'
 
 interface FormData {
-  products: string[]
-  dietaryPreferences: string[]
   description: string
+  categories: string[]
+  dietaryContent: string[]
+  location?: string
+  image: string
+  status: string
 }
 
 function GiverPage() {
+  const { data } = useGetUser()
+  const addBasket = useAddBasket()
+
   const [formData, setFormData] = useState<FormData>({
-    products: [],
-    dietaryPreferences: [],
     description: '',
+    categories: [],
+    dietaryContent: [],
+    location: '',
+    image: '',
+    status: 'active',
   })
 
   const [currentStep, setCurrentStep] = useState<number>(1)
@@ -43,21 +54,25 @@ function GiverPage() {
   ]
 
   const handleCheckboxChange = (
-    category: 'products' | 'dietaryPreferences',
+    categories: 'categories' | 'dietaryContent',
     value: string,
   ) => {
     setFormData((prevData) => ({
       ...prevData,
-      [category]: prevData[category].includes(value)
-        ? prevData[category].filter((item) => item !== value)
-        : [...prevData[category], value],
+      [categories]: prevData[categories].includes(value)
+        ? prevData[categories].filter((item) => item !== value)
+        : [...prevData[categories], value],
     }))
   }
 
   const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const words = e.target.value.split(' ')
     if (words.length <= 50) {
-      setFormData({ ...formData, description: e.target.value })
+      setFormData({
+        ...formData,
+        description: e.target.value,
+        location: data?.user.location,
+      })
       setError('')
     } else {
       setError('Description cannot exceed 50 words.')
@@ -70,8 +85,20 @@ function GiverPage() {
       setError('Description exceeds 50 words. Please shorten it.')
       return
     }
-    console.log('Form Data Submitted:', formData)
+
     setIsSubmitted(true) // Mark form as submitted
+    const categoriesStr = formData.categories.join(',')
+    const dietaryContentStr = formData.dietaryContent.join(',')
+
+    const formToSubmit = {
+      categories: categoriesStr,
+      dietaryContent: dietaryContentStr,
+      description: formData.description,
+      image: formData.image,
+      location: formData.location,
+      status: formData.status,
+    }
+    addBasket.mutate(formToSubmit)
   }
 
   const handleNext = () => {
@@ -147,9 +174,9 @@ function GiverPage() {
                         value={product}
                         className="h-4 w-4 accent-slate-700"
                         onChange={() =>
-                          handleCheckboxChange('products', product)
+                          handleCheckboxChange('categories', product)
                         }
-                        checked={formData.products.includes(product)}
+                        checked={formData.categories.includes(product)}
                       />
                       <label className="ml-2 text-gray-700">{product}</label>
                     </div>
@@ -171,11 +198,9 @@ function GiverPage() {
                         value={preference}
                         className="h-4 w-4 accent-slate-700"
                         onChange={() =>
-                          handleCheckboxChange('dietaryPreferences', preference)
+                          handleCheckboxChange('dietaryContent', preference)
                         }
-                        checked={formData.dietaryPreferences.includes(
-                          preference,
-                        )}
+                        checked={formData.dietaryContent.includes(preference)}
                       />
                       <label className="ml-2 text-gray-700">{preference}</label>
                     </div>
@@ -192,7 +217,7 @@ function GiverPage() {
                   <textarea
                     value={formData.description}
                     onChange={handleDescriptionChange}
-                    className="mt-1 w-full rounded-md border border-gray-300 p-2 shadow-sm "
+                    className="mt-1 w-full rounded-md border border-gray-300 p-2 shadow-sm"
                     rows={4}
                     placeholder="Add a description..."
                   />
