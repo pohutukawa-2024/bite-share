@@ -1,87 +1,86 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { LogOut } from 'lucide-react'
+import { LogOut, UserRoundPen, ShoppingBasket } from 'lucide-react'
 import { ReactNode, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-const getAvatar = (fullName: string) => {
-  if (fullName === '' || fullName === undefined || fullName.length === 0) return
-  const value = fullName.substring(0, 1)
-  return value
-}
+const getAvatar = (fullName: string) => fullName?.charAt(0).toUpperCase() || '?'
 
-interface navigatationItems {
+interface NavigationItem {
   name: string
-  link?: string
-  icon?: ReactNode
-  onClick?: () => void
+  icon: ReactNode
+  path: string
+  action: () => void
 }
 
 function Persona() {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const { logout } = useAuth0()
   const navigate = useNavigate()
 
-  const { isAuthenticated, logout, loginWithRedirect } = useAuth0()
+  const toggleDropdown = () => setIsOpen((prev) => !prev)
 
-  function handleLogin() {
-    loginWithRedirect({
-      authorizationParams: {
-        redirect_uri: `${window.location.origin}/`,
-      },
-    })
-  }
+  const closeDropdown = () => setIsOpen(false)
 
-  function handleLogout() {
-    console.log('cilcked')
-    logout({ logoutParams: { returnTo: window.location.origin } })
-  }
-
-  const handlePersonaClick = () => {
-    setIsOpen(!isOpen)
-  }
-
-  const handleNavigate = (link: string) => {
-    if (!link) return
-    navigate(link)
-    setIsOpen(false)
-  }
-  const items: navigatationItems[] = [
+  const navigationItems: NavigationItem[] = [
     {
       name: 'Logout',
-      link: '',
-      icon: <LogOut size={16} />,
-      onClick: handleLogout,
+      icon: <LogOut size={20} />,
+      path: '/',
+      action: () => {
+        console.log('/')
+        // closeDropdown()
+
+        logout({ logoutParams: { returnTo: window.location.origin } })
+      },
     },
-    { name: 'Profile', link: '/' },
-    { name: 'Own Basket', link: '/' },
+    {
+      name: 'Profile',
+      icon: <UserRoundPen size={20} />,
+      path: '/profile',
+      action: () => {
+        console.log('/profile')
+        // navigate('/profile')
+        closeDropdown()
+      },
+    },
+    {
+      name: 'Own Basket',
+      icon: <ShoppingBasket size={20} />,
+      path: '/ownbasket',
+      action: () => {
+        console.log('/ownbasket')
+        // navigate('/ownbasket')
+        closeDropdown()
+      },
+    },
   ]
+
   return (
-    <div className="relative">
+    <div className="relative z-50">
       <button
-        onClick={handlePersonaClick}
+        onClick={toggleDropdown}
         type="button"
-        className="w flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 text-center font-bold text-black"
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-500 font-semibold text-white transition hover:bg-slate-600"
+        title="Open Menu"
       >
         {getAvatar('Harpreet')}
       </button>
-      {isOpen ? (
-        <div className="absolute right-2  top-8 z-10 flex flex-col gap-4 border shadow-lg">
-          {items.map((item: navigatationItems, index: number) => {
-            return (
-              <button
-                onClick={() =>
-                  item.onClick ? item.onClick() : handleNavigate(item.link!)
-                }
-                key={index}
-                className="w-full whitespace-nowrap px-6 py-2 hover:bg-slate-300"
-              >
-                <span className="flex items-center">
-                  {item.icon} <span className="ml-2">{item.name}</span>
-                </span>
-              </button>
-            )
-          })}
+
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-48 rounded-lg border border-gray-200 bg-white shadow-lg">
+          {navigationItems.map((item, index) => (
+            <Link
+              key={index}
+              to={item.path}
+              // onClick={item.action}
+              className="flex w-full items-center gap-3 px-4 py-2 text-left text-gray-700 transition hover:bg-gray-100 hover:text-gray-900"
+            >
+              {item.icon}
+              <span>{item.name}</span>
+            </Link>
+          ))}
         </div>
-      ) : null}
+      )}
     </div>
   )
 }

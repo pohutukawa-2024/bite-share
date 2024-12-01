@@ -4,13 +4,15 @@ import Header from '../Pages/Header/Header'
 export default function Layout() {
   return (
     <>
-      <header className="mx-auto max-w-7xl">
-        <Header />
-      </header>
-      <main className="mx-auto max-w-3xl">
-        <Outlet />
-      </main>
-      <footer></footer>
+      <body className="mx-auto max-w-7xl">
+        <header>
+          <Header />
+        </header>
+        <main>
+          <Outlet />
+        </main>
+        <footer></footer>
+      </body>
     </>
   )
 }
