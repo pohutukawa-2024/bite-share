@@ -35,7 +35,7 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
       senderId: userId,
       sentAt: Date.now(),
     }
-    console.log(message)
+
     db.addNewMessage(message)
     return res.status(201).json({ message: 'Message added successfully' })
   } catch (error) {

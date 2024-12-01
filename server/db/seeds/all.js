@@ -206,6 +206,7 @@ export async function seed(knex) {
   await knex('matches').insert([
     {
       id: 1,
+      basket_id: 10,
       giver_id: 'auth0|67476f8defa904b4cd515493',
       receiver_id: 'auth0|6747d7830ba06e401cd48bdb',
       status: 'active',
@@ -214,6 +215,7 @@ export async function seed(knex) {
     },
     {
       id: 2,
+      basket_id: 7,
       giver_id: 'auth0|67476f8defa904b4cd515493',
       receiver_id: 'auth0|6747d2aed8d9b71e8babb226',
       status: 'active',
@@ -222,6 +224,7 @@ export async function seed(knex) {
     },
     {
       id: 3,
+      basket_id: 4,
       giver_id: 'auth0|6747d7830ba06e401cd48bdb',
       receiver_id: 'auth0|6747d2aed8d9b71e8babb226',
       status: 'active',
@@ -229,63 +232,8 @@ export async function seed(knex) {
       updated_at: 1698562200000,
     },
     {
-      id: 4,
-      giver_id: 'auth|456',
-      receiver_id: 'auth|789',
-      status: 'active',
-      created_at: 1698564000000,
-      updated_at: 1698564300000,
-    },
-    {
-      id: 5,
-      giver_id: 'auth|101',
-      receiver_id: 'auth|202',
-      status: 'active',
-      created_at: 1698566400000,
-      updated_at: 1698566700000,
-    },
-    {
-      id: 6,
-      giver_id: 'auth|123',
-      receiver_id: 'auth|789',
-      status: 'active',
-      created_at: 1698568800000,
-      updated_at: 1698569100000,
-    },
-    {
-      id: 7,
-      giver_id: 'auth|456',
-      receiver_id: 'auth|101',
-      status: 'active',
-      created_at: 1698571200000,
-      updated_at: 1698571800000,
-    },
-    {
-      id: 8,
-      giver_id: 'auth|789',
-      receiver_id: 'auth|202',
-      status: 'active',
-      created_at: 1698573600000,
-      updated_at: 1698573900000,
-    },
-    {
-      id: 9,
-      giver_id: 'auth|123',
-      receiver_id: 'auth|101',
-      status: 'active',
-      created_at: 1698576000000,
-      updated_at: 1698576600000,
-    },
-    {
-      id: 10,
-      giver_id: 'auth|456',
-      receiver_id: 'auth|202',
-      status: 'active',
-      created_at: 1698578400000,
-      updated_at: 1698578700000,
-    },
-    {
       id: 11,
+      basket_id: 5,
       giver_id: 'auth0|67476f8defa904b4cd515493',
       receiver_id: 'auth|202',
       status: 'active',
@@ -294,6 +242,7 @@ export async function seed(knex) {
     },
     {
       id: 12,
+      basket_id: 6,
       giver_id: 'auth|456',
       receiver_id: 'auth0|67476f8defa904b4cd515493',
       status: 'active',
@@ -303,114 +252,6 @@ export async function seed(knex) {
   ])
 
   await knex('messages').insert([
-    {
-      id: 7,
-      matches_id: 4,
-      sender_id: 'auth|456',
-      message:
-        'Hello, I’m looking for some free food. Do you still have the rice available?',
-      sent_at: 1698565200000,
-    },
-    {
-      id: 8,
-      matches_id: 4,
-      sender_id: 'auth|789',
-      message: 'Yes, I have some rice left. Would you like to pick it up soon?',
-      sent_at: 1698565500000,
-    },
-    {
-      id: 9,
-      matches_id: 5,
-      sender_id: 'auth|101',
-      message:
-        'Hi! I saw your offer for free fruit. Are the apples still available?',
-      sent_at: 1698567600000,
-    },
-    {
-      id: 10,
-      matches_id: 5,
-      sender_id: 'auth|202',
-      message:
-        'Yes, I have a few apples left. When can you come by to grab them?',
-      sent_at: 1698567900000,
-    },
-    {
-      id: 11,
-      matches_id: 6,
-      sender_id: 'auth|123',
-      message:
-        'Hello, I saw you’re giving away some bread. Is it still available?',
-      sent_at: 1698570000000,
-    },
-    {
-      id: 12,
-      matches_id: 6,
-      sender_id: 'auth|789',
-      message:
-        'Yes, I have some fresh bread. When would you like to come pick it up?',
-      sent_at: 1698570300000,
-    },
-    {
-      id: 13,
-      matches_id: 7,
-      sender_id: 'auth|456',
-      message:
-        'Hi, I saw your post about leftover pasta. Is it still available?',
-      sent_at: 1698572400000,
-    },
-    {
-      id: 14,
-      matches_id: 7,
-      sender_id: 'auth|101',
-      message:
-        'Yes, I have some pasta left. When would you like to come get it?',
-      sent_at: 1698572700000,
-    },
-    {
-      id: 15,
-      matches_id: 8,
-      sender_id: 'auth|789',
-      message: 'Hello, are the free bagels still available?',
-      sent_at: 1698574800000,
-    },
-    {
-      id: 16,
-      matches_id: 8,
-      sender_id: 'auth|202',
-      message:
-        'Yes, I have some bagels left. When would you like to collect them?',
-      sent_at: 1698575100000,
-    },
-    {
-      id: 17,
-      matches_id: 9,
-      sender_id: 'auth|123',
-      message: 'Hi, I saw you have extra cakes. Are they still up for grabs?',
-      sent_at: 1698577200000,
-    },
-    {
-      id: 18,
-      matches_id: 9,
-      sender_id: 'auth|101',
-      message:
-        'Yes, I have some leftover cakes. You’re welcome to come pick them up!',
-      sent_at: 1698577500000,
-    },
-    {
-      id: 19,
-      matches_id: 10,
-      sender_id: 'auth|456',
-      message:
-        'I saw your post about free snacks. Are the chips still available?',
-      sent_at: 1698579600000,
-    },
-    {
-      id: 20,
-      matches_id: 10,
-      sender_id: 'auth|202',
-      message: 'Yes, I have some chips left. When would you like to come by?',
-      sent_at: 1698579900000,
-    },
     {
       id: 21,
       matches_id: 1,

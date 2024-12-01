@@ -736,14 +736,6 @@ video {
   height: 0.5rem;
 }
 
-.h-20 {
-  height: 5rem;
-}
-
-.h-24 {
-  height: 6rem;
-}
-
 .h-28 {
   height: 7rem;
 }
@@ -774,10 +766,6 @@ video {
 
 .h-\[var\(--radix-select-trigger-height\)\] {
   height: var(--radix-select-trigger-height);
-}
-
-.h-full {
-  height: 100%;
 }
 
 .h-px {
@@ -836,20 +824,12 @@ video {
   width: 8rem;
 }
 
-.w-36 {
-  width: 9rem;
-}
-
 .w-4 {
   width: 1rem;
 }
 
 .w-4\/5 {
   width: 80%;
-}
-
-.w-4\/6 {
-  width: 66.666667%;
 }
 
 .w-48 {
