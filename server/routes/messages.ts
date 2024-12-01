@@ -28,11 +28,11 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 
   const messageToInsert: Message = {
-    ...newMessage
+    ...newMessage,
   }
 
   try {
-     db.addNewMessage(messageToInsert)
+    db.addNewMessage(messageToInsert)
     return res.status(201).json({ message: 'Message added successfully' })
   } catch (error) {
     console.error('Error adding basket:', error)

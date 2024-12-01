@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
+import Persona from '../../components/Persona/Persona'
 
 const headerIterms = [
   { id: 1, name: 'Home', navigateTo: '/' },
@@ -9,7 +10,7 @@ const headerIterms = [
 ]
 
 function Header() {
-  const { isAuthenticated, logout, loginWithRedirect } = useAuth0()
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
 
   function handleLogin() {
     loginWithRedirect({
@@ -19,14 +20,11 @@ function Header() {
     })
   }
 
-  function handleLogout() {
-    logout({ logoutParams: { returnTo: window.location.origin } })
-  }
-
   return (
     <nav>
-      <div>
-        <div className="mr-5 mt-2 flex flex-row justify-end gap-7 sm:mt-4 lg:mt-6">
+      <div className="flex items-center justify-between py-6">
+        <h1>Bite-Share</h1>
+        <div className="flex flex-row justify-end gap-6 text-center">
           {headerIterms.map((item) => {
             return (
               <Link key={item.id} to={item.navigateTo!}>
@@ -41,13 +39,12 @@ function Header() {
             Support us/ Koha
           </Link>
           <section>
-            {!isAuthenticated && <button onClick={handleLogin}>Login</button>}
+            {!isAuthenticated ? (
+              <button onClick={handleLogin}>Login</button>
+            ) : (
+              <Persona />
+            )}
           </section>
-          <section>
-            {isAuthenticated && <button onClick={handleLogout}>Log out</button>}
-          </section>
-          <Link to="/profile">Edit profile</Link>
-          <Link to="/ownbasket">Own basket</Link>
         </div>
       </div>
     </nav>
