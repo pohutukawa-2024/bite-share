@@ -1,6 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import Confetti from 'react-confetti'
+import useGetUser from '../../hooks/useGetUser'
+import useAddBasket from '../../hooks/useAddBasket'
 
 interface FormData {
   description: string
@@ -9,20 +11,19 @@ interface FormData {
   location: string
   image: string
   status: string
-  createdAt: number
-  updatedAt: number
 }
 
 function GiverPage() {
+  const { data } = useGetUser()
+  const addBasket = useAddBasket()
+
   const [formData, setFormData] = useState<FormData>({
     description: '',
     categories: [],
     dietaryContent: [],
     location: '',
     image: '',
-    status: '',
-    createdAt: 0,
-    updatedAt: 0,
+    status: 'active',
   })
 
   const [currentStep, setCurrentStep] = useState<number>(1)
@@ -53,21 +54,25 @@ function GiverPage() {
   ]
 
   const handleCheckboxChange = (
-    category: 'categories' | 'dietaryContent',
+    categories: 'categories' | 'dietaryContent',
     value: string,
   ) => {
     setFormData((prevData) => ({
       ...prevData,
-      [category]: prevData[category].includes(value)
-        ? prevData[category].filter((item) => item !== value)
-        : [...prevData[category], value],
+      [categories]: prevData[categories].includes(value)
+        ? prevData[categories].filter((item) => item !== value)
+        : [...prevData[categories], value],
     }))
   }
 
   const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const words = e.target.value.split(' ')
     if (words.length <= 50) {
-      setFormData({ ...formData, description: e.target.value })
+      setFormData({
+        ...formData,
+        description: e.target.value,
+        location: data?.user.location,
+      })
       setError('')
     } else {
       setError('Description cannot exceed 50 words.')
@@ -80,8 +85,21 @@ function GiverPage() {
       setError('Description exceeds 50 words. Please shorten it.')
       return
     }
-    console.log('Form Data Submitted:', formData)
+
     setIsSubmitted(true) // Mark form as submitted
+    const categoriesStr = formData.categories.join(',')
+    const dietaryContentStr = formData.dietaryContent.join(',')
+
+    const formToSubmit = {
+      categories: categoriesStr,
+      dietaryContent: dietaryContentStr,
+      description: formData.description,
+      image: formData.image,
+      location: formData.location,
+      status: formData.status,
+    }
+    console.log('front', formToSubmit)
+    addBasket.mutate(formToSubmit)
   }
 
   const handleNext = () => {
@@ -156,7 +174,7 @@ function GiverPage() {
                         type="checkbox"
                         value={product}
                         onChange={() =>
-                          handleCheckboxChange('products', product)
+                          handleCheckboxChange('categories', product)
                         }
                         checked={formData.categories.includes(product)}
                         className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
@@ -180,7 +198,7 @@ function GiverPage() {
                         type="checkbox"
                         value={preference}
                         onChange={() =>
-                          handleCheckboxChange('dietaryPreferences', preference)
+                          handleCheckboxChange('dietaryContent', preference)
                         }
                         checked={formData.dietaryContent.includes(preference)}
                         className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"

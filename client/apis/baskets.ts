@@ -1,5 +1,9 @@
 import request from 'superagent'
-import { BasketJoinedUser, PatchBasket, PostBasket } from '../../models/baskets'
+import {
+  BasketJoinedUser,
+  PatchBasket,
+  PostBasketNoDate,
+} from '../../models/baskets'
 
 //Get data
 export async function getBaskets(token: string) {
@@ -33,9 +37,13 @@ export async function getUserBaskets(token: string) {
 }
 
 // Adds new basket to DB
-export async function addBasket(token: string, basket: PostBasket) {
+export async function addBasket(token: string, basketNoDate: PostBasketNoDate) {
+  const createdAt = Date.now()
+  const updatedAt = Date.now()
+  const basket = { ...basketNoDate, createdAt, updatedAt }
+  console.log('api', basket)
   await request
-    .get('/api/v1/baskets')
+    .post('/api/v1/baskets')
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
     .send(basket)

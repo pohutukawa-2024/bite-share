@@ -29,7 +29,6 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   const basketToInsert: Basket = {
     ...newBasket,
     userId: userId,
-    status: newBasket.status || 'active',
   }
 
   try {
