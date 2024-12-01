@@ -1,12 +1,25 @@
 import usePatchBaskets from '../../hooks/usePatchBaskets'
 import useUpdateMatch from '../../hooks/useUpdateMatch'
+// import { useNavigate } from 'react-router-dom'
 
+// interface StateObj {
+//   matchesId: number
+//   otherUsername: string
+//   basketId: number
+// }
 interface Props {
   matchId: number
   basketId: number
+  // state: StateObj
+  // setState: React.Dispatch<React.SetStateAction<StateObj>>
 }
 
-export default function BasketButtons({ matchId, basketId }: Props) {
+export default function BasketButtons({
+  matchId,
+  basketId,
+  // state,
+  // setState,
+}: Props) {
   const updateMatch = useUpdateMatch()
   const updateBasket = usePatchBaskets()
 
