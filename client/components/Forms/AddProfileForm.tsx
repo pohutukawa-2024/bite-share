@@ -14,6 +14,7 @@ function AddProfileForm(props: Props) {
     email: profile?.email || '',
     points: 0,
     location: profile?.location || '',
+    icon: '',
   })
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {

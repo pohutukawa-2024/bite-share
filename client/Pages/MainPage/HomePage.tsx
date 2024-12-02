@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
+import RegisterButton from '../../components/AuthButtons/RegisterButton'
 
 function HomePage() {
   return (
     <div>
-      <div className=" z-0 flex items-center p-6 ">
+      <div className="z-0 flex items-center p-6 ">
         {/* Left Content */}
 
         <div className="w-2/4 rounded-2xl bg-[#1f2937] p-7 text-white shadow-xl">
@@ -14,9 +15,7 @@ function HomePage() {
             Bite-Share connects people by sharing food to reduce waste and fight
             hunger. Join our movement today!
           </p>
-          <button className="flex items-center gap-1 rounded-2xl bg-white px-4 py-2 text-black">
-            Sign Up
-          </button>
+          <RegisterButton />
         </div>
 
         {/* Right Content */}
