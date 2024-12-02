@@ -1,10 +1,11 @@
 import useLeaderboard from '../hooks/useLeaderboard'
+import ErrorPage from './ErrorPage'
 
 export default function Leaderboard() {
   const { data: users, isLoading: loading, error } = useLeaderboard()
 
   if (loading) return <div>Loading...</div>
-  if (error) return <div>Error: {error.message}</div>
+  if (error) return <ErrorPage />
 
   return (
     <div className="mt-6  rounded-3xl bg-gray-100 p-6 shadow-lg">
