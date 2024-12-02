@@ -8,7 +8,7 @@ export default function Leaderboard() {
   if (error) return <ErrorPage />
 
   return (
-    <div className="mt-6  rounded-3xl bg-gray-100 p-6 shadow-lg">
+    <div className="mt-11 rounded-3xl bg-gray-100 p-6 shadow-lg">
       <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
         Leader Board
       </h2>
@@ -23,7 +23,7 @@ export default function Leaderboard() {
                 {index + 1}.
               </span>
               <img
-                src="Public/images/placeholder_icon.png"
+                src="Public/images/dp.png"
                 alt="user icon"
                 className=" h-9 rounded-full  border-gray-300"
               />

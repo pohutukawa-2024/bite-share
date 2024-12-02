@@ -13,8 +13,16 @@ import usePatchBaskets from '../../hooks/usePatchBaskets'
 import { useQueryClient } from '@tanstack/react-query'
 import useAddMatch from '../../hooks/useAddMatch'
 import { Link, useNavigate } from 'react-router-dom'
-import ErrorPage from '../../components/ErrorPage'
 import Leaderboard from '../../components/Leaderboard'
+
+const dietaryImages = {
+  Vegan: 'Public/images/vegan.png',
+  Vegetarian: 'Public/images/vegetarian.png',
+  GlutenFree: 'Public/images/glutenFree.png',
+  DiaryFree: 'Public/images/diaryFree.png',
+  Halal: 'Public/images/meat.png',
+  Default: 'Public/images/vegetarian.png',
+}
 
 function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
@@ -110,47 +118,63 @@ function RequestPage() {
       {/* Givers List */}
       <div className="flex gap-10">
         <div className="mr-auto flex w-full flex-col justify-center gap-8">
-          {filteredGivers?.map((giver, index) => (
-            <div
-              key={index}
-              className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
-            >
-              <div className="flex-1">
-                <h2 className="text-lg font-semibold">
-                  <Link to={`/profile/${giver.username}`}>
-                    {giver.username}
-                  </Link>
-                </h2>
-                <p className="mt-1 text-sm text-gray-600">
-                  <strong>Description:</strong> {giver.description}
-                </p>
-                <p className="mt-1 text-sm text-gray-600">
-                  <strong>Basket:</strong> {giver.categories}
-                </p>
-                <p className="mt-1 text-sm text-gray-600">
-                  <strong>Dietary Preferences:</strong>{' '}
-                  {giver.dietaryContent
-                    ? giver.dietaryContent.replace(',', ', ')
-                    : 'No dietary preferences available'}
-                </p>
-              </div>
-              <button
-                onClick={() =>
-                  handleRequest({ giverId: giver.userId, basketId: giver.id })
-                }
-                className="ml-4 rounded-md bg-primary px-4 py-2 text-black hover:bg-[#e0b143]"
+          {filteredGivers?.map((giver, index) => {
+            const dietaryList = giver.dietaryContent?.split(',') || []
+            const imageSrc =
+              dietaryList.length > 0
+                ? dietaryImages[dietaryList[0].trim()] || dietaryImages.Default
+                : dietaryImages.Default
+
+            return (
+              <div
+                key={index}
+                className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
               >
-                Request
-              </button>
-            </div>
-          ))}
+                {/* Use the dynamic image source */}
+                <img
+                  src={imageSrc}
+                  alt="Dietary Preference"
+                  className="h-36 w-36 rounded object-cover"
+                />
+                <div className="flex-1">
+                  <h2 className="text-lg font-semibold">
+                    <Link to={`/profile/${giver.username}`}>
+                      {giver.username}
+                    </Link>
+                  </h2>
+                  <p className="mt-1 text-sm text-gray-600">
+                    <strong>Description:</strong> {giver.description}
+                  </p>
+                  <p className="mt-1 text-sm text-gray-600">
+                    <strong>Basket:</strong>{' '}
+                    {giver.categories
+                      ? giver.categories.replace(',', ', ')
+                      : 'No dietary preferences available'}
+                  </p>
+                  <p className="mt-1 text-sm text-gray-600">
+                    <strong>Dietary Preferences:</strong>{' '}
+                    {giver.dietaryContent
+                      ? giver.dietaryContent.replace(',', ', ')
+                      : 'No dietary preferences available'}
+                  </p>
+                </div>
+                <button
+                  onClick={() =>
+                    handleRequest({ giverId: giver.userId, basketId: giver.id })
+                  }
+                  className="ml-4 rounded-md bg-primary px-4 py-2 text-black hover:bg-[#e0b143]"
+                >
+                  Request
+                </button>
+              </div>
+            )
+          })}
         </div>
-        <div className="mb-5 h-48 rounded-3xl bg-zinc-100 p-2 shadow-md">
+        <div className="h-48 w-[350px] rounded-3xl bg-zinc-100 p-1 shadow-md">
           <img
             src="Public/images/dietary.png"
             alt="Dietary Information"
-            height="100px"
-            width="200px"
+            width="180px"
           />
 
           <Leaderboard />
