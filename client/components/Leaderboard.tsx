@@ -16,28 +16,23 @@ export default function Leaderboard() {
         {users?.map((user, index) => (
           <li
             key={user.id}
-            className="flex items-center justify-between gap-4 rounded-xl bg-white p-2 shadow-md"
+            className="flex items-center justify-between gap-12 rounded-xl bg-white p-2 shadow-md"
           >
-            <div className="flex items-center gap-4">
-              <span className="text-lg font-bold text-gray-600">
+            <div className="flex items-center">
+              <span className="text-md font-bold text-gray-600">
                 {index + 1}.
               </span>
               <img
                 src="Public/images/placeholder_icon.png"
                 alt="user icon"
-                className="h-9 w-20 rounded-full  border-gray-300"
+                className=" h-9 rounded-full  border-gray-300"
               />
               <div>
-                <p className="text-base font-semibold text-gray-800">
-                  {user.fullName}
-                </p>
                 <p className="text-sm text-gray-500">@{user.username}</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-xl font-semibold text-green-600">
-                {user.points} pts
-              </p>
+              <p className="p-1 text-sm  text-green-600">{user.points} pts</p>
             </div>
           </li>
         ))}
