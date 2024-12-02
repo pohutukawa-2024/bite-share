@@ -53,7 +53,7 @@ describe('users DB functions', () => {
     expect(user.username).toBe('averagehenry')
   })
 
-  it('should insert a new user if not already present', async () => {
+  it('should insert a new user if not already in DB', async () => {
     const newUser = {
       id: 'auth0|99',
       username: 'cookies4me',
