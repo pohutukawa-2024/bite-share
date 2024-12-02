@@ -7,6 +7,7 @@ import {
 
 //Get data
 export async function getBaskets(token: string) {
+  console.log('before')
   const res = await request
     .get('/api/v1/baskets')
     .set('Authorization', `Bearer ${token}`)
