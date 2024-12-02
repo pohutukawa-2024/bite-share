@@ -18,13 +18,13 @@ server.use('/api/v1/matches', matchesRoutes)
 server.use('/api/v1/points', pointsRoutes)
 
 if (process.env.NODE_ENV === 'production') {
-  server.use(express.static(Path.resolve('public')))
+  server.use(express.static(Path.resolve('Public')))
   server.use('/assets', express.static(Path.resolve('./dist/assets')))
   server.get('*', (req, res) => {
     res.sendFile(Path.resolve('./dist/index.html'))
   })
 } else {
-  server.use(express.static(Path.resolve('public')))
+  server.use(express.static(Path.resolve('Public')))
 }
 
 export default server
