@@ -1,20 +1,10 @@
 //@vitest-environment jsdom
 
-import {
-  describe,
-  it,
-  expect,
-  vi,
-  beforeEach,
-  afterEach,
-  beforeAll,
-  vitest,
-} from 'vitest'
+import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest'
 import {
   screen,
   waitFor,
   waitForElementToBeRemoved,
-  within,
 } from '@testing-library/react'
 import { useAuth0 } from '@auth0/auth0-react'
 import nock from 'nock'
@@ -102,9 +92,7 @@ describe('<Request Page />', () => {
 
     renderWithQuery(<RequestPage />)
 
-    await waitForElementToBeRemoved(() => screen.getByText(/loading/i), {
-      timeout: 10000,
-    })
+    await waitForElementToBeRemoved(() => screen.getByText(/loading/i))
 
     const error = screen.findByText(/wrong/i)
     expect(error).toBeVisible()
