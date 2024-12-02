@@ -3,7 +3,8 @@ import { LogOut, UserRoundPen, ShoppingBasket } from 'lucide-react'
 import { ReactNode, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const getAvatar = (fullName: string) => fullName?.charAt(0).toUpperCase() || '?'
+const getAvatar = (fullName?: string) =>
+  fullName?.charAt(0).toUpperCase() || '?'
 
 interface NavigationItem {
   name: string
@@ -14,7 +15,7 @@ interface NavigationItem {
 
 function Persona() {
   const [isOpen, setIsOpen] = useState(false)
-  const { logout } = useAuth0()
+  const { logout, user } = useAuth0()
   const navigate = useNavigate()
 
   const toggleDropdown = () => setIsOpen((prev) => !prev)
@@ -59,7 +60,7 @@ function Persona() {
         className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-500 font-semibold text-white transition hover:bg-slate-600"
         title="Open Menu"
       >
-        {getAvatar('Harpreet')}
+        {getAvatar(user?.name)}
       </button>
 
       {isOpen && (
