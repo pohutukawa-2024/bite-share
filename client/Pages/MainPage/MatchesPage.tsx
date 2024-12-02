@@ -78,7 +78,7 @@ function MatchesPage() {
             basketId={selectMatch.basketId}
             matchId={selectMatch.matchesId}
             // state={selectMatch}
-            // setState={setSelectMatch}
+            setSelectMatch={setSelectMatch}
           />
         </section>
       </div>
