@@ -5,6 +5,7 @@ import useGetMatches from '../../hooks/useGetMatches'
 import { useAuth0 } from '@auth0/auth0-react'
 import ChatBox from '../../components/MessageBoard/ChatBox'
 import BasketButtons from '../../components/MessageBoard/BasketButtons'
+import ErrorPage from '../../components/ErrorPage'
 
 function MatchesPage() {
   const { data, isLoading, isError } = useGetMatches()
@@ -37,7 +38,7 @@ function MatchesPage() {
   }
 
   if (isLoading) return <div>loading...</div>
-  if (isError) return <div>Sorry! An error has occurred.</div>
+  if (isError) return <ErrorPage />
 
   // Creates an array of conversations with the other user, no matter if they were the giver or receiver
   const transformedData: MatchBubble[] = data

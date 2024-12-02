@@ -13,6 +13,7 @@ import usePatchBaskets from '../../hooks/usePatchBaskets'
 import { useQueryClient } from '@tanstack/react-query'
 import useAddMatch from '../../hooks/useAddMatch'
 import { Link, useNavigate } from 'react-router-dom'
+import ErrorPage from '../../components/ErrorPage'
 
 function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
@@ -52,7 +53,7 @@ function RequestPage() {
   }
 
   if (isLoading) return <p>Loading baskets...</p>
-  if (isError) return <p>Error loading baskets.</p>
+  if (isError) return <ErrorPage />
 
   // Filtering logic
   const filteredGivers = givers?.filter((giver) => {
@@ -145,7 +146,7 @@ function RequestPage() {
         </div>
         <div className="h-56 rounded-3xl bg-zinc-100 p-2 shadow-md">
           <img
-            src="/images/dietary.png"
+            src="Public/images/dietary.png"
             alt="Dietary Information"
             height="100px"
             width="200px"
