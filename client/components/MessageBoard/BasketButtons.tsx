@@ -21,16 +21,16 @@ export default function BasketButtons({ matchId, basketId }: Props) {
   }
 
   return (
-    <div className="flex flex-row">
+    <div className="mt-4 flex justify-end gap-4">
       <button
         onClick={handleRelistClick}
-        className="m-2 h-16 w-32  rounded-full bg-red-200 pb-0.5 pl-2 pr-2 pt-0.5"
+        className="h-14 w-32 rounded-3xl bg-rose-500  text-white shadow-md transition duration-200 hover:bg-rose-600 focus:outline-none"
       >
         Relist Basket
       </button>
       <button
         onClick={handleCompleteClick}
-        className="m-2 h-16 w-32 rounded-full bg-green-200 pb-0.5 pl-2 pr-2 pt-0.5"
+        className="h-14 w-32 rounded-3xl bg-lime-500  text-white shadow-md transition duration-200 hover:bg-lime-600 focus:outline-none"
       >
         Complete Match
       </button>
