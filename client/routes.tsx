@@ -13,10 +13,11 @@ import KohaPage from './Pages/MainPage/KohaPage.tsx'
 import AddProfile from './Pages/Account/AddProfile.tsx'
 import AnotherProfile from './Pages/User/AnotherProfile.tsx'
 import Leaderboard from './components/Leaderboard.tsx'
+import ErrorPage from './components/ErrorPage.tsx'
 
 export default createRoutesFromElements(
-  <Route>
-    <Route path="/" element={<Layout />}>
+ 
+    <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
       <Route index element={<HomePage />} />
       <Route path="addProfile" element={<AddProfile />} />
       <Route path="about" element={<AboutUs />} />
@@ -30,5 +31,5 @@ export default createRoutesFromElements(
       <Route path="ownbasket" element={<OwnBasket />} />
       <Route path="leaderboard" element={<Leaderboard />} />
     </Route>
-  </Route>,
+  
 )

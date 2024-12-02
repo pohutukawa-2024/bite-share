@@ -43,7 +43,6 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
   try {
     const profile = { ...form, id }
     await db.upsertProfile(profile)
-    console.log(profile)
     res.sendStatus(201)
   } catch (error) {
     console.error(error)

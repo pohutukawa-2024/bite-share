@@ -50,7 +50,6 @@ export async function getUserByUsername(username: string) {
 
 export async function updateUserByUsername(profile: EditUserWithId) {
   const user = await db('users').where('id', profile.id).update({
-    id: profile.id,
     username: profile.username,
     full_name: profile.fullName,
     email: profile.email,

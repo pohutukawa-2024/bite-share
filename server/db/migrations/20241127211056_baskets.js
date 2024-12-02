@@ -10,6 +10,9 @@ export async function up(knex) {
     table.string('image')
     table.timestamp('created_at')
     table.timestamp('updated_at')
+
+    // Add indices
+    table.index(['user_id'])
   })
 }
 

@@ -15,6 +15,7 @@ router.get('/:id', validateAccessToken, async (req, res) => {
     res.status(200).json(messages)
   } catch (e) {
     console.error(e)
+    res.status(500).json({ message: 'Unable to retrieve messages' })
   }
 })
 

@@ -7,6 +7,10 @@ export async function up(knex) {
     table.integer('points')
     table.string('location')
     table.string('icon')
+
+    // Add indices
+    table.index(['id'])
+    table.index(['username'])
   })
 }
 

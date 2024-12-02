@@ -4,6 +4,7 @@ import SendBox from './SendBox'
 import usePostMessage from '../../hooks/usePostMessage'
 import { useRef, useEffect } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
+import ErrorPage from '../ErrorPage'
 
 interface Props {
   matchId: number
@@ -39,7 +40,7 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
   }
 
   if (isLoading) return <div>Loading...</div>
-  if (isError) return <div>Sorry! An error has occurred.</div>
+  if (isError) return <ErrorPage />
 
   // Shows empty conversation when first loads (matchId = 0)
   if (matchId === 0) {
@@ -48,6 +49,7 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
         <h1 className="text-center">Click on a Conversation</h1>
       </section>
     )
+    // Shows conversation when a person's chat bubble is clicked
   } else {
     return (
       <div className="w-full">

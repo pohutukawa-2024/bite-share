@@ -6,15 +6,18 @@ function RegisterButton() {
   function handleRegister() {
     loginWithRedirect({
       authorizationParams: {
-        screen_hint: 'signin',
+        screen_hint: 'signup',
         redirect_uri: `${window.location.origin}/addProfile`,
       },
     })
   }
 
   return (
-    <button className="bg-blue-500" onClick={handleRegister}>
-      Register
+    <button
+      className="flex items-center gap-1 rounded-2xl bg-white px-4 py-2 text-black"
+      onClick={handleRegister}
+    >
+      Sign up
     </button>
   )
 }
