@@ -7,6 +7,11 @@ export async function up(knex) {
     table.string('status')
     table.timestamp('created_at')
     table.timestamp('updated_at')
+
+    // Add indices
+    table.index(['status'])
+    table.index(['giver_id'])
+    table.index(['receiver_id'])
   })
 }
 
