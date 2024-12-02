@@ -1,5 +1,4 @@
 import { useAuth0 } from '@auth0/auth0-react'
-
 import { Profile, ProfileDraft } from '../../../models/users'
 import useAddProfile from '../../hooks/useAddProfile'
 import AddProfileForm from '../../components/Forms/AddProfileForm'
@@ -24,8 +23,9 @@ function AddProfile() {
 
   return (
     <div>
-      This will be where users will be redirected after creating an account on
-      auth0
+      <h1 className="mb-6 mt-6 text-center text-2xl font-bold text-gray-800">
+        Welcome to Your Profile Setup
+      </h1>
       <AddProfileForm handleSubmit={handleSubmit} profile={data?.user} />
     </div>
   )
