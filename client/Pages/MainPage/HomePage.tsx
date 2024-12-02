@@ -11,6 +11,7 @@ function HomePage() {
       },
     })
   }
+
   return (
     <div>
       <div className=" z-0 flex items-center p-6 ">
