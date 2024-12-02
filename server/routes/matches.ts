@@ -48,7 +48,6 @@ router.patch('/:matchId', validateAccessToken, async (req, res) => {
   const status = req.body.status
   try {
     const newMatch = { id: Number(matchId), updatedAt, status }
-    console.log(newMatch)
     await db.editMatch(newMatch)
     res.sendStatus(204)
   } catch (error) {

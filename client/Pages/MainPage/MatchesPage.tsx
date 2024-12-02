@@ -17,6 +17,8 @@ function MatchesPage() {
     otherUsername: '',
     basketId: 0,
   })
+  console.log(selectMatch)
+
   const handleClick = async ({
     matchId,
     otherUsername,
@@ -75,6 +77,8 @@ function MatchesPage() {
           <BasketButtons
             basketId={selectMatch.basketId}
             matchId={selectMatch.matchesId}
+            // state={selectMatch}
+            setSelectMatch={setSelectMatch}
           />
         </section>
       </div>

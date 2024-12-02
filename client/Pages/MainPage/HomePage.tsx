@@ -14,7 +14,7 @@ function HomePage() {
 
   return (
     <div>
-      <div className=" z-0 flex items-center p-6 ">
+      <div className="z-0 flex items-center p-6 ">
         {/* Left Content */}
 
         <div className="w-2/4 rounded-2xl bg-[#1f2937] p-7 text-white shadow-xl">

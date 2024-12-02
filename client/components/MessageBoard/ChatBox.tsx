@@ -49,6 +49,7 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
         <h1 className="text-center">Click on a Conversation</h1>
       </section>
     )
+    // Shows conversation when a person's chat bubble is clicked
   } else {
     return (
       <div className="w-full">
