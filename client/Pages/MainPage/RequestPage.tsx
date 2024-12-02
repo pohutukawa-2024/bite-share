@@ -13,6 +13,7 @@ import usePatchBaskets from '../../hooks/usePatchBaskets'
 import { useQueryClient } from '@tanstack/react-query'
 import useAddMatch from '../../hooks/useAddMatch'
 import { Link, useNavigate } from 'react-router-dom'
+import Leaderboard from '../../components/Leaderboard'
 
 function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
@@ -68,7 +69,7 @@ function RequestPage() {
   return (
     <div className="flex flex-col items-center p-6">
       {/* Header Section */}
-      <div className="mb-6 flex w-full max-w-4xl items-center justify-between">
+      <div className="mb-6 flex w-full max-w-5xl items-center justify-between">
         <h1 className="flex-1 text-center text-2xl font-semibold">
           Request a Basket
         </h1>
@@ -105,7 +106,7 @@ function RequestPage() {
       </div>
       {/* Givers List */}
       <div className="flex gap-10">
-        <div className="mr-auto flex w-full flex-col justify-center gap-10">
+        <div className="mr-auto flex w-full flex-col justify-center gap-8">
           {filteredGivers?.map((giver, index) => (
             <div
               key={index}
@@ -141,13 +142,15 @@ function RequestPage() {
             </div>
           ))}
         </div>
-        <div className="h-56 rounded-3xl bg-zinc-100 p-2 shadow-md">
+        <div className="mb-5 h-48 rounded-3xl bg-zinc-100 p-2 shadow-md">
           <img
             src="/images/dietary.png"
             alt="Dietary Information"
             height="100px"
             width="200px"
           />
+
+          <Leaderboard />
         </div>
       </div>
     </div>
