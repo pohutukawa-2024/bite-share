@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function HomePage() {
+  const { loginWithRedirect } = useAuth0()
+
+  const handleSignUp = () => {
+    loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'signup',
+      },
+    })
+  }
+
   return (
     <div>
       <div className=" z-0 flex items-center p-6 ">
@@ -14,7 +25,10 @@ function HomePage() {
             Bite-Share connects people by sharing food to reduce waste and fight
             hunger. Join our movement today!
           </p>
-          <button className="flex items-center gap-1 rounded-2xl bg-white px-4 py-2 text-black">
+          <button
+            className="flex items-center gap-1 rounded-2xl bg-white px-4 py-2 text-black"
+            onClick={handleSignUp}
+          >
             Sign Up
           </button>
         </div>
