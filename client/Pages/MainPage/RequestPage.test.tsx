@@ -35,7 +35,7 @@ const mockBaskets = [
     categories: 'Beverages',
     dietaryContent: 'Vegetarian,Vegan',
     location: 'East Auckland',
-    status: 'inactive',
+    status: 'active',
     image: '',
     createdAt: 1698578400000,
     updatedAt: 1698578700000,
@@ -75,13 +75,39 @@ describe('<Request Page />', () => {
     const scope = nock('http://localhost')
       .get('/api/v1/baskets')
       .reply(200, mockBaskets)
+
     renderWithQuery(<RequestPage />)
+
     const loading = await waitFor(() => screen.getByText(/loading/i))
     expect(loading).toBeVisible()
     expect(scope.isDone()).toBe(true)
   })
 
-  it.todo('should render a basket')
+  it('should render a basket', async () => {
+    const scope = nock('http://localhost')
+      .get('/api/v1/baskets')
+      .reply(200, mockBaskets)
 
-  it.todo('should show an error message when there is an error')
+    renderWithQuery(<RequestPage />)
+
+    const header = await screen.findAllByRole('heading', { level: 2 })
+
+    expect(header[0]).toHaveTextContent('superhenry')
+    expect(header[1]).toHaveTextContent('superhenry')
+    expect(scope.isDone()).toBe(true)
+  })
+
+  it.skip('should show an error message when there is an error', async () => {
+    const scope = nock('http://localhost').get('/api/v1/baskets').reply(500)
+
+    renderWithQuery(<RequestPage />)
+
+    await waitForElementToBeRemoved(() => screen.getByText(/loading/i), {
+      timeout: 10000,
+    })
+
+    const error = screen.findByText(/wrong/i)
+    expect(error).toBeVisible()
+    expect(scope.isDone()).toBe(true)
+  })
 })

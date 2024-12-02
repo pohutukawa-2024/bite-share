@@ -13,6 +13,7 @@ router.get('/', validateAccessToken, async (req, res) => {
     res.status(200).json(baskets)
   } catch (e) {
     console.error(e)
+    res.status(500).json({ message: 'Unable to retrieve baskets' })
   }
 })
 
