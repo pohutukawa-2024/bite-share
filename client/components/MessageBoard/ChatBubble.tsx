@@ -17,11 +17,14 @@ interface Props {
 
 export default function ChatBubble({ data, onClick, selectMatch }: Props) {
   return (
-    <section className="h-[500px] w-1/6 overflow-y-auto">
-      <p>Your matches</p>
+    <section className="mr-2 flex h-[500px] w-[265px] flex-col items-center  rounded-tl-xl rounded-tr-xl  border border-black bg-gray-100">
+      <p className="mt-3 font-semibold">Your Matches</p>
       <ul>
         {data.map((match) => (
-          <li key={`${match.matchId}`}>
+          <li
+            className="flex items-center justify-center "
+            key={`${match.matchId}`}
+          >
             <button
               onClick={() =>
                 onClick({
@@ -30,7 +33,7 @@ export default function ChatBubble({ data, onClick, selectMatch }: Props) {
                   basketId: match.basketId,
                 })
               }
-              className={`m-3 h-16 w-16 rounded-full  ${selectMatch.matchesId === match.matchId ? 'bg-green-300' : 'bg-gray-50'}`}
+              className={`hover: bg-pink m-2 flex h-12 w-full items-center justify-center rounded-3xl  p-3 text-white ${selectMatch.matchesId === match.matchId ? 'bg-slate-500' : 'bg-gray-400'}`}
             >
               {match.otherUsername}
             </button>
