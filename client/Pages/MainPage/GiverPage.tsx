@@ -116,8 +116,8 @@ function GiverPage() {
   }
 
   return (
-    <div className="m-20 ">
-      <div className="mx-auto max-w-lg rounded-md bg-white p-6 shadow-md ">
+    <div className="m-4 sm:m-8 lg:m-20">
+      <div className="mx-auto max-w-lg rounded-md bg-white p-6 shadow-md">
         {isSubmitted && (
           <Confetti
             width={window.innerWidth}
@@ -127,7 +127,6 @@ function GiverPage() {
           />
         )}
         {isSubmitted ? (
-          // Thank You Message
           <div className="text-center">
             <h2 className="mb-4 text-2xl font-semibold">Thank You!</h2>
             <p className="mb-6 text-gray-700">
@@ -141,9 +140,7 @@ function GiverPage() {
             </Link>
           </div>
         ) : (
-          // Multi-Step Form
           <form onSubmit={handleSubmit}>
-            {/* Step Indicator */}
             <div className="mb-6 flex items-center justify-between">
               <p className="text-gray-500">Step {currentStep} of 3</p>
               <div className="flex gap-2">
@@ -226,13 +223,12 @@ function GiverPage() {
               </div>
             )}
 
-            {/* Navigation Buttons */}
-            <div className="mt-6 flex justify-between">
+            <div className="mt-6 flex flex-wrap justify-between">
               {currentStep > 1 && (
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="rounded-md bg-gray-200 px-4 py-2 text-gray-600 hover:bg-gray-300"
+                  className="w-full rounded-md bg-gray-200 px-4 py-2 text-gray-600 hover:bg-gray-300 sm:w-auto"
                 >
                   Back
                 </button>
@@ -241,7 +237,7 @@ function GiverPage() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="rounded-md bg-[#3e4247] px-4 py-2 text-white hover:bg-[#1f2937]"
+                  className="w-full rounded-md bg-[#3e4247] px-4 py-2 text-white hover:bg-[#1f2937] sm:w-auto"
                 >
                   Continue
                 </button>
@@ -249,7 +245,7 @@ function GiverPage() {
               {currentStep === 3 && (
                 <button
                   type="submit"
-                  className="rounded-md bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
+                  className="w-full rounded-md bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600 sm:w-auto"
                 >
                   Submit
                 </button>
