@@ -7,7 +7,7 @@ import { updateBasketById } from '../db/baskets'
 
 const router = express.Router()
 
-router.get('/', validateAccessToken, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const baskets = await db.getBaskets()
     res.status(200).json(baskets)

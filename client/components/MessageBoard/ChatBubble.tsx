@@ -1,5 +1,10 @@
 import { MatchBubble } from '../../../models/matches'
 
+interface SelectMatchObj {
+  matchesId: number
+  otherUsername: string
+  basketId: number
+}
 interface Props {
   data: MatchBubble[]
   onClick: (_: {
@@ -7,15 +12,19 @@ interface Props {
     otherUsername: string
     basketId: number
   }) => void
+  selectMatch: SelectMatchObj
 }
 
-export default function ChatBubble({ data, onClick }: Props) {
+export default function ChatBubble({ data, onClick, selectMatch }: Props) {
   return (
-    <section className="h-[500px] w-1/6 overflow-y-auto">
-      <p>Your matches</p>
+    <section className="mr-2 flex h-[500px] w-[265px] flex-col items-center  rounded-tl-xl rounded-tr-xl  border border-black bg-gray-100">
+      <p className="mt-3 font-semibold">Your Matches</p>
       <ul>
         {data.map((match) => (
-          <li key={`${match.matchId}`}>
+          <li
+            className="flex items-center justify-center "
+            key={`${match.matchId}`}
+          >
             <button
               onClick={() =>
                 onClick({
@@ -24,7 +33,7 @@ export default function ChatBubble({ data, onClick }: Props) {
                   basketId: match.basketId,
                 })
               }
-              className="w-16 h-16 m-3 rounded-full bg-gray-50"
+              className={`hover: bg-pink m-2 flex h-12 w-full items-center justify-center rounded-3xl  p-3 text-white ${selectMatch.matchesId === match.matchId ? 'bg-slate-500' : 'bg-gray-400'}`}
             >
               {match.otherUsername}
             </button>

@@ -6,10 +6,12 @@ import { useAuth0 } from '@auth0/auth0-react'
 import ChatBox from '../../components/MessageBoard/ChatBox'
 import BasketButtons from '../../components/MessageBoard/BasketButtons'
 import ErrorPage from '../../components/ErrorPage'
+import useUpdateNotifications from '../../hooks/useUpdateNotifications'
 
 function MatchesPage() {
   const { data, isLoading, isError } = useGetMatches()
   const { user } = useAuth0()
+  const updateNotifications = useUpdateNotifications()
 
   // selectMatch, which will change when a button in ChatBubble is clicked
   const [selectMatch, setSelectMatch] = useState({
@@ -17,7 +19,6 @@ function MatchesPage() {
     otherUsername: '',
     basketId: 0,
   })
-  console.log(selectMatch)
 
   const handleClick = async ({
     matchId,
@@ -35,6 +36,7 @@ function MatchesPage() {
         basketId: basketId,
       }
     })
+    updateNotifications.mutate(matchId)
   }
 
   if (isLoading) return <div>loading...</div>
@@ -67,21 +69,25 @@ function MatchesPage() {
 
   return (
     <div className="m-16 flex h-[50%] justify-center">
-      <div className="flex w-full ">
-        <ChatBubble data={transformedData} onClick={handleClick} />
-        <section className="w-5/6">
-          <ChatBox
-            matchId={selectMatch.matchesId}
-            otherUsername={selectMatch.otherUsername}
-          />
-          <BasketButtons
-            basketId={selectMatch.basketId}
-            matchId={selectMatch.matchesId}
-            // state={selectMatch}
-            setSelectMatch={setSelectMatch}
-          />
-        </section>
+      <div className="flex flex-col">
+        <ChatBubble
+          data={transformedData}
+          onClick={handleClick}
+          selectMatch={selectMatch}
+        />
+        <BasketButtons
+          basketId={selectMatch.basketId}
+          matchId={selectMatch.matchesId}
+          // state={selectMatch}
+          setSelectMatch={setSelectMatch}
+        />
       </div>
+      <section className="w-1/1">
+        <ChatBox
+          matchId={selectMatch.matchesId}
+          otherUsername={selectMatch.otherUsername}
+        />
+      </section>
     </div>
   )
 }
