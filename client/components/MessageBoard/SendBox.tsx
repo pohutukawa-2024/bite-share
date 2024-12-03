@@ -39,7 +39,7 @@ export default function SendBox({ onSubmit }: Prop) {
         />
         <button
           type="submit"
-          className="m-2 mr-14 flex h-10 w-24 items-center justify-evenly  rounded-2xl bg-blue-500 text-white"
+          className="m-2 mr-14 flex items-center justify-evenly rounded-2xl bg-blue-500 px-4 py-2 text-white sm:h-10 sm:w-11 sm:text-xs lg:h-10 lg:w-24 lg:text-sm"
         >
           {' '}
           Send

@@ -35,21 +35,55 @@ export async function addNewBasket(basket: Basket) {
   })
 }
 
+
 export async function updateBasketById(
   id: number,
   updatedBasket: PatchBasketWithDate,
 ) {
-  const updatedRows = await db('baskets').where({ id }).update({
-    status: updatedBasket.status,
-    updated_at: updatedBasket.updatedAt,
-  })
+  if (updatedBasket.status === 'active') {
+    // Update the basket with 'pending' status
+    const updatedRows = await db('baskets').where({ id }).update({
+      status: updatedBasket.status,
+      updated_at: updatedBasket.updatedAt,
+    });
 
-  if (updatedRows === 0) {
-    throw new Error('Basket not found')
+    if (updatedRows === 0) {
+      throw new Error('Basket not found');
+    }
+  }
+  if (updatedBasket.status === 'pending') {
+    // Update the basket with 'pending' status
+    const updatedRows = await db('baskets').where({ id }).update({
+      status: updatedBasket.status,
+      updated_at: updatedBasket.updatedAt,
+    });
+
+    if (updatedRows === 0) {
+      throw new Error('Basket not found');
+    }
   }
 
-  await db('baskets').where({ id }).first()
+  if (updatedBasket.status === 'inactive') {
+    // Update the basket with 'inactive' status
+    await db('baskets').where({ id }).update({
+      status: updatedBasket.status,
+      updated_at: updatedBasket.updatedAt,
+    });
+
+    // Increment points for the user associated with the basket
+    const basket = await db('baskets').select('user_id').where({ id }).first();
+
+    if (basket && basket.user_id) {
+      await db('users')
+        .where({ id: basket.user_id })
+        .increment('points', 10);
+    } else {
+      throw new Error('User not found for the basket');
+    }
+  }
 }
+
+
 
 export async function getBasketsByUserId(userId: string) {
   const results = await db('baskets')

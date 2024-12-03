@@ -25,7 +25,6 @@ const dietaryImages = {
   Halal: 'Public/images/meat.png',
   Default: 'Public/images/vegetarian.png',
 }
-
 function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
   const queryClient = useQueryClient()
@@ -91,44 +90,51 @@ function RequestPage() {
   return (
     <div className="flex flex-col items-center p-6">
       {/* Header Section */}
-      <div className="flex items-center justify-between w-full max-w-5xl mb-6">
-        <h1 className="flex-1 text-2xl font-semibold text-center">
+      <div className="mb-6 flex w-full max-w-5xl flex-col items-center justify-between space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+        <h1 className="flex-1 text-center text-2xl font-semibold">
           Request a Basket
         </h1>
-        <Select onValueChange={(value) => setSelectedLocation(value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Location Preferences" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="all">All Locations</SelectItem>
-              <SelectItem value="North Shore">North Shore</SelectItem>
-              <SelectItem value="West Auckland">West Auckland</SelectItem>
-              <SelectItem value="East Auckland">East Auckland</SelectItem>
-              <SelectItem value="South Auckland">South Auckland</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        {/* Dietary Dropdown */}
-        <Select onValueChange={(value) => setSelectedDietary(value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Dietary Preferences" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="all">All Preferences</SelectItem>
-              <SelectItem value="Vegan">Vegan</SelectItem>
-              <SelectItem value="Vegetarian">Vegetarian</SelectItem>
-              <SelectItem value="GlutenFree">Gluten-Free</SelectItem>
-              <SelectItem value="DiaryFree">Diary-Free</SelectItem>
-              <SelectItem value="Halal">Halal</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        <div className="flex space-x-4">
+          <Select
+            onValueChange={(value) => setSelectedLocation(value)}
+            className="w-full sm:w-[180px]"
+          >
+            <SelectTrigger className="w-full sm:w-[180px]">
+              <SelectValue placeholder="Location Preferences" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="all">All Locations</SelectItem>
+                <SelectItem value="North Shore">North Shore</SelectItem>
+                <SelectItem value="West Auckland">West Auckland</SelectItem>
+                <SelectItem value="East Auckland">East Auckland</SelectItem>
+                <SelectItem value="South Auckland">South Auckland</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Select
+            onValueChange={(value) => setSelectedDietary(value)}
+            className="w-full sm:w-[180px]"
+          >
+            <SelectTrigger className="w-full sm:w-[180px]">
+              <SelectValue placeholder="Dietary Preferences" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="all">All Preferences</SelectItem>
+                <SelectItem value="Vegan">Vegan</SelectItem>
+                <SelectItem value="Vegetarian">Vegetarian</SelectItem>
+                <SelectItem value="GlutenFree">Gluten-Free</SelectItem>
+                <SelectItem value="DiaryFree">Diary-Free</SelectItem>
+                <SelectItem value="Halal">Halal</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
       {/* Givers List */}
-      <div className="flex gap-10">
-        <div className="flex flex-col justify-center w-full gap-8 mr-auto">
+      <div className="flex w-full max-w-5xl flex-col gap-10 sm:flex-row">
+        <div className="flex w-full flex-col justify-center gap-8 sm:mr-auto">
           {filteredGivers?.map((giver, index) => {
             const dietaryList = giver.dietaryContent?.split(',') || []
             const imageSrc =
@@ -139,13 +145,13 @@ function RequestPage() {
             return (
               <div
                 key={index}
-                className="flex items-start p-6 shadow-md rounded-3xl bg-zinc-100"
+                className="flex flex-col items-start rounded-3xl bg-zinc-100 p-6 shadow-md sm:flex-row"
               >
                 {/* Use the dynamic image source */}
                 <img
                   src={imageSrc}
                   alt="Dietary Preference"
-                  className="object-cover rounded h-36 w-36"
+                  className="mb-4 h-36 w-36 rounded object-cover sm:mb-0 sm:mr-6"
                 />
                 <div className="flex-1">
                   <h2 className="text-lg font-semibold">
@@ -193,13 +199,13 @@ function RequestPage() {
             )
           })}
         </div>
-        <div className="h-48 w-[350px] rounded-3xl bg-zinc-100 p-1 shadow-md">
+        <div className="mt-8 h-48 w-full rounded-3xl bg-zinc-100 p-1 shadow-md sm:mt-0 sm:w-[350px]">
           <img
             src="Public/images/dietary.png"
             alt="Dietary Information"
             width="180px"
+            className="mx-auto"
           />
-
           <Leaderboard />
         </div>
       </div>
