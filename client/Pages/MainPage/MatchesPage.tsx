@@ -17,7 +17,6 @@ function MatchesPage() {
     otherUsername: '',
     basketId: 0,
   })
-  console.log(selectMatch)
 
   const handleClick = async ({
     matchId,
