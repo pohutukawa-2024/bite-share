@@ -23,7 +23,7 @@ function HomePage() {
           {/* 2/3 of left content - right side */}
           <div className="lg:w-3/3 mt-16 w-full rounded-2xl bg-[#1f2937] p-6 text-white shadow-xl lg:mt-36">
             <h2 className="mb-8 text-center text-3xl font-extrabold lg:text-left">
-              Share More, Waste Less, Build a Stronger Community
+              Join our Cause, Build a Stronger Community
             </h2>
             <p className="p-3 text-center text-lg lg:text-left">
               Bite-Share connects people by sharing food to reduce waste and

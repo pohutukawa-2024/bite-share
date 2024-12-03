@@ -65,7 +65,7 @@ function MatchesPage() {
     : []
 
   return (
-    <div className="m-16 flex h-[50%] justify-center">
+    <div className="flex flex-col justify-center sm:flex-row lg:m-16">
       <div className="flex flex-col">
         <ChatBubble
           data={transformedData}
@@ -79,7 +79,7 @@ function MatchesPage() {
           setSelectMatch={setSelectMatch}
         />
       </div>
-      <section className="w-1/1">
+      <section className="lg:w-full ">
         <ChatBox
           matchId={selectMatch.matchesId}
           otherUsername={selectMatch.otherUsername}

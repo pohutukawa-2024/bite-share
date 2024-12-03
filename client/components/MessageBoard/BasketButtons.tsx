@@ -40,10 +40,10 @@ export default function BasketButtons({
 
   if (matchId !== 0) {
     return (
-      <div className="mr-2 mt-2 flex gap-2">
+      <div className="mb-2 mr-2 mt-2 flex items-center justify-center gap-2 ">
         <button
           onClick={handleRelistClick}
-          className="h-[60px] w-32 rounded-bl-xl rounded-br-xl bg-[#1f2937]  text-white shadow-md transition duration-200 hover:scale-105 hover:bg-rose-600 hover:text-white focus:outline-none"
+          className="h-[60px] w-32 rounded-bl-xl rounded-br-xl bg-[#1f2937]  text-white shadow-md transition duration-200 hover:scale-105 hover:bg-rose-600  hover:text-white "
         >
           Re-list <br /> Basket
         </button>

@@ -86,6 +86,7 @@ function Header() {
             key={item.id}
             to={item.navigateTo}
             className="py-2 text-gray-800 hover:text-slate-600"
+            onClick={() => setIsMenuOpen(false)} // Close the menu when clicked
           >
             {item.name}
           </Link>
@@ -93,6 +94,7 @@ function Header() {
         <Link
           to="/kohaPage"
           className="py-2 text-gray-800 hover:text-slate-600"
+          onClick={() => setIsMenuOpen(false)}
         >
           Koha / Support us
         </Link>
@@ -101,7 +103,10 @@ function Header() {
         <section className="mt-4">
           {!isAuthenticated ? (
             <button
-              onClick={handleLogin}
+              onClick={() => {
+                setIsMenuOpen(false) // Close the menu when login button is clicked
+                handleLogin()
+              }}
               className="w-full rounded-lg bg-slate-600 px-4 py-2 text-white transition-colors hover:bg-[#1f2937]"
             >
               Login
