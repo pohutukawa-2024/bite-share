@@ -8,6 +8,7 @@ export interface Message {
   senderId: string
   message: string
   sentAt: number
+  isRead: boolean
 }
 
 export interface MessageWithId extends Message {
