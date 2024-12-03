@@ -37,3 +37,9 @@ export interface MatchStatus {
   status: string
   updatedAt: number
 }
+
+export interface Notified {
+  matchesId: number
+  senderId: string
+  isRead: boolean
+}

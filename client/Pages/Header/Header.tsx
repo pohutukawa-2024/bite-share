@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { LogIn } from 'lucide-react'
 import Persona from '../../components/Persona/Persona'
+import useGetNotifications from '../../hooks/useGetNotifications'
 
 const headerIterms = [
   { id: 1, name: 'Home', navigateTo: '/' },
@@ -12,6 +13,8 @@ const headerIterms = [
 
 function Header() {
   const { isAuthenticated, loginWithRedirect } = useAuth0()
+  const { data } = useGetNotifications()
+  console.log(data)
 
   function handleLogin() {
     loginWithRedirect({
@@ -45,7 +48,7 @@ function Header() {
           ))}
           {/* <Link
             to="/kohaPage"
-            className="rounded-2xl bg-yellow-500 px-3 py-2 text-white transition-colors hover:bg-yellow-500 hover:text-black"
+            className="px-3 py-2 text-white transition-colors bg-yellow-500 rounded-2xl hover:bg-yellow-500 hover:text-black"
           >
             Support us/ Koha
           </Link> */}
