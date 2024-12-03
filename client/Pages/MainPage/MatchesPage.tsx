@@ -17,7 +17,6 @@ function MatchesPage() {
     otherUsername: '',
     basketId: 0,
   })
-  console.log(selectMatch)
 
   const handleClick = async ({
     matchId,
@@ -68,7 +67,11 @@ function MatchesPage() {
   return (
     <div className="m-16 flex h-[50%] justify-center">
       <div className="flex w-full ">
-        <ChatBubble data={transformedData} onClick={handleClick} />
+        <ChatBubble
+          data={transformedData}
+          onClick={handleClick}
+          selectMatch={selectMatch}
+        />
         <section className="w-5/6">
           <ChatBox
             matchId={selectMatch.matchesId}

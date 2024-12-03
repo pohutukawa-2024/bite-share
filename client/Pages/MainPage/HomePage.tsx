@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function HomePage() {
-  const { loginWithRedirect } = useAuth0()
+  const { loginWithRedirect, isAuthenticated } = useAuth0()
 
   const handleSignUp = () => {
     loginWithRedirect({
@@ -26,7 +26,7 @@ function HomePage() {
             hunger. Join our movement today!
           </p>
           <button
-            className="flex items-center gap-1 rounded-2xl bg-white px-4 py-2 text-black"
+            className="flex items-center gap-1 px-4 py-2 text-black bg-white rounded-2xl"
             onClick={handleSignUp}
           >
             Sign Up
@@ -35,7 +35,7 @@ function HomePage() {
 
         {/* Right Content */}
         <div className="relative flex flex-col items-center">
-          <h2 className="absolute top-16 text-4xl font-bold leading-tight text-yellow-500">
+          <h2 className="absolute text-4xl font-bold leading-tight text-yellow-500 top-16">
             <span className="quote-box">Share More, Waste Less</span>
           </h2>
           <img
@@ -43,13 +43,23 @@ function HomePage() {
             alt="family-sharing-food"
             className="size-9/12"
           />
-          <div className="absolute bottom-20 mt-0 flex justify-center space-x-8">
-            <Link
-              to="/give"
-              className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
-            >
-              Give
-            </Link>
+          <div className="absolute flex justify-center mt-0 space-x-8 bottom-20">
+            {isAuthenticated ? (
+              <Link
+                to="/give"
+                className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
+              >
+                Give
+              </Link>
+            ) : (
+              <button
+                onClick={handleSignUp}
+                className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
+              >
+                Give
+              </button>
+            )}
+
             <Link
               to="/request"
               className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"

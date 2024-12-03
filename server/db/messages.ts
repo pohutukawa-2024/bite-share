@@ -24,5 +24,6 @@ export async function addNewMessage(message: Message) {
     sender_id: message.senderId,
     message: message.message,
     sent_at: message.sentAt,
+    is_read: message.isRead,
   })
 }

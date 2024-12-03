@@ -6,12 +6,8 @@ import {
 } from '../../models/baskets'
 
 //Get data
-export async function getBaskets(token: string) {
-  console.log('before')
-  const res = await request
-    .get('/api/v1/baskets')
-    .set('Authorization', `Bearer ${token}`)
-    .set('Content-Type', 'application/json')
+export async function getBaskets() {
+  const res = await request.get('/api/v1/baskets')
   return res.body
 }
 
