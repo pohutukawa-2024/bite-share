@@ -27,11 +27,12 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 9999,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Slight overlay to blend
   },
   gif: {
-    width: '610px', // Adjust size as needed.
+    width: '610px',
     height: '600px',
+    mixBlendMode: 'multiply', // Blend gif with overlay color
   },
 }
-
 export default GlobalLoader
