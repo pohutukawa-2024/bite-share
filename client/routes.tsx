@@ -16,20 +16,18 @@ import Leaderboard from './components/Leaderboard.tsx'
 import ErrorPage from './components/ErrorPage.tsx'
 
 export default createRoutesFromElements(
- 
-    <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
-      <Route index element={<HomePage />} />
-      <Route path="addProfile" element={<AddProfile />} />
-      <Route path="about" element={<AboutUs />} />
-      <Route path="contact" element={<ContactUs />} />
-      <Route path="give" element={<GiverPage />} />
-      <Route path="request" element={<RequestPage />} />
-      <Route path="matches" element={<MatchesPage />} />
-      <Route path="kohaPage" element={<KohaPage />} />
-      <Route path="profile/:username" element={<AnotherProfile />} />
-      <Route path="profile" element={<ProfilePage />} />
-      <Route path="ownbasket" element={<OwnBasket />} />
-      <Route path="leaderboard" element={<Leaderboard />} />
-    </Route>
-  
+  <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
+    <Route index element={<HomePage />} />
+    <Route path="addProfile" element={<AddProfile />} />
+    <Route path="about" element={<AboutUs />} />
+    <Route path="contact" element={<ContactUs />} />
+    <Route path="give" element={<GiverPage />} />
+    <Route path="request" element={<RequestPage />} />
+    <Route path="matches" element={<MatchesPage />} />
+    <Route path="kohaPage" element={<KohaPage />} />
+    <Route path="profile/:username" element={<AnotherProfile />} />
+    <Route path="profile" element={<ProfilePage />} />
+    <Route path="ownbasket" element={<OwnBasket />} />
+    <Route path="leaderboard" element={<Leaderboard />} />
+  </Route>,
 )

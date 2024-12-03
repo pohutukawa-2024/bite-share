@@ -8,6 +8,7 @@ function HomePage() {
     loginWithRedirect({
       authorizationParams: {
         screen_hint: 'signup',
+        redirect_uri: `${window.location.origin}/addProfile`,
       },
     })
   }

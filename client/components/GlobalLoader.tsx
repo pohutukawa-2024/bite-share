@@ -1,7 +1,9 @@
 import { useIsFetching } from '@tanstack/react-query'
 
 const GlobalLoader = () => {
-  const isFetching = useIsFetching()
+  const isFetching = useIsFetching({
+    predicate: (query) => query.queryKey[0] !== 'notifications',
+  })
 
   if (isFetching === 0) return null // No fetching, hide the loader.
 

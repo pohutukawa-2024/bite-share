@@ -6,10 +6,12 @@ import { useAuth0 } from '@auth0/auth0-react'
 import ChatBox from '../../components/MessageBoard/ChatBox'
 import BasketButtons from '../../components/MessageBoard/BasketButtons'
 import ErrorPage from '../../components/ErrorPage'
+import useUpdateNotifications from '../../hooks/useUpdateNotifications'
 
 function MatchesPage() {
   const { data, isLoading, isError } = useGetMatches()
   const { user } = useAuth0()
+  const updateNotifications = useUpdateNotifications()
 
   // selectMatch, which will change when a button in ChatBubble is clicked
   const [selectMatch, setSelectMatch] = useState({
@@ -34,6 +36,7 @@ function MatchesPage() {
         basketId: basketId,
       }
     })
+    updateNotifications.mutate(matchId)
   }
 
   if (isLoading) return <div>loading...</div>
