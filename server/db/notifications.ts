@@ -13,3 +13,7 @@ export async function getNotification(id: string) {
     .orWhere('receiver_id', id)
   return results
 }
+
+export async function updateNotification(matchId: number) {
+  await db('messages').where('matches_id', matchId).update({ is_read: true })
+}

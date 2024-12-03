@@ -23,4 +23,16 @@ router.get('/', validateAccessToken, async (req: JwtRequest, res) => {
   }
 })
 
+// Updates status of messages to read
+router.patch('/:id', validateAccessToken, async (req, res) => {
+  const id = Number(req.params.id)
+  try {
+    await db.updateNotification(id)
+    res.status(201).json({ message: 'Updated read status' })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Unable to update read status' })
+  }
+})
+
 export default router

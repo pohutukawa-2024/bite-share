@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { LogIn } from 'lucide-react'
 import Persona from '../../components/Persona/Persona'
 import useGetNotifications from '../../hooks/useGetNotifications'
+import { useEffect, useState } from 'react'
 
 const headerIterms = [
   { id: 1, name: 'Home', navigateTo: '/' },
@@ -12,9 +13,9 @@ const headerIterms = [
 ]
 
 function Header() {
-  const { isAuthenticated, loginWithRedirect } = useAuth0()
   const { data } = useGetNotifications()
-  console.log(data)
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0()
+  const [notice, setNotice] = useState({ bool: false, num: 0 })
 
   function handleLogin() {
     loginWithRedirect({
@@ -23,6 +24,27 @@ function Header() {
       },
     })
   }
+
+  useEffect(() => {
+    if (data) {
+      const newMessages = data.reduce((acc, cv) => {
+        if (cv.isRead == false && cv.senderId != user?.sub) {
+          return acc + 1
+        } else return acc
+      }, 0)
+      console.log(newMessages)
+      if (newMessages > 0) {
+        setNotice(() => {
+          return { bool: true, num: newMessages }
+        })
+      } else {
+        setNotice(() => {
+          return { bool: false, num: 0 }
+        })
+      }
+    }
+  }, [data, user])
+  console.log(notice)
 
   return (
     <nav className="z-50">
@@ -41,9 +63,15 @@ function Header() {
             <Link
               key={item.id}
               to={item.navigateTo}
-              className="transition-colors hover:text-slate-600"
+              className={`relative transition-colors hover:text-slate-600 `}
             >
               {item.name}
+              {/* Notification Dot */}
+              {item.name === 'Matches' && notice.bool && (
+                <span className="absolute bottom-4 left-16 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                  {notice.num}
+                </span>
+              )}
             </Link>
           ))}
           {/* <Link
