@@ -13,7 +13,7 @@ export default function Layout() {
 
   return (
     <>
-      <body className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl">
         <header>
           <Header />
         </header>
@@ -21,7 +21,7 @@ export default function Layout() {
           <Outlet />
         </main>
         <footer></footer>
-      </body>
+      </div>
     </>
   )
 }

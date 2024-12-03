@@ -32,7 +32,6 @@ function Header() {
           return acc + 1
         } else return acc
       }, 0)
-      console.log(newMessages)
       if (newMessages > 0) {
         setNotice(() => {
           return { bool: true, num: newMessages }
@@ -44,7 +43,6 @@ function Header() {
       }
     }
   }, [data, user])
-  console.log(notice)
 
   return (
     <nav className="z-50">
