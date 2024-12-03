@@ -16,8 +16,6 @@ interface Props {
 }
 
 export default function ChatBubble({ data, onClick, selectMatch }: Props) {
-  console.log(selectMatch.matchesId)
-
   return (
     <section className="h-[500px] w-1/6 overflow-y-auto">
       <p>Your matches</p>
