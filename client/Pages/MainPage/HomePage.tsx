@@ -16,7 +16,7 @@ function HomePage() {
     <div>
       <div className="space-between z-0 flex flex-col gap-2 p-6 lg:flex-row">
         {/* Left Content */}
-        <div className="flex w-full flex-col items-center lg:w-2/4 lg:flex-row lg:items-baseline">
+        <div className="mb-3 flex w-full flex-col items-center lg:w-2/4 lg:flex-row lg:items-baseline">
           {/* 1/3 of left content - EMPTY div */}
           <div className="w-full lg:w-1/3"></div>
 
@@ -43,26 +43,26 @@ function HomePage() {
         {/* Right Content */}
         {/* <div className="relative flex w-full flex-col items-center justify-center lg:items-start"> */}
         <div className="relative flex w-full flex-col items-center justify-center lg:items-start">
-          <h2 className="absolute top-16 text-center text-4xl font-bold leading-tight text-yellow-500 sm:ml-16 lg:ml-40 lg:text-left">
+          <h2 className="top-16 text-center text-4xl font-bold leading-tight text-yellow-500 sm:ml-16 lg:absolute lg:ml-40 lg:text-left">
             <span className="quote-box">Share More, Waste Less</span>
           </h2>
           <img
             src="../../Public/images/family1.png"
             alt="family-sharing-food"
-            className="mx-auto w-3/4 sm:w-2/3 lg:w-full"
+            className="mx-auto w-[400px] lg:w-full"
           />
-          <div className="absolute bottom-16 flex flex-col justify-center space-y-4 sm:bottom-24 sm:ml-16 lg:bottom-24 lg:ml-60 lg:flex-row lg:justify-start lg:space-x-8 lg:space-y-0">
+          <div className="bottom-16 flex flex-col justify-center space-y-4 sm:bottom-24 sm:ml-16 lg:absolute lg:bottom-24 lg:ml-60 lg:flex-row lg:justify-start lg:space-x-8 lg:space-y-0">
             {isAuthenticated ? (
               <Link
                 to="/give"
-                className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
+                className="flex transform items-center justify-center rounded-3xl  bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
               >
                 Give
               </Link>
             ) : (
               <button
                 onClick={handleSignUp}
-                className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white "
+                className="flex transform items-center justify-center rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white "
               >
                 Give
               </button>
