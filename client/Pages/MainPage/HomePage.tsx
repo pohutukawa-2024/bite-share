@@ -8,6 +8,7 @@ function HomePage() {
     loginWithRedirect({
       authorizationParams: {
         screen_hint: 'signup',
+        redirect_uri: `${window.location.origin}/addProfile`,
       },
     })
   }
@@ -18,7 +19,7 @@ function HomePage() {
         {/* Left Content */}
         <div className="flex w-2/4 flex-row items-baseline">
           {/* 1/3 of left content - EMPTY div */}
-          <div className=" w-1/3"></div>
+          <div className="w-1/3 "></div>
           {/* 2/3 of left content - right side */}
           <div className="mt-36 w-2/3 rounded-2xl bg-[#1f2937] p-6 text-white shadow-xl">
             <h2 className="mb-8 text-3xl font-extrabold">
@@ -45,7 +46,7 @@ function HomePage() {
           <img
             src="../../Public/images/family1.png"
             alt="family-sharing-food"
-            // className=" "
+            // className=""
           />
           <div className="absolute bottom-20 mt-0 flex justify-center space-x-8">
             {isAuthenticated ? (
