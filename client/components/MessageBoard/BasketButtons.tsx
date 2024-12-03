@@ -40,18 +40,18 @@ export default function BasketButtons({
 
   if (matchId !== 0) {
     return (
-      <div className="mt-4 flex justify-end gap-4">
+      <div className="mr-2 mt-2 flex gap-2">
         <button
           onClick={handleRelistClick}
-          className="h-14 w-32 rounded-3xl bg-rose-500  text-white shadow-md transition duration-200 hover:bg-rose-600 focus:outline-none"
+          className=" h-14 w-32 rounded-bl-xl rounded-br-xl bg-[#1f2937]  text-white shadow-md transition duration-200 hover:scale-105 hover:bg-rose-600 hover:text-white focus:outline-none"
         >
-          Relist Basket
+          Re-list <br /> Basket
         </button>
         <button
           onClick={handleCompleteClick}
-          className="h-14 w-32 rounded-3xl bg-lime-500  text-white shadow-md transition duration-200 hover:bg-lime-600 focus:outline-none"
+          className="h-14 w-32 rounded-bl-xl rounded-br-xl bg-yellow-500 text-black  shadow-md transition duration-200 hover:scale-105 hover:bg-green-600 hover:text-white"
         >
-          Complete Match
+          Complete <br /> Match
         </button>
       </div>
     )

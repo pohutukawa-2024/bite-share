@@ -67,21 +67,21 @@ function MatchesPage() {
 
   return (
     <div className="m-16 flex h-[50%] justify-center">
-      <div className="flex w-full ">
+      <div className="flex flex-col">
         <ChatBubble data={transformedData} onClick={handleClick} />
-        <section className="w-5/6">
-          <ChatBox
-            matchId={selectMatch.matchesId}
-            otherUsername={selectMatch.otherUsername}
-          />
-          <BasketButtons
-            basketId={selectMatch.basketId}
-            matchId={selectMatch.matchesId}
-            // state={selectMatch}
-            setSelectMatch={setSelectMatch}
-          />
-        </section>
+        <BasketButtons
+          basketId={selectMatch.basketId}
+          matchId={selectMatch.matchesId}
+          // state={selectMatch}
+          setSelectMatch={setSelectMatch}
+        />
       </div>
+      <section className="w-1/1">
+        <ChatBox
+          matchId={selectMatch.matchesId}
+          otherUsername={selectMatch.otherUsername}
+        />
+      </section>
     </div>
   )
 }

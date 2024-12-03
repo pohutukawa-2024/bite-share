@@ -1,3 +1,4 @@
+import { Send } from 'lucide-react'
 import { useState } from 'react'
 
 interface Prop {
@@ -21,7 +22,7 @@ export default function SendBox({ onSubmit }: Prop) {
   return (
     <div>
       <form
-        className="flex justify-around rounded-bl-lg rounded-br-lg bg-gray-100"
+        className="mt-2 flex justify-around rounded-bl-xl rounded-br-xl border border-black bg-gray-100"
         onSubmit={handleSubmit}
       >
         <label htmlFor="message" className="hidden">
@@ -34,13 +35,15 @@ export default function SendBox({ onSubmit }: Prop) {
           type="text"
           placeholder="Enter message"
           value={formState}
-          className="m-2 w-4/5 rounded-lg bg-cyan-200 p-2"
+          className="bg-white-50 m-2 ml-14 w-4/5 rounded-2xl border border-black p-2 text-black"
         />
         <button
           type="submit"
-          className="m-2 h-16 w-16 rounded-full bg-cyan-200"
+          className="m-2 mr-14 flex h-10 w-24 items-center justify-evenly  rounded-2xl bg-blue-500 text-white"
         >
+          {' '}
           Send
+          <Send />
         </button>
       </form>
     </div>
