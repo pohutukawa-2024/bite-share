@@ -258,6 +258,7 @@ export async function seed(knex) {
       sender_id: 'auth0|6747d7830ba06e401cd48bdb',
       message: 'Yo, is the basket ready or what?',
       sent_at: 1698579900000,
+      is_read: false,
     },
     {
       id: 22,
@@ -265,6 +266,7 @@ export async function seed(knex) {
       sender_id: 'auth0|67476f8defa904b4cd515493',
       message: 'Yep, meet you behind the GI PaknSave tonight at 10pm.',
       sent_at: 1698580500000,
+      is_read: false,
     },
     {
       id: 23,
@@ -272,6 +274,7 @@ export async function seed(knex) {
       sender_id: 'auth0|6747d2aed8d9b71e8babb226',
       message: 'Are these carrots gluten-free?',
       sent_at: 1698579900000,
+      is_read: false,
     },
     {
       id: 24,
@@ -279,6 +282,7 @@ export async function seed(knex) {
       sender_id: 'auth0|67476f8defa904b4cd515493',
       message: 'What?',
       sent_at: 1698580500000,
+      is_read: false,
     },
     {
       id: 25,
@@ -286,6 +290,7 @@ export async function seed(knex) {
       sender_id: 'auth0|6747d2aed8d9b71e8babb226',
       message: 'Can you bring it to my house? Okay thanks',
       sent_at: 1698581100000,
+      is_read: false,
     },
   ])
 }

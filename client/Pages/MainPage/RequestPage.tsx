@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../ui/Select'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import useBaskets from '../../hooks/useBaskets'
 import usePatchBaskets from '../../hooks/usePatchBaskets'
@@ -14,6 +15,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import useAddMatch from '../../hooks/useAddMatch'
 import { Link, useNavigate } from 'react-router-dom'
 import Leaderboard from '../../components/Leaderboard'
+import ErrorPage from '../../components/ErrorPage'
 
 const dietaryImages = {
   Vegan: 'Public/images/vegan.png',
@@ -30,6 +32,15 @@ function RequestPage() {
   const updateBasket = usePatchBaskets()
   const addMatch = useAddMatch()
   const navigate = useNavigate()
+  const { loginWithRedirect, isAuthenticated } = useAuth0()
+
+  const handleSignUp = () => {
+    loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'signup',
+      },
+    })
+  }
 
   const [selectedLocation, setSelectedLocation] = useState('all')
   const [selectedDietary, setSelectedDietary] = useState('all')
@@ -80,8 +91,8 @@ function RequestPage() {
   return (
     <div className="flex flex-col items-center p-6">
       {/* Header Section */}
-      <div className="mb-6 flex w-full max-w-5xl items-center justify-between">
-        <h1 className="flex-1 text-center text-2xl font-semibold">
+      <div className="flex items-center justify-between w-full max-w-5xl mb-6">
+        <h1 className="flex-1 text-2xl font-semibold text-center">
           Request a Basket
         </h1>
         <Select onValueChange={(value) => setSelectedLocation(value)}>
@@ -117,7 +128,7 @@ function RequestPage() {
       </div>
       {/* Givers List */}
       <div className="flex gap-10">
-        <div className="mr-auto flex w-full flex-col justify-center gap-8">
+        <div className="flex flex-col justify-center w-full gap-8 mr-auto">
           {filteredGivers?.map((giver, index) => {
             const dietaryList = giver.dietaryContent?.split(',') || []
             const imageSrc =
@@ -128,13 +139,13 @@ function RequestPage() {
             return (
               <div
                 key={index}
-                className="flex items-start rounded-3xl bg-zinc-100 p-6 shadow-md"
+                className="flex items-start p-6 shadow-md rounded-3xl bg-zinc-100"
               >
                 {/* Use the dynamic image source */}
                 <img
                   src={imageSrc}
                   alt="Dietary Preference"
-                  className="h-36 w-36 rounded object-cover"
+                  className="object-cover rounded h-36 w-36"
                 />
                 <div className="flex-1">
                   <h2 className="text-lg font-semibold">
@@ -158,14 +169,26 @@ function RequestPage() {
                       : 'No dietary preferences available'}
                   </p>
                 </div>
-                <button
-                  onClick={() =>
-                    handleRequest({ giverId: giver.userId, basketId: giver.id })
-                  }
-                  className="ml-4 rounded-md bg-primary px-4 py-2 text-black hover:bg-[#e0b143]"
-                >
-                  Request
-                </button>
+                {isAuthenticated ? (
+                  <button
+                    onClick={() =>
+                      handleRequest({
+                        giverId: giver.userId,
+                        basketId: giver.id,
+                      })
+                    }
+                    className="ml-4 rounded-md bg-primary px-4 py-2 text-black hover:bg-[#e0b143]"
+                  >
+                    Request
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleSignUp}
+                    className="ml-4 rounded-md bg-primary px-4 py-2 text-black hover:bg-[#e0b143]"
+                  >
+                    Request
+                  </button>
+                )}
               </div>
             )
           })}

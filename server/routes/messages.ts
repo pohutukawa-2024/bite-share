@@ -35,6 +35,7 @@ router.post('/', validateAccessToken, async (req: JwtRequest, res) => {
       ...postMessage,
       senderId: userId,
       sentAt: Date.now(),
+      isRead: false,
     }
 
     db.addNewMessage(message)

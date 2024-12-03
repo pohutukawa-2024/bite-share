@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
 function HomePage() {
-  const { loginWithRedirect } = useAuth0()
+  const { loginWithRedirect, isAuthenticated } = useAuth0()
 
   const handleSignUp = () => {
     loginWithRedirect({
@@ -47,13 +47,23 @@ function HomePage() {
             alt="family-sharing-food"
             // className=" "
           />
-          <div className="absolute bottom-20 mt-0 flex justify-center space-x-8 ">
-            <Link
-              to="/give"
-              className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
-            >
-              Give
-            </Link>
+          <div className="absolute bottom-20 mt-0 flex justify-center space-x-8">
+            {isAuthenticated ? (
+              <Link
+                to="/give"
+                className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
+              >
+                Give
+              </Link>
+            ) : (
+              <button
+                onClick={handleSignUp}
+                className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
+              >
+                Give
+              </button>
+            )}
+
             <Link
               to="/request"
               className="transform rounded-3xl bg-yellow-500 px-7 py-5 text-2xl font-bold text-black transition duration-300 ease-in-out hover:scale-105 hover:bg-[#1f2937] hover:text-white"
