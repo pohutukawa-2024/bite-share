@@ -39,7 +39,9 @@ export function renderWithQuery(component: JSX.Element, location = '/') {
   )
 
   const user = userEvent.setup()
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  })
   return {
     user,
     ...render(

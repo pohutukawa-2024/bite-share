@@ -87,14 +87,14 @@ describe('<Request Page />', () => {
     expect(scope.isDone()).toBe(true)
   })
 
-  it.skip('should show an error message when there is an error', async () => {
+  it('should show an error message when there is an error', async () => {
     const scope = nock('http://localhost').get('/api/v1/baskets').reply(500)
 
     renderWithQuery(<RequestPage />)
 
     await waitForElementToBeRemoved(() => screen.getByText(/loading/i))
 
-    const error = screen.findByText(/wrong/i)
+    const error = await screen.findByText(/wrong/i)
     expect(error).toBeVisible()
     expect(scope.isDone()).toBe(true)
   })

@@ -14,6 +14,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import useAddMatch from '../../hooks/useAddMatch'
 import { Link, useNavigate } from 'react-router-dom'
 import Leaderboard from '../../components/Leaderboard'
+import ErrorPage from '../../components/ErrorPage'
 
 const dietaryImages = {
   Vegan: 'Public/images/vegan.png',

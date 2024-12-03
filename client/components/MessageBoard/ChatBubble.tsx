@@ -11,7 +11,7 @@ interface Props {
 
 export default function ChatBubble({ data, onClick }: Props) {
   return (
-    <section className="h-[500px] w-1/6">
+    <section className="h-[500px] w-1/6 overflow-y-auto">
       <p>Your matches</p>
       <ul>
         {data.map((match) => (
@@ -24,7 +24,7 @@ export default function ChatBubble({ data, onClick }: Props) {
                   basketId: match.basketId,
                 })
               }
-              className="m-3 h-16 w-16 rounded-full bg-gray-50"
+              className="w-16 h-16 m-3 rounded-full bg-gray-50"
             >
               {match.otherUsername}
             </button>
