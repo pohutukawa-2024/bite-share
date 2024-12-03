@@ -5,6 +5,7 @@ export async function up(knex) {
     table.string('sender_id').references('users.id')
     table.string('message')
     table.timestamp('sent_at')
+    table.boolean('is_read')
 
     // Add indices
     table.index(['matches_id'])
