@@ -34,9 +34,18 @@ export async function seed(knex) {
     },
     {
       id: 'auth0|104',
-      username: 'J-Dog',
+      username: 'Ja-Rad',
       full_name: 'Jared Pinfold',
       email: 'jared@example.com',
+      points: 0,
+      location: 'West Auckland',
+      icon: '',
+    },
+    {
+      id: 'auth0|105',
+      username: 'CookieMonster',
+      full_name: 'Cookie Monster',
+      email: 'cookies4me@example.com',
       points: 0,
       location: 'West Auckland',
       icon: '',
@@ -81,8 +90,8 @@ export async function seed(knex) {
       location: 'West Auckland',
       status: 'active',
       image: '',
-      created_at: 1698557400000,
-      updated_at: 1698557700000,
+      created_at: 1708557400005,
+      updated_at: 1708557400005,
     },
     {
       id: 2,
@@ -93,8 +102,8 @@ export async function seed(knex) {
       location: 'North Shore',
       status: 'active',
       image: '',
-      created_at: 1698559200000,
-      updated_at: 1698559500000,
+      created_at: 1708557400003,
+      updated_at: 1708557400003,
     },
     {
       id: 3,
@@ -106,8 +115,8 @@ export async function seed(knex) {
       location: 'East Auckland',
       status: 'active',
       image: '',
-      created_at: 1698561600000,
-      updated_at: 1698561900000,
+      created_at: 1708557400002,
+      updated_at: 1708557400002,
     },
     {
       id: 4,
@@ -119,8 +128,8 @@ export async function seed(knex) {
       location: 'West Auckland',
       status: 'active',
       image: '',
-      created_at: 1698564000000,
-      updated_at: 1698564300000,
+      created_at: 1708557400004,
+      updated_at: 1708557400004,
     },
     {
       id: 5,
@@ -131,8 +140,8 @@ export async function seed(knex) {
       location: 'South Auckland',
       status: 'active',
       image: '',
-      created_at: 1698566400000,
-      updated_at: 1698566700000,
+      created_at: 1708557400000,
+      updated_at: 1708557400000,
     },
     {
       id: 6,
@@ -144,8 +153,60 @@ export async function seed(knex) {
       location: 'South Auckland',
       status: 'active',
       image: '',
-      created_at: 1698568800000,
-      updated_at: 1698569100000,
+      created_at: 1708557400004,
+      updated_at: 1708557400004,
+    },
+    {
+      id: 7,
+      user_id: 'auth0|67476f8defa904b4cd515493',
+      description: 'Some left over cookies from last weekend.',
+      categories: 'Snacks',
+      dietary_content: '',
+      location: 'East Auckland',
+      status: 'pending',
+      image: '',
+      created_at: 1698557400000,
+      updated_at: 1698557700000,
+    },
+  ])
+
+  await knex('matches').insert([
+    {
+      id: 1,
+      basket_id: 7,
+      giver_id: 'auth0|67476f8defa904b4cd515493',
+      receiver_id: 'auth0|105',
+      status: 'active',
+      created_at: 1698557700000,
+      updated_at: 1698558000000,
+    },
+  ])
+
+  await knex('messages').insert([
+    {
+      id: 1,
+      matches_id: 1,
+      sender_id: 'auth0|105',
+      message:
+        'Me see your basket of delicious cookies.  Me would be forever grateful if you would give me that basket. Om nom nom!',
+      sent_at: 1698579900000,
+      is_read: false,
+    },
+    {
+      id: 2,
+      matches_id: 1,
+      sender_id: 'auth0|105',
+      message: 'Hello?? Me still waiting',
+      sent_at: 1698589900000,
+      is_read: false,
+    },
+    {
+      id: 3,
+      matches_id: 1,
+      sender_id: 'auth0|105',
+      message: 'Please..',
+      sent_at: 1698599900000,
+      is_read: false,
     },
   ])
 }
