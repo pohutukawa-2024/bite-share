@@ -23,16 +23,16 @@ export default function Leaderboard() {
                 {index + 1}.
               </span>
               <img
-                src="Public/images/dp.png"
+                src="/images/dp.png"
                 alt="user icon"
-                className=" h-9 rounded-full  border-gray-300"
+                className="h-9 rounded-full  border-gray-300"
               />
               <div>
                 <p className="-ml-2 text-sm text-gray-600">@{user.username}</p>
               </div>
             </div>
             {/* <div className="text-right">
-              <p className="p-1 text-sm  text-green-600">{user.points} pts</p>
+              <p className="p-1 text-sm text-green-600">{user.points} pts</p>
             </div> */}
           </li>
         ))}

@@ -18,14 +18,14 @@ import Leaderboard from '../../components/Leaderboard'
 import ErrorPage from '../../components/ErrorPage'
 
 export const dietaryImages = {
-  Vegan: 'Public/images/vegan.png',
-  Vegetarian: 'Public/images/vegetarian.png',
-  GlutenFree: 'Public/images/glutenFree.png',
-  DiaryFree: 'Public/images/diaryFree.png',
-  Halal: 'Public/images/halal.png',
-  Meat: 'Public/images/meat.png',
-  Milk: 'Public/images/milk.png',
-  Default: 'Public/images/default.png',
+  Vegan: '/images/vegan.png',
+  Vegetarian: '/images/vegetarian.png',
+  GlutenFree: '/images/glutenFree.png',
+  DiaryFree: '/images/diaryFree.png',
+  Halal: '/images/halal.png',
+  Meat: '/images/meat.png',
+  Milk: '/images/milk.png',
+  Default: '/images/default.png',
 }
 function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
