@@ -20,7 +20,7 @@ beforeEach(async () => {
 describe('users DB functions', () => {
   it("should return own user's profile", async () => {
     const user = await getUser('auth0|67476f8defa904b4cd515493')
-    expect(user.username).toBe('superhenry')
+    expect(user.username).toBe('hungryhenry')
     expect(user).toHaveProperty('id')
     expect(user).toHaveProperty('username')
     expect(user).toHaveProperty('fullName')

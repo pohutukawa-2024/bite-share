@@ -25,7 +25,7 @@ describe('Users Server Routes: /api/v1/users', () => {
       .set('authorization', `Bearer ${getMockToken()}`)
 
     expect(response.status).toBe(200)
-    expect(response.body.user.username).toBe('superhenry')
+    expect(response.body.user.username).toBe('hungryhenry')
   })
 
   it("PATCH: should update a user's profile", async () => {
