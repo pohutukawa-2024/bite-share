@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import useGetUserBaskets from '../../hooks/useGetUserBaskets'
 import usePatchBaskets from '../../hooks/usePatchBaskets'
+import { dietaryImages } from '../MainPage/RequestPage'
 
 function OwnBasket() {
   const { data, isLoading, isError } = useGetUserBaskets()
@@ -50,26 +51,27 @@ function OwnBasket() {
                 className="flex items-center justify-between rounded-xl border border-gray-200 bg-white p-6 shadow-lg transition-all hover:bg-gray-50 hover:shadow-lg"
               >
                 <div className="flex-1 px-4">
-                  <p className="mt-1 text-lg font-bold text-gray-800">
+                  <p className="mt-1 text-xl font-bold text-gray-800">
                     {basket.username}
                   </p>
-                  <p className="mt-4 text-gray-700">
-                    Description: {basket.description}
+                  <p className="mt-3 text-gray-700">
+                    <strong>Description: </strong> {basket.description}
                   </p>
                   <p className="mt-2 text-sm text-gray-500">
-                    Dietary Content: {basket.dietaryContent}
+                    <strong>Dietary Content:</strong> {basket.dietaryContent}
                   </p>
-                  <p className="mt-2 text-sm font-semibold text-green-600">
+                  <p className=" mt-2 text-sm font-semibold text-green-600">
                     Status: {basket.status}
-                  </p>
+                  </p>{' '}
                 </div>
-
-                <button
-                  className="rounded-md bg-red-500 px-6 py-2 font-medium text-white shadow-md transition-all hover:bg-red-600"
-                  onClick={() => handleRemoveBasket(basket.id)}
-                >
-                  Remove
-                </button>
+                <div>
+                  <button
+                    className="rounded-md bg-red-500 px-6 py-2 font-medium text-white shadow-md transition-all hover:bg-red-600"
+                    onClick={() => handleRemoveBasket(basket.id)}
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
             ))}
         </div>

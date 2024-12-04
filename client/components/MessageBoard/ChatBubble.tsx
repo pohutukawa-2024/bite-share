@@ -33,7 +33,7 @@ export default function ChatBubble({ data, onClick, selectMatch }: Props) {
                   basketId: match.basketId,
                 })
               }
-              className={`hover: bg-pink m-2 flex h-12 w-full items-center justify-center rounded-3xl  p-3 text-white ${selectMatch.matchesId === match.matchId ? 'bg-slate-500' : 'bg-gray-400'}`}
+              className={`hover: bg-pink m-2 flex h-12 w-full items-center justify-center rounded-3xl  p-3 text-white ${selectMatch.matchesId === match.matchId ? 'bg-slate-600' : 'bg-slate-400'}`}
             >
               {match.otherUsername}
             </button>

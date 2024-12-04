@@ -167,6 +167,7 @@ function GiverPage() {
                       className="flex items-center"
                     >
                       <input
+                        id={product}
                         type="checkbox"
                         value={product}
                         className="h-4 w-4 accent-slate-700"
@@ -175,7 +176,9 @@ function GiverPage() {
                         }
                         checked={formData.categories.includes(product)}
                       />
-                      <label className="ml-2 text-gray-700">{product}</label>
+                      <label className="ml-2 text-gray-700" htmlFor={product}>
+                        {product}
+                      </label>
                     </div>
                   ))}
                 </div>
@@ -191,6 +194,7 @@ function GiverPage() {
                   {dietaryOptions.map((preference) => (
                     <div key={preference} className="flex items-center">
                       <input
+                        id={preference}
                         type="checkbox"
                         value={preference}
                         className="h-4 w-4 accent-slate-700"
@@ -199,7 +203,12 @@ function GiverPage() {
                         }
                         checked={formData.dietaryContent.includes(preference)}
                       />
-                      <label className="ml-2 text-gray-700">{preference}</label>
+                      <label
+                        className="ml-2 text-gray-700"
+                        htmlFor={preference}
+                      >
+                        {preference}
+                      </label>
                     </div>
                   ))}
                 </div>
