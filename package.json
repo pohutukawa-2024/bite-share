@@ -22,7 +22,8 @@
     "knex": "knex --knexfile ./server/db/knexfile.js",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "postdeploy": "knex --knexfile ./server/db/knexfile.js seed:run"
   },
   "eslintConfig": {
     "extends": [
