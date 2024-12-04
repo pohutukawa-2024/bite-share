@@ -47,7 +47,7 @@ function HomePage() {
             <span className="quote-box">Share More, Waste Less</span>
           </h2>
           <img
-            src="../../Public/images/family1.png"
+            src="/images/family1.png"
             alt="family-sharing-food"
             className="mx-auto w-[400px] lg:w-full"
           />
