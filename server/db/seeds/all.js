@@ -77,7 +77,7 @@ export async function seed(knex) {
       description:
         "Meat. Because anything else isn't food. The whisky? For emergencies only.",
       categories: 'Meat,Beverages',
-      dietary_content: '',
+      dietary_content: 'Meat',
       location: 'West Auckland',
       status: 'active',
       image: '',
@@ -115,7 +115,7 @@ export async function seed(knex) {
       description:
         'I hijacked a milk delivery truck, and need to sell all this milk before it goes off',
       categories: 'Dairy',
-      dietary_content: 'GlutenFree',
+      dietary_content: 'Milk',
       location: 'West Auckland',
       status: 'active',
       image: '',

@@ -46,7 +46,7 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
   // Shows empty conversation when first loads (matchId = 0)
   if (matchId === 0) {
     return (
-      <section className="mt-2 flex h-[500px] w-full items-center justify-center rounded-tl-xl rounded-tr-xl border border-black bg-gray-100 lg:w-[800px]">
+      <section className=" flex h-[500px] w-full items-center justify-center rounded-tl-xl rounded-tr-xl border border-black bg-gray-100 lg:w-[800px]">
         <h1 className="text-lg text-gray-600">Click on a Conversation</h1>
       </section>
     )
@@ -54,7 +54,7 @@ export default function ChatBox({ matchId, otherUsername }: Props) {
   } else {
     return (
       <div className="w-full lg:w-[800px]">
-        <section className="w-4/4 h-[500px] overflow-y-auto rounded-tl-xl  rounded-tr-xl border border-black bg-gray-100">
+        <section className="w-4/4 h-[500px] overflow-y-auto rounded-tl-xl rounded-tr-xl border border-black bg-gray-100">
           <div className="flex justify-center">
             <h1 className="font m-2 font-semibold">{otherUsername}</h1>
             <button

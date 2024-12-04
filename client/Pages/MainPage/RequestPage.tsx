@@ -17,13 +17,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import Leaderboard from '../../components/Leaderboard'
 import ErrorPage from '../../components/ErrorPage'
 
-const dietaryImages = {
+export const dietaryImages = {
   Vegan: 'Public/images/vegan.png',
   Vegetarian: 'Public/images/vegetarian.png',
   GlutenFree: 'Public/images/glutenFree.png',
   DiaryFree: 'Public/images/diaryFree.png',
-  Halal: 'Public/images/meat.png',
-  Default: 'Public/images/vegetarian.png',
+  Halal: 'Public/images/halal.png',
+  Meat: 'Public/images/meat.png',
+  Milk: 'Public/images/milk.png',
+  Default: 'Public/images/default.png',
 }
 function RequestPage() {
   const { data: givers, isLoading, isError } = useBaskets()
@@ -163,7 +165,7 @@ function RequestPage() {
                     <strong>Description:</strong> {giver.description}
                   </p>
                   <p className="mt-1 text-sm text-gray-600">
-                    <strong>Basket:</strong>{' '}
+                    <strong>Content:</strong>{' '}
                     {giver.categories
                       ? giver.categories.replace(',', ', ')
                       : 'No dietary preferences available'}
