@@ -203,7 +203,7 @@ function RequestPage() {
         </div>
         <div className="mt-8 h-48 w-full rounded-3xl bg-zinc-100 p-1 shadow-md sm:mt-0 sm:w-[350px]">
           <img
-            src="Public/images/dietary.png"
+            src="/images/dietary.png"
             alt="Dietary Information"
             width="180px"
             className="mx-auto"
