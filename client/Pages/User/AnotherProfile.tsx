@@ -14,7 +14,7 @@ function AnotherProfile() {
         <div className="m-20 flex w-1/3 flex-col items-center justify-center rounded-md border bg-gray-100 p-3 shadow-lg hover:bg-gray-200">
           <section className="flex items-center gap-4">
             <img
-              src="../../Public/images/placeholder_icon.png"
+              src="/images/placeholder_icon.png"
               alt="user's icon"
               className="w-32 rounded-full "
             />

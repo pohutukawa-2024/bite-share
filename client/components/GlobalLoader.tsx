@@ -9,11 +9,7 @@ const GlobalLoader = () => {
 
   return (
     <div style={styles.overlay}>
-      <img
-        src="Public/images/loading.gif"
-        alt="Loading..."
-        style={styles.gif}
-      />
+      <img src="/images/loading.gif" alt="Loading..." style={styles.gif} />
     </div>
   )
 }

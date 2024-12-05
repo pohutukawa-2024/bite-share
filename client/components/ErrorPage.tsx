@@ -16,7 +16,7 @@ const ErrorPage = () => {
   return (
     <div style={styles.container}>
       <img
-        src="Public/images/errorpage.png"
+        src="/images/errorpage.png"
         alt="Error illustration"
         style={styles.image}
       />
